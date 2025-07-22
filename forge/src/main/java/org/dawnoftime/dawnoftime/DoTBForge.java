@@ -31,7 +31,5 @@ public class DoTBForge {
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.register(DoTBForgeClient.class);
         }
-
     }
-
 }

@@ -38,11 +38,8 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import org.dawnoftime.dawnoftime.block.IFlammable;
 import org.dawnoftime.dawnoftime.block.templates.FlowerPotBlockDoT;
-import org.dawnoftime.dawnoftime.client.gui.screen.DisplayerScreen;
 import org.dawnoftime.dawnoftime.client.model.entity.SilkmothModel;
-import org.dawnoftime.dawnoftime.client.renderer.blockentity.DisplayerBERenderer;
 import org.dawnoftime.dawnoftime.client.renderer.blockentity.DryerBERenderer;
-import org.dawnoftime.dawnoftime.client.renderer.entity.ChairRenderer;
 import org.dawnoftime.dawnoftime.client.renderer.entity.SilkmothRenderer;
 import org.dawnoftime.dawnoftime.entity.SilkmothEntity;
 import org.dawnoftime.dawnoftime.item.IHasFlowerPot;
@@ -174,14 +171,6 @@ public class RegistryImpls {
         }
     }
 
-    public static class FabricMenuTypesRegistry extends DoTBMenuTypesRegistry {
-        @Override
-        public <T extends AbstractContainerMenu> Supplier<MenuType<T>> register(String name, MenuTypeFactory<T> factory) {
-            ExtendedScreenHandlerType<AbstractContainerMenu> type = Registry.register(BuiltInRegistries.MENU, new ResourceLocation(DoTBCommon.MOD_ID, name), new ExtendedScreenHandlerType<>(factory::create));
-            return () -> (MenuType<T>) type;
-        }
-    }
-
     public static class FabricRecipeSerializersRegistry extends DoTBRecipeSerializersRegistry {
         @Override
         public <T extends RecipeSerializer<? extends Recipe<?>>> Supplier<T> register(String name, Supplier<T> recipeSerializer) {
@@ -230,15 +219,6 @@ public class RegistryImpls {
         EntityRendererRegistry.register(DoTBEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get(), SilkmothRenderer::new);
         BlockEntityRenderers.register(DoTBBlockEntitiesRegistry.INSTANCE.DRYER.get(), DryerBERenderer::new);
         EntityModelLayerRegistry.registerModelLayer(SilkmothModel.LAYER_LOCATION, SilkmothModel::createBodyLayer);
-        MenuScreens.register(DoTBMenuTypesRegistry.INSTANCE.DISPLAYER.get(), DisplayerScreen::new);
-
-        DoTBColorsRegistry.initialize();
-        DoTBColorsRegistry.getBlocksColorRegistry().forEach((blockColor, blocks) -> {
-            ColorProviderRegistry.BLOCK.register(blockColor, blocks.stream().map(Supplier::get).toArray(Block[]::new));
-        });
-        DoTBColorsRegistry.getItemsColorRegistry().forEach((itemColor, items) -> {
-            ColorProviderRegistry.ITEM.register(itemColor, items.stream().map(Supplier::get).toArray(Item[]::new));
-        });
     }
 
     public static void init() {
@@ -247,7 +227,6 @@ public class RegistryImpls {
         DoTBItemsRegistry.INSTANCE = new FabricItemsRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new FabricBlockEntitiesRegistry();
         DoTBFeaturesRegistry.INSTANCE = new FabricFeaturesRegistry();
-        DoTBMenuTypesRegistry.INSTANCE = new FabricMenuTypesRegistry();
         DoTBRecipeSerializersRegistry.INSTANCE = new FabricRecipeSerializersRegistry();
         DoTBRecipeTypesRegistry.INSTANCE = new FabricRecipeTypesRegistry();
         DoTBTags.INSTANCE = new FabricTagsRegistry();
