@@ -48,7 +48,6 @@ public abstract class DoTBBlocksRegistry {
     // French
     public final Supplier<Block> LIMESTONE_BALUSTER = register("limestone_baluster", () -> new PlateBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()));
     public final Supplier<Block> LIMESTONE_SIDED_COLUMN = register("limestone_sided_column", () -> new ConnectedVerticalSidedBlock(Block.Properties.copy(Blocks.STONE_BRICKS), LIMESTONE_SIDED_COLUMN_SHAPES));
-    public final Supplier<Block> LIMESTONE_GARGOYLE = register("limestone_gargoyle", () -> new LimestoneGargoyleBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().randomTicks()));
     public final Supplier<Block> LIMESTONE_CHIMNEY = register("limestone_chimney", () -> new AxisChimneyBlock(Block.Properties.copy(Blocks.STONE_BRICKS), LIMESTONE_CHIMNEY_SHAPES));
     public final Supplier<Block> LIMESTONE_FIREPLACE = register("limestone_fireplace", () -> new ConnectedVerticalSidedPlanFireplaceBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
     public final Supplier<Block> BLACK_WROUGHT_IRON_BALUSTER = register("black_wrought_iron_baluster", () -> new PlateBlock(Block.Properties.copy(Blocks.IRON_BARS), THIN_PLATE_SHAPES));
@@ -63,18 +62,12 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> LATTICE_GLASS_PANE = register("lattice_glass_pane", () -> new PaneBlockDoT(Block.Properties.copy(Blocks.GLASS)));
     public final Supplier<Block> LATTICE_WAXED_OAK_WINDOW = register("lattice_waxed_oak_window", () -> new SidedWindowBlock(Block.Properties.copy(Blocks.GLASS), SIDED_WINDOW_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> LATTICE_STONE_BRICKS_WINDOW = register("lattice_stone_bricks_window", () -> new SidedWindowBlock(Block.Properties.copy(Blocks.GLASS), SIDED_WINDOW_SHAPES));
-    public final Supplier<Block> STONE_BRICKS_ARROWSLIT = register("stone_bricks_arrowslit", () -> new WaterloggedHorizontalBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion(), STONE_BRICKS_ARROWSLIT_SHAPES));
     public final Supplier<Block> STONE_BRICKS_CHIMNEY = register("stone_bricks_chimney", () -> new ChimneyBlockDoT(Block.Properties.copy(Blocks.STONE_BRICKS), STONE_BRICKS_CHIMNEY_SHAPES));
     public final Supplier<Block> STONE_BRICKS_FIREPLACE = register("stone_bricks_fireplace", () -> new ConnectedVerticalSidedPlanFireplaceBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
-    public final Supplier<Block> STONE_BRICKS_MACHICOLATION = register("stone_bricks_machicolation", () -> new ConnectedHorizontalBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion(), STONE_BRICKS_MACHICOLATION_SHAPES));
     public final Supplier<Block> WAXED_OAK_DOOR = register("waxed_oak_door", () -> new DoorBlockDoT(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> WAXED_OAK_TRAPDOOR = register("waxed_oak_trapdoor", () -> new CustomTrapDoorBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), BlockSetType.ACACIA), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_SHUTTER = register("waxed_oak_shutters", () -> new ShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_BALUSTER = register("waxed_oak_baluster", () -> new PlateBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), WAXED_OAK_BALUSTER_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_SMALL_SHUTTER = register("waxed_oak_small_shutters", () -> new SmallShutterBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> WAXED_OAK_FENCE = register("waxed_oak_fence", () -> new FenceBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> WAXED_OAK_FENCE_GATE = register("waxed_oak_fence_gate", () -> new FenceGateBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F), WoodType.OAK), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> WAXED_OAK_LATTICE = register("waxed_oak_lattice", () -> new LatticeBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion()).setBurnable(), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_CHANDELIER = register("waxed_oak_chandelier", () -> new WaxedOakChandelierBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion().lightLevel(litBlockEmission(15))), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_CHAIR = register("waxed_oak_chair", () -> new DoubleChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), 11.0F, WAXED_OAK_CHAIR_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> WAXED_OAK_TABLE = register("waxed_oak_table", () -> new ConnectedHorizontalPlanDoubleTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).strength(3.0F, 5.0F).noOcclusion(), WAXED_OAK_TABLE_SHAPES), BlockTags.MINEABLE_WITH_AXE);
@@ -98,15 +91,6 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> IKEBANA_FLOWER_POT = register("ikebana_flower_pot", () -> new SidedFlowerPotBlock(null));
     public final Supplier<Block> SPRUCE_LOW_TABLE = register("spruce_low_table", () -> new SpruceLowTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion().lightLevel(litBlockEmission(14))), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_LEGLESS_CHAIR = register("spruce_legless_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), 3.0F, SPRUCE_LEGLESS_CHAIR_SHAPES), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_DOOR = register("paper_door", () -> new CenteredDoorBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F), BlockSetType.BAMBOO), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_WALL = register("paper_wall", () -> new BottomPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_WALL_FLAT = register("paper_wall_flat", () -> new PillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_WALL_WINDOWS = register("paper_wall_window", () -> new PillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_WALL_FLOWERY = register("paper_wall_flowery", () -> new PillarPaneBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_FOLDING_SCREEN = register("paper_folding_screen", () -> new FoldingScreenBlock(Block.Properties.copy(Blocks.WHITE_WOOL).strength(1.5F, 1.5F).noOcclusion(), FULL_SHAPE), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> RED_PAPER_LANTERN = register("red_paper_lantern", () -> new PaperLanternBlock(Block.Properties.copy(Blocks.RED_WOOL).noOcclusion().noCollission().lightLevel(state -> 12)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> PAPER_LAMP = register("paper_lamp", () -> new PaperLampBlock(Block.Properties.copy(Blocks.WHITE_WOOL).noOcclusion().lightLevel(state -> 14)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> STONE_LANTERN = register("stone_lantern", () -> new LanternBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(state -> 15), STONE_LANTERN_SHAPES));
     public final Supplier<WaterDoubleCropsBlock> RICE = registerWithItem("rice", () -> new WaterDoubleCropsBlock(2), (block) -> new SoilSeedsItem(block, null), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SMALL_TATAMI_MAT = register("small_tatami_mat", () -> new SmallTatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SMALL_TATAMI_FLOOR = registerWithItem("small_tatami_floor", () -> new SmallTatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null, BlockTags.MINEABLE_WITH_AXE);

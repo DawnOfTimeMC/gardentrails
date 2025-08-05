@@ -31,12 +31,6 @@ public final class DoTBFabricLootModifier {
                     buildLootTable(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.2f, tableBuilder);
                     buildLootTable(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.2f, tableBuilder);
                     buildLootTable(DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.2f, tableBuilder);
-
-                    buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(), 0.1f, tableBuilder);
-                    buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get(), 0.1f, tableBuilder);
-                    buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_CYAN.get(), 0.1f, tableBuilder);
-                    buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_ORANGE.get(), 0.1f, tableBuilder);
-                    buildLootTable(DoTBItemsRegistry.INSTANCE.CLAY_TILE_WHITE.get(), 0.1f, tableBuilder);
                 }
             }
         });
