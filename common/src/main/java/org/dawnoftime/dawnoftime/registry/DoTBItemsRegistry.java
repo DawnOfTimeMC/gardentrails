@@ -21,15 +21,6 @@ public abstract class DoTBItemsRegistry {
     public final Supplier<Item> SILK = register("silk", ItemDoTB::new);
     public final Supplier<Item> TEA_LEAVES = register("tea_leaves", ItemDoTB::new);
     public final Supplier<Item> CAMELLIA_LEAVES = register("camellia_leaves", ItemDoTB::new);
-    public final Supplier<Item> UNFIRED_CLAY_TILE = register("unfired_clay_tile", ItemDoTB::new);
-    public final Supplier<Item> CLAY_TILE = register("clay_tile", ItemDoTB::new);
-    public final Supplier<Item> CLAY_TILE_WHITE = register("clay_tile_white", ItemDoTB::new);
-    public final Supplier<Item> CLAY_TILE_ORANGE = register("clay_tile_orange", ItemDoTB::new);
-    public final Supplier<Item> CLAY_TILE_BLACK = register("clay_tile_black", ItemDoTB::new);
-    public final Supplier<Item> CLAY_TILE_BLUE = register("clay_tile_blue", ItemDoTB::new);
-    public final Supplier<Item> CLAY_TILE_CYAN = register("clay_tile_cyan", ItemDoTB::new);
-    public final Supplier<Item> UNFIRED_CLAY_ROOF_TILE = register("unfired_clay_roof_tile", ItemDoTB::new);
-    public final Supplier<Item> GRAY_CLAY_ROOF_TILE = register("gray_clay_roof_tile", ItemDoTB::new);
     public final Supplier<Item> MULBERRY_LEAVES = register("mulberry_leaves", ItemDoTB::new);
     public final Supplier<Item> GRAPE = register("grape", () -> new ItemDoTB(new Item.Properties().food(Foods.GRAPE)));
     public Supplier<Item> GRAPE_SEEDS;

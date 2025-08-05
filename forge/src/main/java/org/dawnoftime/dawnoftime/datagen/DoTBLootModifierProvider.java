@@ -68,31 +68,6 @@ public class DoTBLootModifierProvider extends GlobalLootModifierProvider {
                 buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
                         DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(),
                         0.2f));
-
-        add("black_clay_tile_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(),
-                        0.1f));
-
-        add("blue_clay_tile_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get(),
-                        0.1f));
-
-        add("cyan_clay_tile_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBItemsRegistry.INSTANCE.CLAY_TILE_CYAN.get(),
-                        0.1f));
-
-        add("orange_clay_tile_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBItemsRegistry.INSTANCE.CLAY_TILE_ORANGE.get(),
-                        0.1f));
-
-        add("white_clay_tile_in_shipwreck_supply",
-                buildLootTable(LootTablesToModify.SHIPWRECK_SUPPLY,
-                        DoTBItemsRegistry.INSTANCE.CLAY_TILE_WHITE.get(),
-                        0.1f));
     }
 
     private DoTBLootModifiersForge buildLootTable(String lootTableName, Item item, float probability) {

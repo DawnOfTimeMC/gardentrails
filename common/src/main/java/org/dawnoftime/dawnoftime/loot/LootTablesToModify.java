@@ -23,12 +23,7 @@ public final class LootTablesToModify {
             Map.entry(DoTBItemsRegistry.INSTANCE.GRAPE.get(),            config.generateGrapes),
             Map.entry(DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(), config.generateMaize),
             Map.entry(DoTBBlocksRegistry.INSTANCE.RICE.get().asItem(),  config.generateRice),
-            Map.entry(DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), config.generateMulberry),
-            Map.entry(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLACK.get(),  config.generateBlackClayTile),
-            Map.entry(DoTBItemsRegistry.INSTANCE.CLAY_TILE_BLUE.get(),   config.generateBlueClayTile),
-            Map.entry(DoTBItemsRegistry.INSTANCE.CLAY_TILE_CYAN.get(),   config.generateCyanClayTile),
-            Map.entry(DoTBItemsRegistry.INSTANCE.CLAY_TILE_ORANGE.get(), config.generateOrangeClayTile),
-            Map.entry(DoTBItemsRegistry.INSTANCE.CLAY_TILE_WHITE.get(),  config.generateWhiteClayTile)
+            Map.entry(DoTBBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), config.generateMulberry)
     );
 
     private LootTablesToModify() {}
