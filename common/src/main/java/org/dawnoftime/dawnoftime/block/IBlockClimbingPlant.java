@@ -29,7 +29,15 @@ import static org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.AGE_0_6;
 import static org.dawnoftime.dawnoftime.util.BlockStatePropertiesAA.CLIMBING_PLANT;
 
 public interface IBlockClimbingPlant {
-
+    /**
+     * Tries to increase the AGE of the Climbing Plant.
+     * Else, tries to spread on an adjacent Block.
+     *
+     * @param stateIn Current State of the Block.
+     * @param worldIn World of the Block.
+     * @param pos     Position of the Block.
+     * @param random  Used to determine if the Block must grow.
+     */
     default void tickPlant(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource random) {
         if(!worldIn.isClientSide()) {
             if(stateIn.getValue(CLIMBING_PLANT).hasNoPlant() || stateIn.getValue(PERSISTENT))
@@ -70,6 +78,17 @@ public interface IBlockClimbingPlant {
         }
     }
 
+    /**
+     * When a Player right-clicks the Block with a Climbing Plant seed, it tries to set the corresponding Climbing Plant on the Block.
+     *
+     * @param stateIn Current State of the Block.
+     * @param worldIn World of the Block.
+     * @param pos     Position of the Block.
+     * @param player  Player that right-clicked the Block.
+     * @param handIn  Active hand.
+     *
+     * @return True if a Climbing Plant was successfully put on the Block.
+     */
     default boolean tryPlacingPlant(BlockState stateIn, Level worldIn, BlockPos pos, Player player, InteractionHand handIn) {
         if(player.isCrouching())
             return false;
@@ -88,10 +107,30 @@ public interface IBlockClimbingPlant {
         return false;
     }
 
+    /**
+     * Function used to replace the BlockState with the new one with updated plant.
+     *
+     * @param state BlockState of the block with updated climbing plant state.
+     * @param world World of the block.
+     * @param pos   Pos of the block.
+     */
     default void placePlant(BlockState state, Level world, BlockPos pos, int option) {
         world.setBlock(pos, state, option);
     }
 
+    /**
+     * If the player is in Creative, he can control plant's age with right-click and shift-right-click
+     * Else, if the Climbing Plant is older than AGE 2 and has a loot_table, it drops its loots.
+     * Else, if the player is sneaking, the plant is removed and its loots dropped.
+     *
+     * @param stateIn Current State of the Block.
+     * @param worldIn World of the Block.
+     * @param pos     Position of the Block.
+     * @param player  Player that right-clicked the Block.
+     * @param handIn  Active hand.
+     *
+     * @return True if the Climbing Plant was modified.
+     */
     default InteractionResult harvestPlant(BlockState stateIn, Level worldIn, BlockPos pos, Player player, InteractionHand handIn) {
         if(player.isCreative() && stateIn.getValue(PERSISTENT) && !stateIn.getValue(CLIMBING_PLANT).hasNoPlant()) {
             if(player.isCrouching()) {
@@ -124,6 +163,16 @@ public interface IBlockClimbingPlant {
         }
     }
 
+    /**
+     * If the state in input contains a Climbing Plant, it removes it and drops its loots.
+     *
+     * @param stateIn       Current State of the Block.
+     * @param worldIn       World of the Block.
+     * @param pos           Position of the Block.
+     * @param heldItemStack Item in active hand to apply tool conditions in the LootTable.
+     *
+     * @return True if a Climbing Plant was removed.
+     */
     default InteractionResult tryRemovingPlant(BlockState stateIn, Level worldIn, BlockPos pos, ItemStack heldItemStack) {
         if(!stateIn.getValue(CLIMBING_PLANT).hasNoPlant()) {
             stateIn = this.removePlant(stateIn, worldIn, pos, heldItemStack);
@@ -133,6 +182,16 @@ public interface IBlockClimbingPlant {
         return InteractionResult.PASS;
     }
 
+    /**
+     * Removes the Climbing Plant, drop its LootTable, and play breaking sound.
+     *
+     * @param stateIn       Current State of the Block.
+     * @param worldIn       World of the Block.
+     * @param pos           Position of the Block.
+     * @param heldItemStack Item in active hand to apply tool conditions in the LootTable.
+     *
+     * @return The State in input with no Climbing Plant, and AGE back to 0.
+     */
     default BlockState removePlant(BlockState stateIn, LevelAccessor worldIn, BlockPos pos, ItemStack heldItemStack) {
         this.dropPlant(stateIn, worldIn, pos, heldItemStack, true);
         worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -140,6 +199,17 @@ public interface IBlockClimbingPlant {
         return stateIn;
     }
 
+    /**
+     * Drops one by one each item contained in the LootTable of the Climbing Plant at the corresponding age.
+     * For example, if the Block contains a plant called "plant" at age "3", it will drop each Item in the LootTable named "plant_3" in Blocks folder.
+     *
+     * @param stateIn       Current State of the Block.
+     * @param worldIn       World of the Block.
+     * @param pos           Position of the Block.
+     * @param heldItemStack Item in active hand to apply tool conditions.
+     *
+     * @return True if some loot is dropped. False if there were no loot_table found or item dropped.
+     */
     default boolean dropPlant(BlockState stateIn, LevelAccessor worldIn, BlockPos pos, ItemStack heldItemStack, boolean bool) {
         if(worldIn.isClientSide())
             return false;
@@ -150,6 +220,13 @@ public interface IBlockClimbingPlant {
         return Utils.dropLootFromList(worldIn, pos, drops, 1.0F);
     }
 
+    /**
+     * States if this block can have a climbing Plant.
+     *
+     * @param state Current state of the Block.
+     *
+     * @return True if the state of the Block allows Climbing Plants.
+     */
     default boolean canHavePlant(BlockState state) {
         if(state.getBlock() instanceof SimpleWaterloggedBlock) {
             return !state.getValue(BlockStateProperties.WATERLOGGED);
@@ -157,6 +234,13 @@ public interface IBlockClimbingPlant {
         return true;
     }
 
+    /**
+     * States if the block below can sustain a climbing plant growing in the block above it.
+     *
+     * @param stateUnder BlockState of the block under this block.
+     *
+     * @return True if the block under can sustain climbing plants (dirt or grass).
+     */
     default boolean canSustainClimbingPlant(BlockState stateUnder) {
         Block block = stateUnder.getBlock();
         return block == Blocks.GRASS_BLOCK || stateUnder.is(BlockTags.DIRT);

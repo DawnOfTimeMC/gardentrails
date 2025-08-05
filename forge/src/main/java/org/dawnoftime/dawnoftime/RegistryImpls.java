@@ -159,6 +159,15 @@ public class RegistryImpls {
         }
     }
 
+    public static class ForgeMenuTypesRegistry extends DoTBMenuTypesRegistry {
+        public static final DeferredRegister<MenuType<?>> MENU_TYPES_REGISTRY = DeferredRegister.create(ForgeRegistries.MENU_TYPES, DoTBCommon.MOD_ID);
+
+        @Override
+        public <T extends AbstractContainerMenu> Supplier<MenuType<T>> register(String name, MenuTypeFactory<T> factory) {
+            return MENU_TYPES_REGISTRY.register(name, () -> IForgeMenuType.create((i, inventory, friendlyByteBuf) -> (T) factory.create(i, inventory, friendlyByteBuf)));
+        }
+    }
+
     public static class ForgeRecipeSerializersRegistry extends DoTBRecipeSerializersRegistry {
         public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS_REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, DoTBCommon.MOD_ID);
 
@@ -206,6 +215,7 @@ public class RegistryImpls {
         DoTBItemsRegistry.INSTANCE = new ForgeItemsRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new ForgeBlockEntitiesRegistry();
         DoTBFeaturesRegistry.INSTANCE = new ForgeFeaturesRegistry();
+        DoTBMenuTypesRegistry.INSTANCE = new ForgeMenuTypesRegistry();
         DoTBRecipeSerializersRegistry.INSTANCE = new ForgeRecipeSerializersRegistry();
         DoTBRecipeTypesRegistry.INSTANCE = new ForgeRecipeTypesRegistry();
         DoTBTags.INSTANCE = new ForgeTagsRegistry();
@@ -217,6 +227,7 @@ public class RegistryImpls {
         ForgeItemsRegistry.ITEMS_REGISTRY.register(bus);
         ForgeBlockEntitiesRegistry.BLOCK_ENTITY_TYPES_REGISTRY.register(bus);
         ForgeFeaturesRegistry.FEATURES_REGISTRY.register(bus);
+        ForgeMenuTypesRegistry.MENU_TYPES_REGISTRY.register(bus);
         ForgeRecipeSerializersRegistry.RECIPE_SERIALIZERS_REGISTRY.register(bus);
         ForgeRecipeTypesRegistry.RECIPE_TYPES_REGISTRY.register(bus);
         ForgeCreativeModeTabsRegistry.CREATIVE_MODE_TABS_REGISTRY.register(bus);

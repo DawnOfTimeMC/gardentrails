@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.SectionPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -44,8 +46,21 @@ public class Utils {
             DoTBCommon.MOD_ID + ".hold_key").withStyle(ChatFormatting.GRAY).append(Component.translatable("tooltip." +
             DoTBCommon.MOD_ID + ".shift").withStyle(ChatFormatting.AQUA));
     public static final String TOOLTIP_COLUMN = "column";
+    public static final String TOOLTIP_CLIMBING_PLANT = "climbing_plant";
+    public static final String TOOLTIP_BEAM = "beam";
     public static final String TOOLTIP_CROP = "crop";
+    public static final String TOOLTIP_FIREPLACE = "fireplace";
+    public static final String TOOLTIP_ADD_COLUMN = "add_column";
 
+    /**
+     * Fills a table with VS rotated in each horizontal directions following the horizontal index order :<p/>
+     * south - west - north - east
+     *
+     * @param shapes           Contains the VoxelShapes oriented toward south.
+     * @param nonRotatedShapes Facultative list of shapes that must no be rotated (will be at the end of the array, starting at index
+     *                         shapes#length * 4).
+     * @return A table filled with the previous VS and new ones rotated in each 3 horizontal directions.
+     */
     public static VoxelShape[] generateHorizontalShapes(final VoxelShape[] shapes, VoxelShape... nonRotatedShapes) {
         final VoxelShape[] newShape = {Shapes.empty()};
         final VoxelShape[] newShapes = new VoxelShape[shapes.length * 4 + nonRotatedShapes.length];

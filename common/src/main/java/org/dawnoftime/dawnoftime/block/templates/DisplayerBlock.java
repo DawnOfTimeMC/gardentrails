@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.dawnoftime.dawnoftime.blockentity.DisplayerBlockEntity;
 import org.dawnoftime.dawnoftime.platform.Services;
 import org.dawnoftime.dawnoftime.registry.DoTBBlockEntitiesRegistry;
 
@@ -34,6 +35,12 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
         builder.add(LIT);
     }
 
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return DoTBBlockEntitiesRegistry.INSTANCE.DISPLAYER.get().create(pPos, pState);
+    }
+
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
         if(!world.isClientSide()) {
@@ -49,6 +56,9 @@ public abstract class DisplayerBlock extends WaterloggedBlock implements EntityB
     public void onRemove(BlockState oldState, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if(oldState.getBlock() != newState.getBlock()) {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
+            if(tileEntity instanceof DisplayerBlockEntity displayerEntity) {
+                displayerEntity.itemHandler.removeAllItems().forEach(itemStack -> dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemStack));
+            }
         }
         super.onRemove(oldState, worldIn, pos, newState, isMoving);
     }

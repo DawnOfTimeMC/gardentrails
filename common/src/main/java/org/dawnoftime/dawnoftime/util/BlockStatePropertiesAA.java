@@ -16,15 +16,44 @@ import org.jetbrains.annotations.NotNull;
 
 public class BlockStatePropertiesAA {
     public static final BooleanProperty CUT = BooleanProperty.create("cut");
+    public static final BooleanProperty ROLLED = BooleanProperty.create("rolled");
+    public static final BooleanProperty AXIS_X = BooleanProperty.create("axis_x");
+    public static final BooleanProperty AXIS_Y = BooleanProperty.create("axis_y");
+    public static final BooleanProperty AXIS_Z = BooleanProperty.create("axis_z");
+    public static final BooleanProperty SUBAXIS = BooleanProperty.create("subaxis");
+    public static final BooleanProperty HAS_PILLAR = BooleanProperty.create("has_pillar");
+    public static final BooleanProperty CENTER = BooleanProperty.create("center");
+    public static final BooleanProperty NORTH_TRICKLE = BooleanProperty.create("north_trickle");
+    public static final BooleanProperty EAST_TRICKLE = BooleanProperty.create("east_trickle");
+    public static final BooleanProperty SOUTH_TRICKLE = BooleanProperty.create("south_trickle");
+    public static final BooleanProperty WEST_TRICKLE = BooleanProperty.create("west_trickle");
+    public static final BooleanProperty CENTER_TRICKLE = BooleanProperty.create("center_trickle");
+    public static final BooleanProperty ACTIVATED = BooleanProperty.create("activated");
+    public static final BooleanProperty SMALL_TOP = BooleanProperty.create("small_top");
+    public static final IntegerProperty MULTIBLOCK_0_2 = IntegerProperty.create("multiblock", 0, 2);
     public static final IntegerProperty MULTIBLOCK_3X = IntegerProperty.create("multiblock_3x", 0, 2);
     public static final IntegerProperty MULTIBLOCK_2Y = IntegerProperty.create("multiblock_2y", 0, 1);
     public static final IntegerProperty MULTIBLOCK_3Z = IntegerProperty.create("multiblock_3z", 0, 2);
+    public static final IntegerProperty HUMIDITY_0_8 = IntegerProperty.create("humidity", 0, 8);
     public static final IntegerProperty AGE_0_6 = IntegerProperty.create("age", 0, 6);
+    public static final IntegerProperty HEAT_0_4 = IntegerProperty.create("heat", 0, 4);
     public static final IntegerProperty SIZE_0_2 = IntegerProperty.create("size", 0, 2);
     public static final IntegerProperty SIZE_0_5 = IntegerProperty.create("size", 0, 5);
+    public static final IntegerProperty STACK = IntegerProperty.create("stack", 1, 3);
+    public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 16);
     public static final EnumProperty<ClimbingPlant> CLIMBING_PLANT = EnumProperty.create("climbing_plant", ClimbingPlant.class);
+    public static final EnumProperty<FencePillar> FENCE_PILLAR = EnumProperty.create("fence_pillar", FencePillar.class);
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION = EnumProperty.create("horizontal_connection", HorizontalConnection.class);
+    public static final EnumProperty<OpenPosition> OPEN_POSITION = EnumProperty.create("open_position", OpenPosition.class);
+    public static final EnumProperty<PillarConnection> PILLAR_CONNECTION = EnumProperty.create("pillar_connection", PillarConnection.class);
     public static final EnumProperty<VerticalConnection> VERTICAL_CONNECTION = EnumProperty.create("vertical_connection", VerticalConnection.class);
+    public static final EnumProperty<SquareCorners> CORNER = EnumProperty.create("corner", SquareCorners.class);
+    public static final EnumProperty<WallSide> PILLAR_WALL = EnumProperty.create("pillar", WallSide.class);
+    public static final EnumProperty<VerticalLimitedConnection> NORTH_STATE = EnumProperty.create("north_state", VerticalLimitedConnection.class);
+    public static final EnumProperty<VerticalLimitedConnection> EAST_STATE = EnumProperty.create("east_state", VerticalLimitedConnection.class);
+    public static final EnumProperty<VerticalLimitedConnection> SOUTH_STATE = EnumProperty.create("south_state", VerticalLimitedConnection.class);
+    public static final EnumProperty<VerticalLimitedConnection> WEST_STATE = EnumProperty.create("west_state", VerticalLimitedConnection.class);
+    public static final EnumProperty<WaterTrickleEnd> WATER_TRICKLE_END = EnumProperty.create("water_end", WaterTrickleEnd.class);
 
     public enum VerticalLimitedConnection implements StringRepresentable {
         NONE("none", 0),
@@ -48,6 +77,12 @@ public class BlockStatePropertiesAA {
             return this.name;
         }
 
+        /**
+         * @return 0 : NONE,
+         * 1 : UNDER,
+         * 2 : ABOVE,
+         * 3 : BOTH
+         */
         public int getIndex() {
             return this.index;
         }
@@ -104,6 +139,12 @@ public class BlockStatePropertiesAA {
             return this.name;
         }
 
+        /**
+         * @return 0 : NONE,
+         * 1 : UNDER,
+         * 2 : ABOVE,
+         * 3 : BOTH
+         */
         public int getIndex() {
             return this.index;
         }
@@ -179,10 +220,18 @@ public class BlockStatePropertiesAA {
             return this.name;
         }
 
+        /**
+         * @param referenceCorner Corner used as reference
+         * @return the offset to apply to the BlockPos horizontally to get the pos of the studied corner.
+         */
         public int getHorizontalOffset(final SquareCorners referenceCorner) {
             return referenceCorner.horizontal_offset == this.horizontal_offset ? 0 : this.horizontal_offset;
         }
 
+        /**
+         * @param referenceCorner Corner used as reference
+         * @return the offset to apply to the BlockPos vertically to get the pos of the studied corner.
+         */
         public int getVerticalOffset(final SquareCorners referenceCorner) {
             return referenceCorner.vertical_offset == this.vertical_offset ? 0 : this.vertical_offset;
         }
@@ -191,6 +240,10 @@ public class BlockStatePropertiesAA {
             return this.vertical_offset == 1;
         }
 
+        /**
+         * @param vertically must be true if the adjacent corner must be above or under.
+         * @return the adjacent SquareCorner vertically or horizontally.
+         */
         public SquareCorners getAdjacentCorner(final boolean vertically) {
             return switch (this) {
                 case TOP_RIGHT -> vertically ? BOTTOM_RIGHT : TOP_LEFT;
@@ -257,6 +310,21 @@ public class BlockStatePropertiesAA {
         private final boolean cycle;
         private final int[] moonPhasePerAge;
 
+        /**
+         * These plants grow on blocks, from age 0 to 2 (or 6 if it follows a cycle).
+         * 0 and 1 are the childhood of the planks.
+         * If the plant follows a cycle, it will grow from 2 to 6, then come back to 2, and repeat.
+         * The growth after age 2 is permitted only if the moon phase is between the required phase and 3 moon phases later.
+         * Vanilla moon phases are 0, 1, 2, 3, 4, 5, 6, 7 (with 0 being Full Moon, and 4 New Moon).
+         *
+         * @param name  Plant's name.
+         * @param cycle True if the plant can grow above age 2.
+         * @param age2  Required moon phase to grow from 2 to 3.
+         * @param age3  Required moon phase to grow from 3 to 4.
+         * @param age4  Required moon phase to grow from 4 to 5.
+         * @param age5  Required moon phase to grow from 5 to 6.
+         * @param age6  Required moon phase to go back from 6 to 2.
+         */
         ClimbingPlant(final String name, final boolean cycle, final int age2, final int age3, final int age4, final int age5, final int age6) {
             this.name = name;
             this.cycle = cycle;
