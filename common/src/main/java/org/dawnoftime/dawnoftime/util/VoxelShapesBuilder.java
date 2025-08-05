@@ -5,11 +5,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class VoxelShapesBuilder {
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * {0 : NW Outer, 1 : N Default, 2 : NW Inner, 3 : NE Outer, 4 : N Default, 5 : NE Inner, 6 : SE Outer,
-     * 7 : S Default, 8 : SE Inner, 9 : SW Outer, 10 : S Default, 11 : SW Inner}
-     */
+
     protected static VoxelShape[] makePlateShapes() {
         final VoxelShape vsNorthFlat = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
         final VoxelShape vsEastFlat = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
@@ -22,11 +18,6 @@ public class VoxelShapesBuilder {
         return new VoxelShape[]{vsNorthWestCorner, vsNorthFlat, Shapes.or(vsNorthFlat, vsSouthWestCorner), vsNorthEastCorner, vsEastFlat, Shapes.or(vsEastFlat, vsNorthWestCorner), vsSouthEastCorner, vsSouthFlat, Shapes.or(vsSouthFlat, vsNorthEastCorner), vsSouthWestCorner, vsWestFlat, Shapes.or(vsWestFlat, vsSouthEastCorner),};
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * {0 : NW Outer, 1 : N Default, 2 : NW Inner, 3 : NE Outer, 4 : N Default, 5 : NE Inner, 6 : SE Outer,
-     * 7 : S Default, 8 : SE Inner, 9 : SW Outer, 10 : S Default, 11 : SW Inner}
-     */
     protected static VoxelShape[] makeThinPlateShapes() {
         VoxelShape vsNorthFlat = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 4.0D);
         VoxelShape vsEastFlat = Block.box(12.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
@@ -146,11 +137,6 @@ public class VoxelShapesBuilder {
         return shapes;
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * {0 : Axis X, 1 : Axis Z, 2 : Axis X + Z, 3 : Axis Y, 4 : Axis Y + Bottom, 5 : Axis Y + X,
-     * 6 : Axis Y + X + Bottom, 7 : Axis Y + Z, 8 : Axis Y + Z + Bottom, 9 : Axis Y + X + Z, 10 : Axis Y + X + Z + Bottom}
-     */
     protected static VoxelShape[] makeBeamShapes() {
         VoxelShape vsAxisX = Block.box(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
         VoxelShape vsAxisZ = Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D);
@@ -172,11 +158,6 @@ public class VoxelShapesBuilder {
         };
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * {0 : Axis X, 1 : Axis Z, 2 : Axis X + Z, 3 : Axis Y, 4 : Axis Y + Bottom, 5 : Axis Y + X,
-     * 6 : Axis Y + X + Bottom, 7 : Axis Y + Z, 8 : Axis Y + Z + Bottom, 9 : Axis Y + X + Z, 10 : Axis Y + X + Z + Bottom}
-     */
     protected static VoxelShape[] makePergolaShapes() {
         VoxelShape vsAxisX = Block.box(0.0D, 5.0D, 6.0D, 16.0D, 11.0D, 10.0D);
         VoxelShape vsAxisZ = Block.box(6.0D, 5.0D, 0.0D, 10.0D, 11.0D, 16.0D);
@@ -198,11 +179,6 @@ public class VoxelShapesBuilder {
         };
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * {0 : NW Outer, 1 : NW Default, 2 : NW Inner, 3 : NE Outer, 4 : NE Default, 5 : NE Inner, 6 : SE Outer,
-     * 7 : SE Default, 8 : SE Inner, 9 : SW Outer, 10 : SW Default, 11 : SW Inner <p/>} * 2 with top.
-     */
     protected static VoxelShape[] makeEdgeShapes() {
         final VoxelShape vsNorthFlat = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 8.0D);
         final VoxelShape vsEastFlat = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
@@ -779,10 +755,6 @@ public class VoxelShapesBuilder {
         });
     }
 
-    /**
-     * @return Stores VoxelShape with index : <p/>
-     * {0 : NW Outer, 1 : N Default, 2 : NW Inner}
-     */
     protected static VoxelShape[] makeGreenSculptedPlasteredStoneFriezeShapes() {
         VoxelShape vsQtrN = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 8.0D);
         VoxelShape vsSpikeN = Block.box(4.5D, 4.0D, 2.0D, 11.5D, 16.0D, 4.0D);
@@ -800,9 +772,6 @@ public class VoxelShapesBuilder {
         });
     }
 
-    /**
-     * @return In the order none, under, above, both.
-     */
     protected static VoxelShape[] makePlasteredStoneColumnShapes() {
         return new VoxelShape[]{
                 Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),
