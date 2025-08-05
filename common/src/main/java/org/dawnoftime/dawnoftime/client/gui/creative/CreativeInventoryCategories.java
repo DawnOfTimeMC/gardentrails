@@ -46,7 +46,6 @@ public enum CreativeInventoryCategories {
 
     FRENCH("french",
             DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.IRON_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_SIDED_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
@@ -74,8 +73,6 @@ public enum CreativeInventoryCategories {
     JAPANESE("japanese",
             DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.IRORI_FIREPLACE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.SMALL_TATAMI_MAT.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.TATAMI_MAT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIGHT_GRAY_FUTON.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LEGLESS_CHAIR.get().asItem(),

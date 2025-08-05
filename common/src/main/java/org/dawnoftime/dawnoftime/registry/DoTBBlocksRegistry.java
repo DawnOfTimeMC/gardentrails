@@ -64,7 +64,6 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> LIMESTONE_CHIMNEY = register("limestone_chimney", () -> new AxisChimneyBlock(Block.Properties.copy(Blocks.STONE_BRICKS), LIMESTONE_CHIMNEY_SHAPES));
     public final Supplier<Block> LIMESTONE_FIREPLACE = register("limestone_fireplace", () -> new ConnectedVerticalSidedPlanFireplaceBlock(Block.Properties.copy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(litBlockEmission(15))));
     public final Supplier<Block> FIREPLACE = register("fireplace", () -> new FireplaceBlock(Block.Properties.copy(Blocks.STONE).strength(1.5F, 6.0F).lightLevel(DoTBBlocksRegistry.litBlockEmission(15))));
-    public final Supplier<Block> IRON_COLUMN = register("iron_column", () -> new IronColumnBlock(Block.Properties.copy(Blocks.IRON_BARS)));
     public final Supplier<Block> WATER_FLOWING_TRICKLE = registerWithItem("water_flowing_trickle", () -> new WaterFlowingTrickleBlock(Block.Properties.copy(Blocks.WATER).randomTicks()), null);
     public final Supplier<Block> WATER_SOURCE_TRICKLE = register("water_source_trickle", () -> new WaterSourceTrickleBlock(Block.Properties.copy(Blocks.SEAGRASS).randomTicks()));
 
@@ -92,10 +91,6 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> IKEBANA_FLOWER_POT = register("ikebana_flower_pot", () -> new SidedFlowerPotBlock(null));
     public final Supplier<Block> SPRUCE_LOW_TABLE = register("spruce_low_table", () -> new SpruceLowTableBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion().lightLevel(litBlockEmission(14))), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_LEGLESS_CHAIR = register("spruce_legless_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).noOcclusion(), 3.0F, SPRUCE_LEGLESS_CHAIR_SHAPES), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> SMALL_TATAMI_MAT = register("small_tatami_mat", () -> new SmallTatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> SMALL_TATAMI_FLOOR = registerWithItem("small_tatami_floor", () -> new SmallTatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null, BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> TATAMI_MAT = register("tatami_mat", () -> new TatamiMatBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> TATAMI_FLOOR = registerWithItem("tatami_floor", () -> new TatamiFloorBlock(Block.Properties.copy(Blocks.WHITE_CARPET)), null, BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> LIGHT_GRAY_FUTON = register("light_gray_futon", () -> new FutonBlock(DyeColor.LIGHT_GRAY, Block.Properties.copy(Blocks.LIGHT_GRAY_BED)), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> IRORI_FIREPLACE = register("irori_fireplace", () -> new IroriFireplaceBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion().lightLevel(litBlockEmission(15))));
     public final Supplier<Block> SAKE_BOTTLE = register("sake_bottle", () -> new SpecialDisplayBlock(Block.Properties.copy(Blocks.FLOWER_POT), SAKE_BOTTLE_SHAPES));
