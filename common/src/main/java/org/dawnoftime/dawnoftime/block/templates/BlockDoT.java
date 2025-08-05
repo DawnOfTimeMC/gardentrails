@@ -29,14 +29,6 @@ public class BlockDoT extends Block implements IFlammable {
         this(properties, FULL_SHAPE);
     }
 
-    /**
-     * Function that return the current hit-box of the block, depending on the its BlockState.
-     * @param state BlockState of the block studied.
-     * @param level World where the block is placed.
-     * @param pos Current BlockPos of the block studied.
-     * @param context Context of the collision.
-     * @return The VoxelShape that correspond to the current hit-box based on the index returned by {@link BlockDoT#getShapeIndex(BlockState, BlockGetter, BlockPos, CollisionContext)}.
-     */
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         try {
@@ -51,36 +43,14 @@ public class BlockDoT extends Block implements IFlammable {
         return this.shapes[index];
     }
 
-    /**
-     * This function returns the index of the current VoxelShape based on the current context of the Block.
-     * By default, returns 0. Override this function, to adapt the returned index on the VoxelShape passed in the constructor.
-     * @param state BlockState of the block studied.
-     * @param level World where the block is placed.
-     * @param pos Current BlockPos of the block studied.
-     * @param context Context of the collision.
-     * @return The int corresponding to the index of the current VoxelShape.
-     */
     public int getShapeIndex(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return 0;
     }
 
-    /**
-     * Set Encouragement to 5 and Flammability to 20
-     *
-     * @return this
-     */
     public Block setBurnable() {
         return setBurnable(5, 20);
     }
 
-    /**
-     * Set burning parameters (default 5 / 20)
-     *
-     * @param fireSpreadSpeed      Increases the probability to catch fire
-     * @param fireDestructionSpeed Decreases burning duration
-     *
-     * @return this
-     */
     public Block setBurnable(int fireSpreadSpeed, int fireDestructionSpeed) {
         this.fireSpreadSpeed = fireSpreadSpeed;
         this.fireDestructionSpeed = fireDestructionSpeed;

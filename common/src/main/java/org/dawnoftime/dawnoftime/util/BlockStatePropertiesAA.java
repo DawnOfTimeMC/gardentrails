@@ -77,12 +77,6 @@ public class BlockStatePropertiesAA {
             return this.name;
         }
 
-        /**
-         * @return 0 : NONE,
-         * 1 : UNDER,
-         * 2 : ABOVE,
-         * 3 : BOTH
-         */
         public int getIndex() {
             return this.index;
         }

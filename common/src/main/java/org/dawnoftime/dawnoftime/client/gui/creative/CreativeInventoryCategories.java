@@ -45,20 +45,13 @@ public enum CreativeInventoryCategories {
     ),
 
     FRENCH("french",
-            DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_SIDED_COLUMN.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIMESTONE_FIREPLACE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.LIMESTONE_CHIMNEY.get().asItem()
-    ),
-
-    GERMAN("german",
+            DoTBBlocksRegistry.INSTANCE.LIMESTONE_CHIMNEY.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LATTICE_GLASS.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LATTICE_GLASS_PANE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LATTICE_WAXED_OAK_WINDOW.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LATTICE_STONE_BRICKS_WINDOW.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_CHIMNEY.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WAXED_OAK_TABLE.get().asItem(),
@@ -67,10 +60,7 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_SMALL_POOL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_FAUCET.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_WATER_JET.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem()
-    ),
-
-    JAPANESE("japanese",
+            DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.IRORI_FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.LIGHT_GRAY_FUTON.get().asItem(),
@@ -84,17 +74,11 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEAPOT_GREEN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEACUP_GREEN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEAPOT_DECORATED.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEACUP_DECORATED.get().asItem()
-    ),
-
-    PRE_COLOMBIAN("pre_columbian",
+            DoTBBlocksRegistry.INSTANCE.CAST_IRON_TEACUP_DECORATED.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_CRESSET.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.FEATHERED_SERPENT_SCULPTURE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.SERPENT_SCULPTED_COLUMN.get().asItem()
-    ),
-
-    ROMAN("roman",
+            DoTBBlocksRegistry.INSTANCE.SERPENT_SCULPTED_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SANDSTONE_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SANDSTONE_SIDED_COLUMN.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_COLUMN.get().asItem(),
