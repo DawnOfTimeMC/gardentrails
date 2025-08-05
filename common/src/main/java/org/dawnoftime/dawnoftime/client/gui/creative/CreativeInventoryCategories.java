@@ -56,14 +56,10 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_FAUCET.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_WATER_JET.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.FIREPLACE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.IRORI_FIREPLACE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.LIGHT_GRAY_FUTON.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LEGLESS_CHAIR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.IKEBANA_FLOWER_POT.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.PLASTERED_STONE_COLUMN.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.FEATHERED_SERPENT_SCULPTURE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.BIG_FLOWER_POT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_BIG_FLOWER_POT.get().asItem()
     );
