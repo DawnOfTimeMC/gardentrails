@@ -21,7 +21,6 @@ public class DoTBBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags(@NotNull HolderLookup.Provider pProvider) {
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(DoTBBlocksRegistry.INSTANCE.REINFORCED_BLACK_WROUGHT_IRON_FENCE.get());
         for(TagKey<Block> tag : DoTBBlocksRegistry.blockTagsMap.keySet()){
             DoTBBlocksRegistry.blockTagsMap.get(tag).forEach(block -> this.tag(tag).add(block.get()));
         }
