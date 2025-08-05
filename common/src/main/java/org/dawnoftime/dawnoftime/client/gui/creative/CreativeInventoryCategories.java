@@ -42,7 +42,6 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.COMMELINA.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WILD_MAIZE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.LATTICE_GLASS_PANE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WAXED_OAK_TABLE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WAXED_OAK_CHAIR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_POOL.get().asItem(),
@@ -52,7 +51,6 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.SPRUCE_LEGLESS_CHAIR.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.IKEBANA_FLOWER_POT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.BIG_FLOWER_POT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_BIG_FLOWER_POT.get().asItem()
     );
