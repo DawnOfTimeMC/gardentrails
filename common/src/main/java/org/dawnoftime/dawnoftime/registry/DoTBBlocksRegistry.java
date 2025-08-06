@@ -15,7 +15,6 @@ import net.minecraft.world.level.material.MapColor;
 import org.dawnoftime.dawnoftime.block.general.*;
 import org.dawnoftime.dawnoftime.block.german.*;
 import org.dawnoftime.dawnoftime.block.japanese.*;
-import org.dawnoftime.dawnoftime.block.templates.LanternBlock;
 import org.dawnoftime.dawnoftime.block.precolumbian.*;
 import org.dawnoftime.dawnoftime.block.roman.*;
 import org.dawnoftime.dawnoftime.block.templates.*;
