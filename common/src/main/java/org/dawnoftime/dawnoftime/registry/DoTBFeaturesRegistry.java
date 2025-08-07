@@ -27,7 +27,6 @@ public abstract class DoTBFeaturesRegistry {
     public static final ResourceKey<PlacedFeature> GERANIUM_PINK_PLACED_KEY = registerKey("geranium_pink_placed");
     public static final ResourceKey<PlacedFeature> IVY_PLACED_KEY = registerKey("ivy_placed");
     public static DoTBFeaturesRegistry INSTANCE;
-//    private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Constants.MOD_ID);
 
     public final Supplier<Feature<SimpleBlockConfiguration>> DOT_FEATURE = register("dot_feature",
             () -> new DoTFeature(SimpleBlockConfiguration.CODEC));

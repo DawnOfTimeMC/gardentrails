@@ -33,33 +33,4 @@ public abstract class DoTBItemsRegistry {
     public abstract <T extends Item & IHasFlowerPot> Supplier<Item> registerWithFlowerPot(final String name, final Supplier<T> itemSupplier);
     public abstract <T extends Item & IHasFlowerPot> Supplier<Item> registerWithFlowerPot(final String plantName, final String seedName, final Supplier<T> itemSupplier);
 
-//    public static <T extends Item & IHasFlowerPot> Supplier<Item> regWithFlowerPot(final String name, final Supplier<T> itemSupplier) {
-//        return regWithFlowerPot(name, name, itemSupplier);
-//    }
-//
-//        @SuppressWarnings("unchecked")
-//    public static <T extends Item & IHasFlowerPot> Supplier<Item> regWithFlowerPot(final String plantName, final String seedName, final Supplier<T> itemSupplier) {
-//        final String potName = plantName + "_flower_pot";
-//        Supplier<FlowerPotBlockDoT> potBlockObject = (Supplier<FlowerPotBlockDoT>) (Object) DoTBBlocksRegistry.reg(potName, () -> {
-//            final FlowerPotBlockDoT potBlock = new FlowerPotBlockDoT(null);
-//            DoTBBlocksRegistry.POT_BLOCKS.put(potName, potBlock);
-//            return potBlock;
-//        }, BlockTags.MINEABLE_WITH_PICKAXE);
-//
-//        Supplier<T> toReturn = DoTBItemsRegistry.ITEMS.register(seedName, () -> {
-//            T item = itemSupplier.get();
-//            FlowerPotBlockDoT potBlock = potBlockObject.get();
-//
-//            item.setPotBlock(potBlock);
-//            potBlock.setItemInPot(item);
-//
-//            return item;
-//        });
-//
-//        return (Supplier<Item>) (Object) toReturn;
-//    }
-
-//    public static void register(IEventBus eventBus) {
-//        ITEMS.register(eventBus);
-//    }
 }
