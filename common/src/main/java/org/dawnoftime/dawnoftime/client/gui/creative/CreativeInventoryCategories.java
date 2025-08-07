@@ -42,8 +42,6 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.COMMELINA.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WILD_MAIZE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.WAXED_OAK_TABLE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.WAXED_OAK_CHAIR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_POOL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_SMALL_POOL.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_FAUCET.get().asItem(),

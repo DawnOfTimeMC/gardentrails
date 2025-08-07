@@ -18,7 +18,7 @@ public abstract class DoTBBlockEntitiesRegistry {
     public final Supplier<BlockEntityType<DryerBlockEntity>> DRYER = register("dryer",
             DryerBlockEntity::new, () -> new Block[] { DoTBBlocksRegistry.INSTANCE.BAMBOO_DRYING_TRAY.get() });
     public final Supplier<BlockEntityType<DisplayerBlockEntity>> DISPLAYER = register("displayer",
-            DisplayerBlockEntity::new, () -> new Block[] { DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get(), DoTBBlocksRegistry.INSTANCE.WAXED_OAK_TABLE.get() });
+            DisplayerBlockEntity::new, () -> new Block[] { DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get() });
 
     public abstract <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String name, BiFunction<BlockPos, BlockState, T> factoryIn, Supplier<Block[]> validBlocksSupplier);
 
