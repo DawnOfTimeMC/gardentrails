@@ -39,9 +39,7 @@ public enum CreativeInventoryCategories {
             DoTBItemsRegistry.INSTANCE.GRAPE_SEEDS.get(),
             DoTBBlocksRegistry.INSTANCE.COMMELINA.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WILD_MAIZE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.BIG_FLOWER_POT.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.MARBLE_BIG_FLOWER_POT.get().asItem()
+            DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem()
     );
 
     private final String name;

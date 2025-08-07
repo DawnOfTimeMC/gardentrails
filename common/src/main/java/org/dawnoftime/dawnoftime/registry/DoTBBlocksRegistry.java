@@ -51,10 +51,6 @@ public abstract class DoTBBlocksRegistry {
     public final Supplier<Block> WILD_MAIZE = register("wild_maize", () -> new WildMaizeBlock(Block.Properties.copy(Blocks.DANDELION)), BlockTags.SWORD_EFFICIENT);
     public Supplier<DoubleCropsBlock> MAIZE;
 
-    // Roman
-    public final Supplier<Block> BIG_FLOWER_POT = register("big_flower_pot", () -> new WaterloggedBlock(Block.Properties.copy(Blocks.CLAY), BIG_FLOWER_POT_SHAPES));
-    public final Supplier<Block> MARBLE_BIG_FLOWER_POT = register("marble_big_flower_pot", () -> new WaterloggedBlock(Block.Properties.copy(Blocks.STONE), MARBLE_BIG_FLOWER_POT_SHAPES));
-
     public void postRegister() {
         CYPRESS = registerWithFlowerPotItem("cypress", () -> new CypressBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES).randomTicks()).setBurnable(), (block) -> new PotAndBlockItem(block, new Item.Properties()));
         MAIZE = registerWithFlowerPotItem("maize", () -> new DoubleCropsBlock(SoilCropsBlock.PlantType.CROP, 4), (block) -> new SoilSeedsItem(block, Foods.MAIZE));

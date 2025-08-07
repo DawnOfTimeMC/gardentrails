@@ -25,7 +25,6 @@ public class RenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BOXWOOD_TALL_HEDGE.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BOXWOOD_SMALL_HEDGE.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BOXWOOD_BUSH.get(), RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BIG_FLOWER_POT.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(DoTBBlocksRegistry.INSTANCE.BAMBOO_DRYING_TRAY.get(), RenderType.cutout());
     }
 }
