@@ -1,6 +1,5 @@
 package org.dawnoftime.dawnoftime.platform;
 
-import org.dawnoftime.dawnoftime.DoTBCommon;
 import org.dawnoftime.dawnoftime.platform.services.IPlatformHelper;
 
 import java.util.ServiceLoader;
@@ -20,11 +19,8 @@ public class Services {
     // Inside the file you should write the fully qualified class name of the implementation to load for the platform. For
     // example our file on Forge points to ForgePlatformHelper while Fabric points to FabricPlatformHelper.
     public static <T> T load(Class<T> clazz) {
-
-        final T loadedService = ServiceLoader.load(clazz)
+        return ServiceLoader.load(clazz)
                 .findFirst()
                 .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
-        DoTBCommon.LOG.debug("Loaded {} for service {}", loadedService, clazz);
-        return loadedService;
     }
 }

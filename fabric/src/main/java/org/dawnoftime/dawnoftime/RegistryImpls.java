@@ -169,14 +169,6 @@ public class RegistryImpls {
         }
     }
 
-    public static class FabricMenuTypesRegistry extends DoTBMenuTypesRegistry {
-        @Override
-        public <T extends AbstractContainerMenu> Supplier<MenuType<T>> register(String name, MenuTypeFactory<T> factory) {
-            ExtendedScreenHandlerType<AbstractContainerMenu> type = Registry.register(BuiltInRegistries.MENU, new ResourceLocation(DoTBCommon.MOD_ID, name), new ExtendedScreenHandlerType<>(factory::create));
-            return () -> (MenuType<T>) type;
-        }
-    }
-
     public static class FabricRecipeSerializersRegistry extends DoTBRecipeSerializersRegistry {
         @Override
         public <T extends RecipeSerializer<? extends Recipe<?>>> Supplier<T> register(String name, Supplier<T> recipeSerializer) {
@@ -233,7 +225,6 @@ public class RegistryImpls {
         DoTBItemsRegistry.INSTANCE = new FabricItemsRegistry();
         DoTBBlockEntitiesRegistry.INSTANCE = new FabricBlockEntitiesRegistry();
         DoTBFeaturesRegistry.INSTANCE = new FabricFeaturesRegistry();
-        DoTBMenuTypesRegistry.INSTANCE = new FabricMenuTypesRegistry();
         DoTBRecipeSerializersRegistry.INSTANCE = new FabricRecipeSerializersRegistry();
         DoTBRecipeTypesRegistry.INSTANCE = new FabricRecipeTypesRegistry();
         DoTBTags.INSTANCE = new FabricTagsRegistry();
