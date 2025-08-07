@@ -2,8 +2,6 @@ package org.dawnoftime.dawnoftime.client.gui.creative;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import org.dawnoftime.dawnoftime.registry.DoTBBlocksRegistry;
 import org.dawnoftime.dawnoftime.registry.DoTBItemsRegistry;
 
@@ -42,13 +40,6 @@ public enum CreativeInventoryCategories {
             DoTBBlocksRegistry.INSTANCE.COMMELINA.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.WILD_MAIZE.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MAIZE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_POOL.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_SMALL_POOL.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_FAUCET.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.STONE_BRICKS_WATER_JET.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.WATER_SOURCE_TRICKLE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.SPRUCE_LOW_TABLE.get().asItem(),
-            DoTBBlocksRegistry.INSTANCE.SPRUCE_LEGLESS_CHAIR.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.BIG_FLOWER_POT.get().asItem(),
             DoTBBlocksRegistry.INSTANCE.MARBLE_BIG_FLOWER_POT.get().asItem()
     );
