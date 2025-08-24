@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"Iio"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:limestone_bricks"
+		},
+		"i": {
+			"item": "gardentrails:limestone_bricks_slab"
+		},
+		"o": {
+			"item": "gardentrails:limestone_bricks_edge"
+		}
+	},
+	"result": {
+		"item": "gardentrails:limestone_gargoyle",
+		"count": 1
+	}
+}

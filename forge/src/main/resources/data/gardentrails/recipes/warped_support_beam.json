@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stripped_warped_stem"
+		},
+		"i": {
+			"item": "gardentrails:warped_support_slab"
+		}
+	},
+	"result": {
+		"item": "gardentrails:warped_support_beam",
+		"count": 8
+	}
+}

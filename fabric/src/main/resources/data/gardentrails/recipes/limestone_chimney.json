@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II",
+		"ii"
+	],
+	"key": {
+		"i": {
+			"item": "gardentrails:limestone_bricks"
+		},
+		"I": {
+			"item": "gardentrails:flat_roof_tiles_slab"
+		}
+	},
+	"result": {
+		"item": "gardentrails:limestone_chimney"
+	}
+}

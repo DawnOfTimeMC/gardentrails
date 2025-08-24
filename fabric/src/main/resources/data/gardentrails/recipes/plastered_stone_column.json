@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		" I ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:plastered_stone"
+		}
+	},
+	"result": {
+		"item": "gardentrails:plastered_stone_column",
+		"count": 8
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"iii",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:charred_spruce_log_stripped"
+		},
+		"i": {
+			"item": "gardentrails:charred_spruce_support_slab"
+		}
+	},
+	"result": {
+		"item": "gardentrails:charred_spruce_support_beam",
+		"count": 8
+	}
+}

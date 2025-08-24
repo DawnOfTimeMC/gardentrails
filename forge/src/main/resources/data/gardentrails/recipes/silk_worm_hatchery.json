@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "gardentrails:silk_worm_eggs"
+		},
+		{
+			"item": "gardentrails:mulberry_leaves"
+		},
+		{
+			"item": "gardentrails:mulberry_leaves"
+		}
+	],
+	"result": {
+		"item": "gardentrails:silk_worm_hatchery"
+	}
+}

@@ -1,0 +1,7 @@
+{
+  "render_type": "minecraft:cutout",
+    "parent": "block/crop",
+    "textures": {
+    	"crop": "gardentrails:block/maize_top_stage_6"
+    }
+}

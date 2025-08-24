@@ -17,13 +17,13 @@
     "accessWidener": "${mod_id}.accesswidener",
     "entrypoints": {
         "main": [
-            "org.dawnoftime.dawnoftime.DoTBFabric"
+            "org.dawnoftime.gardentrails.GTFabric"
         ],
         "client": [
-            "org.dawnoftime.dawnoftime.DoTBFabric"
+            "org.dawnoftime.gardentrails.GTFabric"
         ],
         "modmenu": [
-            "org.dawnoftime.dawnoftime.compat.ModMenuEntrypoint"
+            "org.dawnoftime.gardentrails.compat.ModMenuEntrypoint"
         ]
     },
     "mixins": [

@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ii",
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:silk"
+		},
+		"i": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "gardentrails:white_little_flag",
+		"count": 4
+	}
+}

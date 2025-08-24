@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"IiI",
+		"IiI"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:lattice_glass_pane"
+		},
+		"i": {
+			"item": "gardentrails:waxed_oak_planks"
+		}
+	},
+	"result": {
+		"item": "gardentrails:lattice_waxed_oak_window",
+		"count": 16
+	}
+}

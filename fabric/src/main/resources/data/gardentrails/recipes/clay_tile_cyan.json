@@ -1,0 +1,36 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "gardentrails:clay_tile"
+		},
+		{
+			"item": "minecraft:cyan_dye"
+		}
+	],
+	"result": {
+		"item": "gardentrails:clay_tile_cyan",
+		"count": 8
+	}
+}

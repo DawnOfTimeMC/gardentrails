@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:limestone_bricks_slab"
+		}
+	},
+	"result": {
+		"item": "gardentrails:limestone_bricks_edge",
+		"count": 6
+	}
+}

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+            { "model": "gardentrails:block/roman/wild_grape" },
+			{ "model": "gardentrails:block/roman/wild_grape", "y": 90 },
+			{ "model": "gardentrails:block/roman/wild_grape", "y": 180 },
+			{ "model": "gardentrails:block/roman/wild_grape", "y": 270 }
+        ]
+    }
+}

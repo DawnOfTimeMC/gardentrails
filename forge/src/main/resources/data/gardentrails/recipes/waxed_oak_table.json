@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"i i",
+		"i i"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:waxed_oak_planks_slab"
+		},
+		"i": {
+			"tag": "forge:rods/wooden"
+		}
+	},
+	"result": {
+		"item": "gardentrails:waxed_oak_table"
+	}
+}

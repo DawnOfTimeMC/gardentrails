@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"ooo",
+		"xyz",
+		"ooo"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:smooth_sandstone"
+		},
+		"x":{
+			"item": "gardentrails:clay_tile_blue"
+		},
+		"y": {
+			"item": "gardentrails:clay_tile_white"
+		},
+		"z": {
+			"tag": "gardentrails:clay_tile_cyan"
+		}
+	},
+	"result": {
+		"item": "gardentrails:moraq_mosaic_traditional",
+		"count": 6
+	}
+}

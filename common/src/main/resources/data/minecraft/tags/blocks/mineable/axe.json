@@ -1,10 +1,10 @@
 {
     "values": [
-        "dawnoftimebuilder:bamboo_drying_tray",
-        "dawnoftimebuilder:maple_red_leaves",
-        "dawnoftimebuilder:maple_red_trunk",
-        "dawnoftimebuilder:paused_maple_red_sapling",
-        "dawnoftimebuilder:rice",
-        "dawnoftimebuilder:stick_bundle"
+        "gardentrails:bamboo_drying_tray",
+        "gardentrails:maple_red_leaves",
+        "gardentrails:maple_red_trunk",
+        "gardentrails:paused_maple_red_sapling",
+        "gardentrails:rice",
+        "gardentrails:stick_bundle"
     ]
 }

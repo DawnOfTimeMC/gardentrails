@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" i ",
+		" o ",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:plastered_stone"
+		},
+		"i": {
+			"tag": "forge:dyes/red"
+		},
+		"o": {
+			"tag": "forge:nuggets/gold"
+		}
+	},
+	"result": {
+		"item": "gardentrails:red_sculpted_plastered_stone_frieze",
+		"count": 6
+	}
+}

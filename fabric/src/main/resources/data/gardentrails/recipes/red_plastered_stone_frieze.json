@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" I ",
+		" i ",
+		" I "
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:plastered_stone"
+		},
+		"i": {
+			"item": "minecraft:red_dye"
+		}
+	},
+	"result": {
+		"item": "gardentrails:red_plastered_stone_frieze",
+		"count": 6
+	}
+}

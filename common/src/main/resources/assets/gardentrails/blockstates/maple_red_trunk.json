@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "gardentrails:block/japanese/maple_red/maple_red_trunk"},
+        "facing=east": { "model": "gardentrails:block/japanese/maple_red/maple_red_trunk", "y" : 90},
+        "facing=south": { "model": "gardentrails:block/japanese/maple_red/maple_red_trunk", "y": 180 },
+        "facing=west": { "model": "gardentrails:block/japanese/maple_red/maple_red_trunk", "y": 270 }
+    }
+}

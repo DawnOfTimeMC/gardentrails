@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"II",
+		"II"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:cobbled_limestone"
+		}
+	},
+	"result": {
+		"item": "gardentrails:limestone_bricks",
+		"count": 4
+	}
+}

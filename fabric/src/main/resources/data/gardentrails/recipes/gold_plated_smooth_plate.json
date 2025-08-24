@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" I ",
+		" I ",
+		" I "
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:gold_plated_smooth_block"
+		}
+	},
+	"result": {
+		"item": "gardentrails:gold_plated_smooth_plate",
+		"count": 6
+	}
+}

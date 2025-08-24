@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"i"
+	],
+	"key": {
+		"I": {
+			"item": "minecraft:stripped_jungle_log"
+		},
+		"i": {
+			"item": "gardentrails:plastered_stone"
+		}
+	},
+	"result": {
+		"item": "gardentrails:jungle_beam",
+		"count": 4
+	}
+}

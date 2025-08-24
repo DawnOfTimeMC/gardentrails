@@ -1,14 +1,14 @@
 {
     "values": [
-        "dawnoftimebuilder:camellia_flower_pot",
-        "dawnoftimebuilder:commelina_flower_pot",
-        "dawnoftimebuilder:cypress_flower_pot",
-        "dawnoftimebuilder:geranium_pink_flower_pot",
-        "dawnoftimebuilder:grape_seeds_flower_pot",
-        "dawnoftimebuilder:ivy_flower_pot",
-        "dawnoftimebuilder:maize_flower_pot",
-        "dawnoftimebuilder:maple_red_sapling_flower_pot",
-        "dawnoftimebuilder:mulberry_flower_pot",
-        "dawnoftimebuilder:planter_geranium_pink"
+        "gardentrails:camellia_flower_pot",
+        "gardentrails:commelina_flower_pot",
+        "gardentrails:cypress_flower_pot",
+        "gardentrails:geranium_pink_flower_pot",
+        "gardentrails:grape_seeds_flower_pot",
+        "gardentrails:ivy_flower_pot",
+        "gardentrails:maize_flower_pot",
+        "gardentrails:maple_red_sapling_flower_pot",
+        "gardentrails:mulberry_flower_pot",
+        "gardentrails:planter_geranium_pink"
     ]
 }

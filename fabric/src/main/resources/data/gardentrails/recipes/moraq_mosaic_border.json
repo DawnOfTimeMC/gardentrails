@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"bwb",
+		"ooo",
+		"ooo"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:smooth_sandstone"
+		},
+		"w":{
+			"item": "gardentrails:clay_tile_white"
+		},
+		"b":{
+			"item": "gardentrails:clay_tile_blue"
+		}
+	},
+	"result": {
+		"item": "gardentrails:moraq_mosaic_border",
+		"count": 6
+	}
+}

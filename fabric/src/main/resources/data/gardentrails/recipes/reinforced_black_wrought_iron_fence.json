@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		"xxx"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:black_wrought_iron_fence"
+		},
+		"x": {
+			"item": "gardentrails:limestone_bricks"
+		}
+	},
+	"result": {
+		"item": "gardentrails:reinforced_black_wrought_iron_fence",
+		"count": 6
+	}
+}

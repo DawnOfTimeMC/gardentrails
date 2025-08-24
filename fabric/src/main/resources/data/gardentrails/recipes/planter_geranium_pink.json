@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " x ",
+        "III"
+    ],
+    "key": {
+        "x": {
+            "item": "gardentrails:geranium_pink"
+        },
+        "I": {
+            "item": "minecraft:flower_pot"
+        }
+    },
+    "result": {
+        "item": "gardentrails:planter_geranium_pink",
+        "count": 3
+    }
+}

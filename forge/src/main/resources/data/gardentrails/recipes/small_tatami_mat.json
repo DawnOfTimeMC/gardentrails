@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"xIx"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:thatch_bamboo_slab"
+		},
+		"x": {
+			"item": "gardentrails:silk"
+		}
+	},
+	"result": {
+		"item": "gardentrails:small_tatami_mat",
+		"count": 2
+	}
+}

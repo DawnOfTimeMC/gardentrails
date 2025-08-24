@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"u i",
+		"ooo",
+		"ooo"
+	],
+	"key": {
+		"o": {
+			"item": "minecraft:smooth_sandstone"
+		},
+		"i":{
+			"item": "gardentrails:clay_tile_black"
+		},
+		"u":{
+			"item": "gardentrails:clay_tile_orange"
+		}
+	},
+	"result": {
+		"item": "gardentrails:mosaic_floor_rosette",
+		"count": 6
+	}
+}

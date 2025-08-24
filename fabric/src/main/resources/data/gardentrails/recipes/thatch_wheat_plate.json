@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I",
+		"I",
+		"I"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:thatch_wheat"
+		}
+	},
+	"result": {
+		"item": "gardentrails:thatch_wheat_plate",
+		"count": 6
+	}
+}
