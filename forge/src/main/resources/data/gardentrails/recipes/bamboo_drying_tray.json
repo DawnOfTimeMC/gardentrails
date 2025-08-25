@@ -2,11 +2,14 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"I I",
-		"III"
+		"iIi"
 	],
 	"key": {
 		"I": {
-			"item": "gardentrails:thatch_bamboo"
+			"item": "minecraft:bamboo_planks"
+		},
+		"i": {
+			"item": "minecraft:stick"
 		}
 	},
 	"result": {
