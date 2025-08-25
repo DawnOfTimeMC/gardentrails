@@ -151,69 +151,77 @@ public class IvyBlock extends BlockGT implements IBlockGeneration {
 
     @Override
     public void tick(@NotNull BlockState state, ServerLevel levelIn, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        if (!levelIn.isClientSide()) {
-            if (!levelIn.isLoaded(pos))
-                return;
-
-            if (levelIn.getRawBrightness(pos, 0) >= 8) {
-                int age = state.getValue(AGE);
-                if (age < 2) { //Probability "can grow"
-                    if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) {
-                        levelIn.setBlock(pos, state.setValue(AGE, age + 1), 2);
-                    }
-                    return;
+        if (levelIn.isClientSide()) {
+            return;
+        }
+        if (!levelIn.isLoaded(pos)) {
+            return;
+        }
+        if (levelIn.getRawBrightness(pos, 0) >= 8) {
+            int age = state.getValue(AGE);
+            if (age < 2) {
+                if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) {
+                    levelIn.setBlock(pos, state.setValue(AGE, age + 1), 2);
                 }
-                if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) {
-                    // The Ivy will spread
-                    ArrayList<Direction> list = getCurrentDirections(state);
-                    int faceIndex = list.size();
-                    if (faceIndex == 0)
-                        return;
-                    faceIndex = random.nextInt(faceIndex);
-                    Direction face = list.get(faceIndex);
-                    // Now we want to decide in which direction it will spread.
-                    faceIndex = random.nextInt(4);
+                return;
+            }
+            if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) {
+                // The Ivy will spread
+                ArrayList<Direction> faces = getCurrentDirections(state);
+                int startSpread = random.nextInt(4);
+                for (Direction face : faces) {
                     BlockPos studiedPos;
-                    if (faceIndex < 2) {
-                        // 0 : spread on the left
-                        // 1 : spread on the right
-                        Direction rotFace = faceIndex == 0 ? face.getCounterClockWise() : face.getClockWise();
-                        if (hasFullFace(levelIn, pos, rotFace)) {
-                            if (!state.getValue(getProperty(rotFace)))
-                                levelIn.setBlock(pos, state.setValue(getProperty(rotFace), true), 2);
-                        } else {
-                            studiedPos = pos.relative(rotFace);
-                            if (levelIn.getBlockState(studiedPos).isAir()) {
-                                if (hasFullFace(levelIn, studiedPos, face)) {
-                                    levelIn.setBlock(studiedPos, this.defaultBlockState().setValue(getProperty(face), true), 2);
-                                } else {
-                                    studiedPos = studiedPos.relative(face);
-                                    if (levelIn.getBlockState(studiedPos).isAir()) {
-                                        rotFace = faceIndex == 0 ? face.getClockWise() : face.getCounterClockWise();
-                                        if (hasFullFace(levelIn, studiedPos, rotFace)) {
-                                            levelIn.setBlock(studiedPos, this.defaultBlockState().setValue(getProperty(rotFace), true), 2);
+                    for (int i = 0; i < 4; i++) {
+                        int spreadIndex = (startSpread + i) % 4;
+                        if (spreadIndex < 2) {
+                            // 0 : spread on the left
+                            // 1 : spread on the right
+                            Direction rotFace = spreadIndex == 0 ? face.getCounterClockWise() : face.getClockWise();
+                            if (hasFullFace(levelIn, pos, rotFace)) {
+                                if (!state.getValue(getProperty(rotFace))) {
+                                    levelIn.setBlock(pos, state.setValue(getProperty(rotFace), true), 2);
+                                    return;
+                                }
+                            } else {
+                                studiedPos = pos.relative(rotFace);
+                                if (levelIn.getBlockState(studiedPos).isAir()) {
+                                    if (hasFullFace(levelIn, studiedPos, face)) {
+                                        levelIn.setBlock(studiedPos, this.defaultBlockState().setValue(getProperty(face), true), 2);
+                                        return;
+                                    } else {
+                                        studiedPos = studiedPos.relative(face);
+                                        if (levelIn.getBlockState(studiedPos).isAir()) {
+                                            rotFace = spreadIndex == 0 ? face.getClockWise() : face.getCounterClockWise();
+                                            if (hasFullFace(levelIn, studiedPos, rotFace)) {
+                                                levelIn.setBlock(studiedPos, this.defaultBlockState().setValue(getProperty(rotFace), true), 2);
+                                                return;
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                    } else {
-                        // 2 : spread above
-                        // 3 : spread below
-                        studiedPos = faceIndex == 2 ? pos.above() : pos.below();
-                        if (levelIn.getBlockState(studiedPos).isAir()) {
-                            if (hasFullFace(levelIn, studiedPos, face)) {
-                                levelIn.setBlock(studiedPos, this.defaultBlockState().setValue(getProperty(face), true), 2);
+                        } else {
+                            // 2 : spread above
+                            // 3 : spread below
+                            studiedPos = spreadIndex == 2 ? pos.above() : pos.below();
+                            if (levelIn.getBlockState(studiedPos).isAir()) {
+                                if (hasFullFace(levelIn, studiedPos, face)) {
+                                    levelIn.setBlock(studiedPos, this.defaultBlockState().setValue(getProperty(face), true), 2);
+                                    return;
+                                }
                             }
                         }
                     }
                 }
+                // After failing to grow in any direction, we switch to PERSISTENT
+                levelIn.setBlock(pos, state.setValue(PERSISTENT, true), 2);
             }
         }
     }
 
     @Override
     public @NotNull BlockState updateShape(@NotNull BlockState stateIn, Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor levelIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
+        stateIn = stateIn.setValue(PERSISTENT, false);
         if (facing.getAxis().isHorizontal()) {
             if (facing == Direction.NORTH && stateIn.getValue(NORTH) && !hasFullFace(facingState, levelIn, facingPos, facing)) {
                 stateIn = stateIn.setValue(NORTH, false);
