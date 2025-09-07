@@ -19,8 +19,8 @@ public class BiomeModifiers {
         addFeatureToBiomes(GTFeaturesRegistry.MULBERRY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA);
         addFeatureToBiomes(GTFeaturesRegistry.RICE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
         addFeatureToBiomes(GTFeaturesRegistry.WILD_GRAPE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA, Biomes.FLOWER_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
+        addFeatureToBiomes(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA);
+        addFeatureToBiomes(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.FOREST);
         addFeatureToBiomes(GTFeaturesRegistry.IVY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
     }
 
