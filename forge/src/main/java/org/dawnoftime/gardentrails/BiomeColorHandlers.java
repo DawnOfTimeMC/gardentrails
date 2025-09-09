@@ -37,6 +37,7 @@ public class BiomeColorHandlers {
         registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.BOXWOOD_BUSH);
         registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.BOXWOOD_SMALL_HEDGE);
         registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.BOXWOOD_TALL_HEDGE);
+        registerBiomeColoredBlock(event, () -> GTBlocksRegistry.POT_BLOCKS.get("cypress_flower_pot"));
     }
     
     @SubscribeEvent
@@ -45,6 +46,7 @@ public class BiomeColorHandlers {
         registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.BOXWOOD_BUSH);
         registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.BOXWOOD_SMALL_HEDGE);
         registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.BOXWOOD_TALL_HEDGE);
+        registerBiomeColoredItem(event, () -> GTBlocksRegistry.POT_BLOCKS.get("cypress_flower_pot"));
     }
     
     private static void registerBiomeColoredBlock(RegisterColorHandlersEvent.Block event, Supplier<Block> blockSupplier) {
