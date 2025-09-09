@@ -23,6 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.dawnoftime.gardentrails.block.IBiomeColoredBlock;
 import org.dawnoftime.gardentrails.block.IBlockGeneration;
 import org.dawnoftime.gardentrails.block.templates.BlockGT;
 import org.dawnoftime.gardentrails.util.GTBlockStateProperties;
@@ -32,7 +33,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import static org.dawnoftime.gardentrails.util.VoxelShapes.CYPRESS_SHAPES;
 
-public class CypressBlock extends BlockGT implements IBlockGeneration {
+public class CypressBlock extends BlockGT implements IBlockGeneration, IBiomeColoredBlock {
     public static final IntegerProperty SIZE = GTBlockStateProperties.SIZE_0_5;
 
     public CypressBlock(final Properties properties) {
@@ -164,6 +165,11 @@ public class CypressBlock extends BlockGT implements IBlockGeneration {
     public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
+    }
+    
+    @Override
+    public ColorType getColorType() {
+        return ColorType.FOLIAGE;
     }
 
     @Override
