@@ -6,9 +6,9 @@ import dev.isxander.yacl3.platform.YACLPlatform;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.ResourceLocation;
-import org.dawnoftime.gardentrails.loot.DoTBFabricLootModifier;
+import org.dawnoftime.gardentrails.loot.GTFabricLootModifier;
 
-public class DoTBFabric implements ModInitializer, ClientModInitializer {
+public class GTFabric implements ModInitializer, ClientModInitializer {
     public static final ConfigClassHandler<GTConfig> HANDLER = ConfigClassHandler.createBuilder(GTConfig.class)
             .id(new ResourceLocation(GTCommon.MOD_ID, "config"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
@@ -25,7 +25,7 @@ public class DoTBFabric implements ModInitializer, ClientModInitializer {
         RegistryImpls.init();
         BiomeModifiers.init();
 
-        DoTBFabricLootModifier.modifyLootTables();
+        GTFabricLootModifier.modifyLootTables();
     }
 
     @Override

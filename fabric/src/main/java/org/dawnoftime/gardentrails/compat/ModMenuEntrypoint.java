@@ -2,11 +2,11 @@ package org.dawnoftime.gardentrails.compat;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import org.dawnoftime.gardentrails.DoTBFabric;
+import org.dawnoftime.gardentrails.GTFabric;
 
 public class ModMenuEntrypoint implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return (parent) -> DoTBFabric.HANDLER.generateGui().generateScreen(parent);
+        return (parent) -> GTFabric.HANDLER.generateGui().generateScreen(parent);
     }
 }

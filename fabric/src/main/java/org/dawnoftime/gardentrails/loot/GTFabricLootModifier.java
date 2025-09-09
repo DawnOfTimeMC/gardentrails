@@ -13,7 +13,7 @@ import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.registry.GTItemsRegistry;
 
-public final class DoTBFabricLootModifier {
+public final class GTFabricLootModifier {
     private static final GTConfig config = Services.PLATFORM.getConfig();
 
     public static void modifyLootTables() {
