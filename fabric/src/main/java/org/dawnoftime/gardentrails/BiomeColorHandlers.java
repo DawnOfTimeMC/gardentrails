@@ -33,6 +33,7 @@ public class BiomeColorHandlers {
         registerBiomeColoredBlock(GTBlocksRegistry.INSTANCE.BOXWOOD_BUSH);
         registerBiomeColoredBlock(GTBlocksRegistry.INSTANCE.BOXWOOD_SMALL_HEDGE);
         registerBiomeColoredBlock(GTBlocksRegistry.INSTANCE.BOXWOOD_TALL_HEDGE);
+        registerBiomeColoredBlock(() -> GTBlocksRegistry.POT_BLOCKS.get("cypress_flower_pot"));
     }
     
     private static void registerBiomeColoredBlock(Supplier<Block> blockSupplier) {

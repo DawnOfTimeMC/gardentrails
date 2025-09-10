@@ -20,6 +20,7 @@ public class RenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.IVY.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.GERANIUM_PINK.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.CYPRESS.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.POT_BLOCKS.get("cypress_flower_pot"), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.COMMELINA.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.CAMELLIA.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.BOXWOOD_TALL_HEDGE.get(), RenderType.cutout());
