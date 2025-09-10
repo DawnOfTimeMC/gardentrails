@@ -1,7 +1,8 @@
 {
     "render_type": "minecraft:cutout",
     "textures": {
-        "all": "gardentrails:block/cypress_leaves",
+        "leaves": "gardentrails:block/cypress_leaves",
+        "brown": "gardentrails:block/cypress_leaves_brownonly",
         "particle": "gardentrails:block/cypress_leaves"
     },
     "elements": [
@@ -9,12 +10,24 @@
             "from": [0, 0, 0],
             "to": [16, 16, 16],
             "faces": {
-                "north": {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0},
-                "east": {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0},
-                "south": {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0},
-                "west": {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0},
-                "up": {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0},
-                "down": {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0}
+                "north": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0},
+                "south": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0},
+                "up": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0},
+                "down": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0}
+            }
+        },
+        {
+            "from": [0, 0, 0],
+            "to": [16, 16, 16],
+            "faces": {
+                "north": {"uv": [0, 0, 16, 16], "texture": "#brown"},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#brown"},
+                "south": {"uv": [0, 0, 16, 16], "texture": "#brown"},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#brown"},
+                "up": {"uv": [0, 0, 16, 16], "texture": "#brown"},
+                "down": {"uv": [0, 0, 16, 16], "texture": "#brown"}
             }
         }
     ]
