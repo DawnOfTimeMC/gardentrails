@@ -56,6 +56,7 @@ public class GTBiomeModifiers {
                 HolderSet.direct(
                         biomes.get(Biomes.FLOWER_FOREST).get(),
                         biomes.get(Biomes.TAIGA).get(),
+                        biomes.get(Biomes.SAVANNA).get(),
                         biomes.get(Biomes.SNOWY_TAIGA).get(),
                         biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
                         biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
