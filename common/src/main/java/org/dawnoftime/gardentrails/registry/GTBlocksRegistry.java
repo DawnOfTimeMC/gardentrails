@@ -29,8 +29,10 @@ import static org.dawnoftime.gardentrails.util.VoxelShapes.*;
 @SuppressWarnings({"unused", "unchecked"})
 public abstract class GTBlocksRegistry {
     public static GTBlocksRegistry INSTANCE;
+
     public static Map<TagKey<Block>, Set<Supplier<Block>>> blockTagsMap = new HashMap<>();
     public static final HashMap<String, Block> POT_BLOCKS = new HashMap<>();
+
     public Supplier<Block> CYPRESS;
     public final Supplier<Block> BOXWOOD_BUSH = register("boxwood_bush", () -> new BiomeColoredBushBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES), BUSH_SHAPES, IBiomeColoredBlock.ColorType.FOLIAGE), BlockTags.SWORD_EFFICIENT);
     public final Supplier<Block> BOXWOOD_TALL_HEDGE = register("boxwood_tall_hedge", () -> new BiomeColoredPlateBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES), IBiomeColoredBlock.ColorType.FOLIAGE), BlockTags.SWORD_EFFICIENT);
@@ -51,6 +53,10 @@ public abstract class GTBlocksRegistry {
     public Supplier<SoilCropsBlock> COMMELINA;
     public final Supplier<Block> WILD_MAIZE = register("wild_maize", () -> new WildMaizeBlock(Block.Properties.copy(Blocks.DANDELION)), BlockTags.SWORD_EFFICIENT);
     public Supplier<DoubleCropsBlock> MAIZE;
+    public final Supplier<PergolaBlock> IRON_PERGOLA = register("iron_pergola", () -> new PergolaBlock(Block.Properties.copy(Blocks.IRON_BARS)));
+    public final Supplier<PergolaBlock> IRON_PERGOLA_VINE = registerWithItem("iron_pergola_vine", () -> new PergolaPlantBlock(Block.Properties.copy(Blocks.IRON_BARS)), null);
+    public final Supplier<PergolaBlock> IRON_PERGOLA_IVY = registerWithItem("iron_pergola_ivy", () -> new PergolaPlantBlock(Block.Properties.copy(Blocks.IRON_BARS)), null);
+    public final Supplier<PergolaBlock> IRON_PERGOLA_GRAPE = registerWithItem("iron_pergola_grape", () -> new PergolaCropBlock(Block.Properties.copy(Blocks.IRON_BARS), 4, 6, 0, 2, 2), null);
 
     public void postRegister() {
         CYPRESS = registerWithFlowerPotItem("cypress", () -> new CypressBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES).randomTicks()).setBurnable(), (block) -> new PotAndBlockItem(block, new Item.Properties()));

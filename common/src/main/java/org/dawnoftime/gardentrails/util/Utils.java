@@ -37,6 +37,7 @@ public class Utils {
             GTCommon.MOD_ID + ".shift").withStyle(ChatFormatting.AQUA));
     public static final String TOOLTIP_COLUMN = "column";
     public static final String TOOLTIP_CROP = "crop";
+    public static final String TOOLTIP_PERGOLA = "pergola";
 
     public static VoxelShape[] generateHorizontalShapes(final VoxelShape[] shapes, VoxelShape... nonRotatedShapes) {
         final VoxelShape[] newShape = {Shapes.empty()};

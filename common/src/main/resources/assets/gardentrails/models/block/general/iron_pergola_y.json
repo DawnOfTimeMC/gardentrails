@@ -1,0 +1,22 @@
+{
+	"format_version": "1.21.6",
+	"credit": "mr_ch0c0late",
+	"textures": {
+		"particle": "gardentrails:block/iron_pergola"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 16, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 16, 0]},
+			"faces": {
+				"north": {"uv": [2, 0, 6, 16], "texture": "#particle"},
+				"east": {"uv": [2, 0, 6, 16], "texture": "#particle"},
+				"south": {"uv": [2, 0, 6, 16], "texture": "#particle"},
+				"west": {"uv": [2, 0, 6, 16], "texture": "#particle"},
+				"up": {"uv": [6, 0, 10, 4], "texture": "#particle", "cullface": "up"},
+				"down": {"uv": [6, 0, 10, 4], "texture": "#particle", "cullface": "down"}
+			}
+		}
+	]
+}
