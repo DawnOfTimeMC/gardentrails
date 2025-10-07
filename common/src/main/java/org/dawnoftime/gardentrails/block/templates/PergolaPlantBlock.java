@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,6 +19,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.util.Utils;
@@ -25,12 +28,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_OCCLUSION_SHAPES;
+
 public class PergolaPlantBlock extends PergolaBlock{
     private static final IntegerProperty AGE_2 = BlockStateProperties.AGE_2;
 
     public PergolaPlantBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS_Y, false).setValue(AXIS_X, false).setValue(AXIS_Z, false).setValue(AGE_2, 0));
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        if (state.getValue(AXIS_X) || state.getValue(AXIS_Z)) {
+            return state.getValue(AXIS_Y) ? PERGOLA_OCCLUSION_SHAPES[1] : PERGOLA_OCCLUSION_SHAPES[2];
+        }
+        return PERGOLA_OCCLUSION_SHAPES[0];
+    }
+
+    @Override
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return super.getShape(state, level, pos, context);
     }
 
     @Override

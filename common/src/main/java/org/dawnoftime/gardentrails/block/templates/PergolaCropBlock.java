@@ -11,13 +11,15 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.util.GTBlockStateProperties;
@@ -25,6 +27,8 @@ import org.dawnoftime.gardentrails.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+
+import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_OCCLUSION_SHAPES;
 
 public class PergolaCropBlock extends PergolaBlock{
     private static final IntegerProperty AGE_6 = GTBlockStateProperties.AGE_6;
@@ -34,6 +38,19 @@ public class PergolaCropBlock extends PergolaBlock{
         super(properties);
         this.moonPhasePerAge = new int[]{age2, age3, age4, age5, age6};
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS_Y, false).setValue(AXIS_X, false).setValue(AXIS_Z, false).setValue(AGE_6, 0));
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        if (state.getValue(AXIS_X) || state.getValue(AXIS_Z)) {
+            return state.getValue(AXIS_Y) ? PERGOLA_OCCLUSION_SHAPES[1] : PERGOLA_OCCLUSION_SHAPES[2];
+        }
+        return PERGOLA_OCCLUSION_SHAPES[0];
+    }
+
+    @Override
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return super.getShape(state, level, pos, context);
     }
 
     @Override
@@ -88,19 +105,18 @@ public class PergolaCropBlock extends PergolaBlock{
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        if (player.isCrouching()) {
-            if (dropPlant(state, level, pos, player.getItemInHand(hand))) {
-                level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()), 2);
-                level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
-            }
-            return InteractionResult.SUCCESS;
-        }
         if (state.getValue(AGE_6) > 2) {
             if (dropPlant(state, level, pos, player.getItemInHand(hand))) {
                 level.setBlock(pos, state.setValue(AGE_6, 2), 2);
                 level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
                 return InteractionResult.SUCCESS;
             }
+        }
+        if (player.isCrouching()) {
+            dropPlant(state, level, pos, player.getItemInHand(hand));
+            level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()), 2);
+            level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }
