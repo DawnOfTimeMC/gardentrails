@@ -89,12 +89,9 @@ public class PergolaCropBlock extends PergolaBlock{
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         if (player.isCrouching()) {
-            if (level instanceof ServerLevel serverLevel) {
-                ItemStack heldItemStack = player.getItemInHand(hand);
-                ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(state.getBlock());
-                List<ItemStack> drops = Utils.getLootList(serverLevel, state, heldItemStack, blockId.getPath() + "_" + state.getValue(AGE_6));
-                Utils.dropLootFromList(level, pos, drops, 1.0F);
+            if (dropPlant(state, level, pos, player.getItemInHand(hand))) {
                 level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()), 2);
+                level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
             return InteractionResult.SUCCESS;
         }

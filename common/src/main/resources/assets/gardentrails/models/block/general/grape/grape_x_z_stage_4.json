@@ -1,5 +1,5 @@
 {
-	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"2": "gardentrails:block/grape_x_z_stage_4",
 		"particle": "gardentrails:block/grape_x_z_stage_4"
