@@ -1,6 +1,4 @@
 {
-	"format_version": "1.21.6",
-	"credit": "mr_ch0c0late",
 	"textures": {
 		"particle": "gardentrails:block/iron_pergola"
 	},

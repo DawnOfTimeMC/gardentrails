@@ -1,0 +1,86 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "axis_y": "true"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_y"
+            }
+        },
+        {
+            "when": {
+                "axis_x": "true",
+                "axis_z": "false"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_x"
+            }
+        },
+        {
+            "when": {
+                "axis_x": "false",
+                "axis_z": "true"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_x",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "axis_x": "true",
+                "axis_z": "true"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_x_z"
+            }
+        },
+        {
+            "when": {"age": "0", "axis_y" : "true"},
+            "apply": [
+                { "model": "gardentrails:block/general/ivy/ivy_y_small_stage_0"}
+            ]
+        },
+        {
+            "when": {"age": "1", "axis_y" : "true"},
+            "apply": [
+                { "model": "gardentrails:block/general/ivy/ivy_y_small_stage_1"}
+            ]
+        },
+        {
+            "when": {"age": "2", "axis_y" : "true"},
+            "apply": [
+                { "model": "gardentrails:block/general/ivy/ivy_y_small_stage_2"}
+            ]
+        },
+        {
+            "when": {"OR": [
+                {"age": "0", "axis_x" : "true" },
+                {"age": "0", "axis_z" : "true" }
+            ]},
+            "apply": [
+                { "model": "gardentrails:block/general/ivy/ivy_x_z_stage_0"}
+            ]
+        },
+        {
+            "when": {"OR": [
+                {"age": "1", "axis_x" : "true" },
+                {"age": "1", "axis_z" : "true" }
+            ]},
+            "apply": [
+                { "model": "gardentrails:block/general/ivy/ivy_x_z_stage_1"}
+            ]
+        },
+        {
+            "when": {"OR": [
+                {"age": "2", "axis_x" : "true" },
+                {"age": "2", "axis_z" : "true" }
+            ]},
+            "apply": [
+                { "model": "gardentrails:block/general/ivy/ivy_x_z_stage_2"}
+            ]
+        }
+    ]
+}
+    
