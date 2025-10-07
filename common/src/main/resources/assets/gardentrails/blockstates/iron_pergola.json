@@ -1,0 +1,41 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "axis_y": "true"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_y"
+            }
+        },
+        {
+            "when": {
+                "axis_x": "true",
+                "axis_z": "false"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_x"
+            }
+        },
+        {
+            "when": {
+                "axis_x": "false",
+                "axis_z": "true"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_x",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "axis_x": "true",
+                "axis_z": "true"
+            },
+            "apply": {
+                "model": "gardentrails:block/general/iron_pergola_x_z"
+            }
+        }
+    ]
+}
+    

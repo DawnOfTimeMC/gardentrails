@@ -2,6 +2,7 @@ package org.dawnoftime.gardentrails.block.templates;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -116,18 +117,23 @@ public class PergolaBlock extends BlockGT {
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        Item item = player.getItemInHand(hand).getItem();
-        if (item == Blocks.VINE.asItem()) {
-            level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_VINE.get()), 2);
-            return InteractionResult.SUCCESS;
-        }
-        if (item == GTBlocksRegistry.INSTANCE.IVY.get().asItem()) {
-            level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_IVY.get()), 2);
-            return InteractionResult.SUCCESS;
-        }
-        if (item == GTItemsRegistry.INSTANCE.GRAPE_SEEDS.get()) {
-            level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_GRAPE.get()), 2);
-            return InteractionResult.SUCCESS;
+        if (state.getValue(AXIS_Y)) {
+            BlockState stateUnder = level.getBlockState(pos.below());
+            if (stateUnder.getBlock() == Blocks.GRASS_BLOCK || stateUnder.is(BlockTags.DIRT)) {
+                Item item = player.getItemInHand(hand).getItem();
+                if (item == Blocks.VINE.asItem()) {
+                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_VINE.get()), 2);
+                    return InteractionResult.SUCCESS;
+                }
+                if (item == GTBlocksRegistry.INSTANCE.IVY.get().asItem()) {
+                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_IVY.get()), 2);
+                    return InteractionResult.SUCCESS;
+                }
+                if (item == GTItemsRegistry.INSTANCE.GRAPE_SEEDS.get()) {
+                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_GRAPE.get()), 2);
+                    return InteractionResult.SUCCESS;
+                }
+            }
         }
         return super.use(state, level, pos, player, hand, hit);
     }

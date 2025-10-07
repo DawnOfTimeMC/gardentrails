@@ -78,10 +78,10 @@ public class VoxelShapesBuilder {
     }
 
     protected static VoxelShape[] makePergolaShapes() {
-        VoxelShape vsAxisX = Block.box(0.0D, 5.0D, 6.0D, 16.0D, 11.0D, 10.0D);
-        VoxelShape vsAxisZ = Block.box(6.0D, 5.0D, 0.0D, 10.0D, 11.0D, 16.0D);
+        VoxelShape vsAxisX = Block.box(0.0D, 11.0D, 7.0D, 16.0D, 13.0D, 9.0D);
+        VoxelShape vsAxisZ = Block.box(7.0D, 11.0D, 0.0D, 9.0D, 13.0D, 16.0D);
         VoxelShape vsAxisXZ = Shapes.or(vsAxisX, vsAxisZ);
-        VoxelShape vsAxisY = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
+        VoxelShape vsAxisY = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
         return new VoxelShape[]{
                 vsAxisX,
                 vsAxisZ,
