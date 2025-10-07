@@ -75,9 +75,10 @@ public class PergolaCropBlock extends PergolaBlock{
                         }
                     }
                     if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) { //Probability "can spread"
-                        BlockState adjacentState = level.getBlockState(randomSpread(pos, random));
-                        if (adjacentState.getBlock() == GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()) {
-                            level.setBlock(pos, this.copyShapeToPergola(adjacentState, this), 2);
+                        BlockPos adjacentPos = randomSpread(pos, random);
+                        BlockState adjacentState = level.getBlockState(adjacentPos);
+                        if(adjacentState.getBlock() == GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()) {
+                            level.setBlock(adjacentPos, this.copyShapeToPergola(adjacentState, this), 2);
                         }
                     }
                 }

@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -88,13 +89,11 @@ public class PergolaBlock extends BlockGT {
         if(useContext.getPlayer() != null && useContext.getPlayer().isCrouching())
             return false;
         if(itemstack.getItem() == this.asItem()) {
-            if(useContext.replacingClickedOnBlock()) {
-                return switch (useContext.getClickedFace().getAxis()) {
-                    case X -> !state.getValue(AXIS_X);
-                    case Y -> !state.getValue(AXIS_Y);
-                    case Z -> !state.getValue(AXIS_Z);
-                };
-            }
+            return switch (useContext.getClickedFace().getAxis()) {
+                case X -> !state.getValue(AXIS_X);
+                case Y -> !state.getValue(AXIS_Y);
+                case Z -> !state.getValue(AXIS_Z);
+            };
         }
         return false;
     }

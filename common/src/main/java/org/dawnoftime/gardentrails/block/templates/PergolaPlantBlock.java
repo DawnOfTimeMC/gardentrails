@@ -38,7 +38,7 @@ public class PergolaPlantBlock extends PergolaBlock{
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
+    public boolean isRandomlyTicking(@NotNull BlockState state) {
         return true;
     }
 
@@ -55,9 +55,10 @@ public class PergolaPlantBlock extends PergolaBlock{
                         level.setBlock(pos, state.setValue(AGE_2, age + 1), 2);
                     }
                 } else if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) { //Probability "can spread"
-                    BlockState adjacentState = level.getBlockState(randomSpread(pos, random));
+                    BlockPos adjacentPos = randomSpread(pos, random);
+                    BlockState adjacentState = level.getBlockState(adjacentPos);
                     if(adjacentState.getBlock() == GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()) {
-                        level.setBlock(pos, this.copyShapeToPergola(adjacentState, this), 2);
+                        level.setBlock(adjacentPos, this.copyShapeToPergola(adjacentState, this), 2);
                     }
                 }
             }
