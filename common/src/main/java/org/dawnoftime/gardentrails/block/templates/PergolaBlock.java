@@ -116,25 +116,34 @@ public class PergolaBlock extends BlockGT {
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+        if (player.isCreative()) {
+            Item item = player.getItemInHand(hand).getItem();
+            return this.tryPutPlant(item, state, level, pos);
+        }
         if (state.getValue(AXIS_Y)) {
             BlockState stateUnder = level.getBlockState(pos.below());
             if (stateUnder.getBlock() == Blocks.GRASS_BLOCK || stateUnder.is(BlockTags.DIRT)) {
                 Item item = player.getItemInHand(hand).getItem();
-                if (item == Blocks.VINE.asItem()) {
-                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_VINE.get()), 2);
-                    return InteractionResult.SUCCESS;
-                }
-                if (item == GTBlocksRegistry.INSTANCE.IVY.get().asItem()) {
-                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_IVY.get()), 2);
-                    return InteractionResult.SUCCESS;
-                }
-                if (item == GTItemsRegistry.INSTANCE.GRAPE_SEEDS.get()) {
-                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_GRAPE.get()), 2);
-                    return InteractionResult.SUCCESS;
-                }
+                return this.tryPutPlant(item, state, level, pos);
             }
         }
-        return super.use(state, level, pos, player, hand, hit);
+        return InteractionResult.PASS;
+    }
+
+    private InteractionResult tryPutPlant(Item itemInHand, BlockState currentState, @NotNull Level level, @NotNull BlockPos pos) {
+        if (itemInHand == Blocks.VINE.asItem()) {
+            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_VINE.get()), 2);
+            return InteractionResult.SUCCESS;
+        }
+        if (itemInHand == GTBlocksRegistry.INSTANCE.IVY.get().asItem()) {
+            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_IVY.get()), 2);
+            return InteractionResult.SUCCESS;
+        }
+        if (itemInHand == GTItemsRegistry.INSTANCE.GRAPE_SEEDS.get()) {
+            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_GRAPE.get()), 2);
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
     }
 
     public BlockState copyShapeToPergola(@NotNull BlockState currentState, PergolaBlock targetPergola) {

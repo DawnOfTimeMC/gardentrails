@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_OCCLUSION_SHAPES;
+import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_COLLISION_SHAPES;
 
 public class PergolaPlantBlock extends PergolaBlock{
     private static final IntegerProperty AGE_2 = BlockStateProperties.AGE_2;
@@ -41,9 +41,9 @@ public class PergolaPlantBlock extends PergolaBlock{
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         if (state.getValue(AXIS_X) || state.getValue(AXIS_Z)) {
-            return state.getValue(AXIS_Y) ? PERGOLA_OCCLUSION_SHAPES[1] : PERGOLA_OCCLUSION_SHAPES[2];
+            return state.getValue(AXIS_Y) ? PERGOLA_COLLISION_SHAPES[2] : PERGOLA_COLLISION_SHAPES[1];
         }
-        return PERGOLA_OCCLUSION_SHAPES[0];
+        return PERGOLA_COLLISION_SHAPES[0];
     }
 
     @Override
