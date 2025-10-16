@@ -57,7 +57,10 @@ public class GTBiomeModifiers {
                                 biomes.get(Biomes.TAIGA).get(),
                                 biomes.get(Biomes.SNOWY_TAIGA).get(),
                                 biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
-                                biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
+                                biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get(),
+                                biomes.get(Biomes.SAVANNA).get(),
+                                biomes.get(Biomes.SAVANNA_PLATEAU).get(),
+                                biomes.get(Biomes.WINDSWEPT_SAVANNA).get()),
                         HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.CYPRESS_PLACED_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION
                 )
@@ -66,11 +69,7 @@ public class GTBiomeModifiers {
         context.register(ADD_RED_MAPLE,
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(
-                                biomes.get(Biomes.FLOWER_FOREST).get(),
-                                biomes.get(Biomes.TAIGA).get(),
-                                biomes.get(Biomes.SNOWY_TAIGA).get(),
-                                biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
-                                biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
+                                biomes.get(Biomes.DARK_FOREST).get()),
                         HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.RED_MAPLE_PLACED_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION
                 )
@@ -126,8 +125,7 @@ public class GTBiomeModifiers {
                         HolderSet.direct(
                                 biomes.get(Biomes.SAVANNA).get(),
                                 biomes.get(Biomes.SAVANNA_PLATEAU).get(),
-                                biomes.get(Biomes.WINDSWEPT_SAVANNA).get(),
-                                biomes.get(Biomes.FLOWER_FOREST).get()),
+                                biomes.get(Biomes.WINDSWEPT_SAVANNA).get()),
                         HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION
                 )
@@ -137,8 +135,7 @@ public class GTBiomeModifiers {
                 new BiomeModifiers.AddFeaturesBiomeModifier(
                         HolderSet.direct(
                                 biomes.get(Biomes.FLOWER_FOREST).get(),
-                                biomes.get(Biomes.BIRCH_FOREST).get(),
-                                biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get()),
+                                biomes.get(Biomes.FOREST).get()),
                         HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY)),
                         GenerationStep.Decoration.VEGETAL_DECORATION
                 )
