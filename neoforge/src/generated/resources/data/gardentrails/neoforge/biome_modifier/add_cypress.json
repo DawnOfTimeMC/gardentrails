@@ -4,7 +4,10 @@
     "minecraft:taiga",
     "minecraft:snowy_taiga",
     "minecraft:old_growth_pine_taiga",
-    "minecraft:old_growth_spruce_taiga"
+    "minecraft:old_growth_spruce_taiga",
+    "minecraft:savanna",
+    "minecraft:savanna_plateau",
+    "minecraft:windswept_savanna"
   ],
   "features": "gardentrails:cypress_placed",
   "step": "vegetal_decoration"

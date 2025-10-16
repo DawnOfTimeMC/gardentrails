@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-16T21:47:26.3704767	Tags for minecraft:block mod id gardentrails
-da1d469ae26a08dba564d30026c934d1b62514a7 data/minecraft/tags/block/mineable/axe.json
-71499ff50e6dd06af9cf1b0c4ac20b4030da5b15 data/minecraft/tags/block/mineable/pickaxe.json
-fdb6660168a0904ccd09045ad53c0347e1eba1d0 data/minecraft/tags/block/sword_efficient.json
+// 1.21.1	2025-10-17T00:47:11.7767446	Tags for minecraft:block mod id gardentrails
+7971fd55e9acd19a9e09bbdea23eb05394e2ab3c data/minecraft/tags/block/mineable/axe.json
+d8dd7f6c4d13d56b7f441ba3d06820a3a363f122 data/minecraft/tags/block/mineable/pickaxe.json
+f3f3f2650888e13919a45f8ba7916fe3c72a3ea9 data/minecraft/tags/block/sword_efficient.json

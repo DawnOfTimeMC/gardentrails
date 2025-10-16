@@ -1,17 +1,17 @@
 {
   "values": [
-    "gardentrails:boxwood_bush",
-    "gardentrails:boxwood_tall_hedge",
-    "gardentrails:cypress",
+    "gardentrails:boxwood_small_hedge",
     "gardentrails:wild_grape",
     "gardentrails:maple_red_sapling",
-    "gardentrails:wild_maize",
-    "gardentrails:commelina",
-    "gardentrails:camellia",
-    "gardentrails:maize",
-    "gardentrails:ivy",
-    "gardentrails:boxwood_small_hedge",
     "gardentrails:geranium_pink",
-    "gardentrails:mulberry"
+    "gardentrails:boxwood_tall_hedge",
+    "gardentrails:mulberry",
+    "gardentrails:ivy",
+    "gardentrails:commelina",
+    "gardentrails:maize",
+    "gardentrails:wild_maize",
+    "gardentrails:cypress",
+    "gardentrails:camellia",
+    "gardentrails:boxwood_bush"
   ]
 }
