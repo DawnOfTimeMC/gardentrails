@@ -1,0 +1,33 @@
+{
+  "type": "gardentrails:default_crops",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "gardentrails:dot_feature",
+        "config": {
+          "to_place": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "gardentrails:wild_maize",
+              "Properties": {
+                "half": "bottom"
+              }
+            }
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "tries": 15,
+    "xz_spread": 4,
+    "y_spread": 2
+  }
+}

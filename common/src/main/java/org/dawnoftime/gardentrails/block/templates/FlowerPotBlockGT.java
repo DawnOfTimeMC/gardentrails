@@ -24,7 +24,7 @@ public class FlowerPotBlockGT extends BlockGT implements IBlockSpecialDisplay, I
     private Item itemInPot;
 
     public FlowerPotBlockGT(@Nullable Item itemInPot) {
-        super(Properties.copy(FLOWER_POT), FLOWER_POT_SHAPE);
+        super(Properties.ofFullCopy(FLOWER_POT), FLOWER_POT_SHAPE);
         this.itemInPot = itemInPot;
     }
 
@@ -33,14 +33,13 @@ public class FlowerPotBlockGT extends BlockGT implements IBlockSpecialDisplay, I
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult ray) {
-        if(this.itemInPot != null && !world.isClientSide()) {
-            if(entity.getItemInHand(hand).isEmpty()) {
-                Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.itemInPot));
-                world.setBlock(pos, Blocks.FLOWER_POT.defaultBlockState(), 2);
-            }
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if(this.itemInPot != null && !level.isClientSide()) {
+            Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this.itemInPot));
+            level.setBlock(pos, Blocks.FLOWER_POT.defaultBlockState(), 2);
         }
-        return super.use(state, world, pos, entity, hand, ray);
+
+        return super.useWithoutItem(state, level, pos, player, hitResult);
     }
 
     public BlockState getRandomState() {

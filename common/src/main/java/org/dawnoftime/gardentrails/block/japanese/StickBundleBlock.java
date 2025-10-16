@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -99,40 +100,39 @@ public class StickBundleBlock extends BlockGT implements IBlockChain {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        if(!worldIn.isClientSide()) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if(level instanceof ServerLevel serverLevel && !serverLevel.isClientSide()) { // little sanity check
             //The StickBundle is empty, we try to put worms on it.
-            if(state.getValue(AGE) == 0) {
-                ItemStack itemstack = player.getItemInHand(handIn);
-                if(itemstack.getItem() == GTItemsRegistry.INSTANCE.SILK_WORMS.get() && !itemstack.isEmpty()) {
+            if (state.getValue(AGE) == 0) {
+                ItemStack itemstack = player.getItemInHand(hand);
+                if (itemstack.getItem() == GTItemsRegistry.INSTANCE.SILK_WORMS.get() && !itemstack.isEmpty()) {
                     itemstack.shrink(1);
-                    worldIn.setBlock(pos, state.setValue(AGE, 1), 10);
-                    if(state.getValue(HALF) == Half.TOP) {
-                        worldIn.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(AGE, 1), 10);
+                    level.setBlock(pos, state.setValue(AGE, 1), 10);
+                    if (state.getValue(HALF) == Half.TOP) {
+                        level.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(AGE, 1), 10);
                     } else {
-                        worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, Half.TOP).setValue(AGE, 1), 10);
+                        level.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, Half.TOP).setValue(AGE, 1), 10);
                     }
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
 
-            //The StickBundle has fully grown worms, it's time to harvest !
             if(state.getValue(AGE) == 3) {
-                List<ItemStack> drops = Utils.getLootList((ServerLevel) worldIn, state, player.getItemInHand(handIn), Objects.requireNonNull(this.builtInRegistryHolder().key()).location().getPath() + "_harvest");
-                Utils.dropLootFromList(worldIn, pos, drops, 1.0F);
-                worldIn.setBlock(pos, state.setValue(AGE, 0), 10);
-                worldIn.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+                List<ItemStack> drops = Utils.getLootList(serverLevel, state, player.getItemInHand(hand), Objects.requireNonNull(this.builtInRegistryHolder().key()).location().getPath() + "_harvest");
+                Utils.dropLootFromList(level, pos, drops, 1.0F);
+                level.setBlock(pos, state.setValue(AGE, 0), 10);
+                level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
                 if(state.getValue(HALF) == Half.TOP) {
-                    worldIn.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(AGE, 0), 10);
+                    level.setBlock(pos.below(), this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(AGE, 0), 10);
                 } else {
-                    worldIn.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, Half.TOP).setValue(AGE, 0), 10);
+                    level.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, Half.TOP).setValue(AGE, 0), 10);
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
-    }
 
+        return ItemInteractionResult.FAIL;
+    }
     @Override
     public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) > 0 && state.getValue(AGE) < 3 && state.getValue(HALF) == Half.TOP;
@@ -155,7 +155,7 @@ public class StickBundleBlock extends BlockGT implements IBlockChain {
     }
 
     @Override
-    public void playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         // Prevents item from dropping in creative by removing the part that gives the item with a setBlock.
         if (!level.isClientSide() && player.isCreative()) {
             if (state.getValue(HALF) == Half.TOP) {
@@ -168,6 +168,7 @@ public class StickBundleBlock extends BlockGT implements IBlockChain {
                 }
             }
         }
-        super.playerWillDestroy(level, pos, state, player);
+
+        return super.playerWillDestroy(level, pos, state, player);
     }
 }

@@ -3,12 +3,16 @@ package org.dawnoftime.gardentrails.util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -69,7 +73,7 @@ public class Utils {
     }
 
     public static List<ItemStack> getLootList(final ServerLevel serverWorld, final BlockState stateIn, final ItemStack itemStackHand, final String name) {
-        final LootTable table = serverWorld.getServer().getLootData().getLootTable(new ResourceLocation(GTCommon.MOD_ID + ":blocks/" + name));
+        final LootTable table = serverWorld.getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, "blocks/" + name)));
         final LootParams.Builder builder = new LootParams.Builder(serverWorld).withParameter(LootContextParams.BLOCK_STATE, stateIn).withParameter(LootContextParams.TOOL, itemStackHand).withParameter(LootContextParams.ORIGIN, new Vec3(0, 0, 0));
         final LootParams lootParams = builder.create(LootContextParamSets.BLOCK);
         return table.getRandomItems(lootParams);
@@ -92,7 +96,12 @@ public class Utils {
         final ItemStack itemInHand = player.getItemInHand(handIn);
         if (!itemInHand.isEmpty() && itemInHand.is(GTTags.INSTANCE.LIGHTERS)) {
             worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            itemInHand.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(handIn));
+            if (worldIn instanceof ServerLevel serverLevel && player instanceof ServerPlayer serverPlayer) {
+                itemInHand.hurtAndBreak(1, serverLevel, serverPlayer, (item) -> serverPlayer.onEquippedItemBroken(
+                        item,
+                        handIn == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND
+                ));
+            }
             return true;
         }
         return false;

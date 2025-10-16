@@ -1,23 +1,25 @@
 package org.dawnoftime.gardentrails.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.recipe.DryerRecipe;
+import org.dawnoftime.gardentrails.recipe.SimpleContainerRecipeInput;
 import org.dawnoftime.gardentrails.registry.GTBlockEntitiesRegistry;
 import org.dawnoftime.gardentrails.registry.GTRecipeTypesRegistry;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -63,42 +65,42 @@ public class DryerBlockEntity extends BlockEntity {
         }
     }
 
-    public InteractionResult tryInsertItemStack(final ItemStack itemStack, final boolean simple, final Level worldIn, final BlockPos pos, final Player player) {
+    public ItemInteractionResult tryInsertItemStack(final ItemStack itemStack, final boolean simple, final Level worldIn, final BlockPos pos, final Player player) {
 
         //Try to put the itemStack in an empty dryer
         if (this.putItemStackInFreeSpace(itemStack, simple, player)) {
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
         //No empty dryer, let's see if we could replace a dried item with ours
         if (simple) {
             if (this.itemIsDried(0)) {
                 this.dropItemIndex(0, worldIn, pos);
                 this.putItemStackInIndex(0, itemStack, player);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         final int index = this.dropOneDriedItem(worldIn, pos);
         if (index < 0) {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         this.putItemStackInIndex(index, itemStack, player);
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
 
-    public InteractionResult dropOneItem(final Level worldIn, final BlockPos pos) {
+    public ItemInteractionResult dropOneItem(final Level worldIn, final BlockPos pos) {
         if (this.dropOneDriedItem(worldIn, pos) > -1) {
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
         if (!this.itemHandler.getItem(0).isEmpty()) {
             this.dropItemIndex(0, worldIn, pos);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
         if (!this.itemHandler.getItem(1).isEmpty()) {
             this.dropItemIndex(1, worldIn, pos);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public int dropOneDriedItem(final Level worldIn, final BlockPos pos) {
@@ -136,7 +138,7 @@ public class DryerBlockEntity extends BlockEntity {
     @Nullable
     private DryerRecipe getDryerRecipe(final SimpleContainer ingredientInventory) {
         if (this.getLevel() != null && !this.getLevel().isClientSide) {
-            return this.getLevel().getRecipeManager().getRecipeFor(GTRecipeTypesRegistry.INSTANCE.DRYING.get(), ingredientInventory, this.getLevel()).orElse(null);
+            return this.getLevel().getRecipeManager().getRecipeFor(GTRecipeTypesRegistry.INSTANCE.DRYING.get(), new SimpleContainerRecipeInput(ingredientInventory), this.getLevel()).map(RecipeHolder::value).orElse(null);
         }
         return null;
     }
@@ -146,14 +148,14 @@ public class DryerBlockEntity extends BlockEntity {
         if (this.getLevel() != null) {
             final SimpleContainer invInHand = new SimpleContainer(itemStack);
             final DryerRecipe recipe = this.getDryerRecipe(invInHand);
-            if (recipe != null && recipe.matches(invInHand, this.getLevel())) {
+            if (recipe != null && recipe.matches(new SimpleContainerRecipeInput(invInHand), this.getLevel())) {
                 this.itemHandler.setItem(index, recipe.getIngredients().get(0).getItems()[0].copy());
                 if (!player.isCreative()) {
                     itemStack.shrink(recipe.getIngredients().get(0).getItems()[0].getCount());
                 }
                 final float timeVariation = new Random().nextFloat() * 2.0F - 1.0F;
                 final int range = timeVariation >= 0 ? Services.PLATFORM.getConfig().dryingTimeVariation : 10000 / (100 + Services.PLATFORM.getConfig().dryingTimeVariation);
-                this.remainingTicks[index] = (int) (recipe.getDryingTime() * (100 + timeVariation * range) / 100);
+                this.remainingTicks[index] = (int) (recipe.dryingTime() * (100 + timeVariation * range) / 100);
 
                 this.setChanged();
                 BlockState state = level.getBlockState(worldPosition);
@@ -182,50 +184,44 @@ public class DryerBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        CompoundTag tag = super.getUpdateTag();
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = super.getUpdateTag(registries);
         if (!itemHandler.getItem(0).isEmpty()) {
-            tag.put("slot_0", itemHandler.getItem(0).save(new CompoundTag()));
+            tag.put("slot_0", itemHandler.getItem(0).save(registries));
         }
         if (!itemHandler.getItem(1).isEmpty()) {
-            tag.put("slot_1", itemHandler.getItem(1).save(new CompoundTag()));
+            tag.put("slot_1", itemHandler.getItem(1).save(registries));
         }
         tag.putBoolean("isInOperation", this.isInOperation);
         return tag;
     }
 
     @Override
-    public void saveAdditional(final @NotNull CompoundTag tag) {
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         if (!itemHandler.getItem(0).isEmpty()) {
-            tag.put("slot_0", itemHandler.getItem(0).save(new CompoundTag()));
+            tag.put("slot_0", itemHandler.getItem(0).save(registries));
         }
         if (!itemHandler.getItem(1).isEmpty()) {
-            tag.put("slot_1", itemHandler.getItem(1).save(new CompoundTag()));
+            tag.put("slot_1", itemHandler.getItem(1).save(registries));
         }
         for (int index = 0; index < 2; index++) {
             tag.putInt("remainingTime" + index, this.remainingTicks[index]);
         }
         tag.putBoolean("isInOperation", this.isInOperation);
 
-        super.saveAdditional(tag);
+        super.saveAdditional(tag, registries);
     }
 
     @Override
-    public void load(final @NotNull CompoundTag tag) {
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         itemHandler.clearContent();
-        ItemStack stack = ItemStack.of(tag.getCompound("slot_0"));
-        if (!stack.isEmpty()) {
-            itemHandler.setItem(0, stack);
-        }
-        stack = ItemStack.of(tag.getCompound("slot_1"));
-        if (!stack.isEmpty()) {
-            itemHandler.setItem(1, stack);
-        }
+        ItemStack.parse(registries, tag.getCompound("slot_0")).ifPresent(itemStack -> itemHandler.setItem(0, itemStack));
+        ItemStack.parse(registries, tag.getCompound("slot_1")).ifPresent(itemStack -> itemHandler.setItem(1, itemStack));
         for (int index = 0; index < 2; index++) {
             this.remainingTicks[index] = tag.getInt("remainingTime" + index);
         }
         this.isInOperation = tag.getBoolean("isInOperation");
 
-        super.load(tag);
+        super.loadAdditional(tag, registries);
     }
 }

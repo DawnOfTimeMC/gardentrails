@@ -1,6 +1,8 @@
 package org.dawnoftime.gardentrails.loot;
 
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v3.LootTableSource;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -17,20 +19,20 @@ public final class GTFabricLootModifier {
     private static final GTConfig config = Services.PLATFORM.getConfig();
 
     public static void modifyLootTables() {
-        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            switch (id.toString()) {
-                case LootTablesToModify.SHIPWRECK_TREASURE -> buildLootTable(GTItemsRegistry.INSTANCE.SILK.get(), 1.0f, tableBuilder);
-                case LootTablesToModify.VILLAGE_PLAINS_HOUSE -> buildLootTable(GTItemsRegistry.INSTANCE.GRAPE.get(), 0.5f, tableBuilder);
-                case LootTablesToModify.VILLAGE_SAVANNA_HOUSE -> buildLootTable(GTBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.5f, tableBuilder);
+        LootTableEvents.MODIFY.register((key, builder, source, lookup) -> {
+            switch (key.location().toString()) {
+                case LootTablesToModify.SHIPWRECK_TREASURE -> buildLootTable(GTItemsRegistry.INSTANCE.SILK.get(), 1.0f, builder);
+                case LootTablesToModify.VILLAGE_PLAINS_HOUSE -> buildLootTable(GTItemsRegistry.INSTANCE.GRAPE.get(), 0.5f, builder);
+                case LootTablesToModify.VILLAGE_SAVANNA_HOUSE -> buildLootTable(GTBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.5f, builder);
                 case LootTablesToModify.VILLAGE_TAIGA_HOUSE -> {
-                    buildLootTable(GTBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.5f, tableBuilder);
-                    buildLootTable(GTBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.5f, tableBuilder);
+                    buildLootTable(GTBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.5f, builder);
+                    buildLootTable(GTBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.5f, builder);
                 }
                 case LootTablesToModify.SHIPWRECK_SUPPLY -> {
-                    buildLootTable(GTItemsRegistry.INSTANCE.GRAPE.get(),0.2f, tableBuilder);
-                    buildLootTable(GTBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.2f, tableBuilder);
-                    buildLootTable(GTBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.2f, tableBuilder);
-                    buildLootTable(GTBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.2f, tableBuilder);
+                    buildLootTable(GTItemsRegistry.INSTANCE.GRAPE.get(),0.2f, builder);
+                    buildLootTable(GTBlocksRegistry.INSTANCE.MAIZE.get().asItem(), 0.2f, builder);
+                    buildLootTable(GTBlocksRegistry.INSTANCE.RICE.get().asItem(), 0.2f, builder);
+                    buildLootTable(GTBlocksRegistry.INSTANCE.MULBERRY.get().asItem(), 0.2f, builder);
                 }
             }
         });

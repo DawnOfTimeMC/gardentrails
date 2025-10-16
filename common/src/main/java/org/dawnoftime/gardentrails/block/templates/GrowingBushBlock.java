@@ -3,10 +3,13 @@ package org.dawnoftime.gardentrails.block.templates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -82,22 +85,27 @@ public class GrowingBushBlock extends SoilCropsBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player playerIn, InteractionHand hand, BlockHitResult ray) {
-        if(super.use(state, worldIn, pos, playerIn, hand, ray) == InteractionResult.SUCCESS)
-            return InteractionResult.SUCCESS;
-        if(this.isMaxAge(state) && !playerIn.isCreative()) {
-            if(!worldIn.isClientSide()) {
-                ItemStack itemStackHand = playerIn.getItemInHand(hand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (super.useItemOn(stack, state, level, pos, player, hand, hitResult) == ItemInteractionResult.SUCCESS)
+            return ItemInteractionResult.SUCCESS;
+
+        if(this.isMaxAge(state) && !player.isCreative()) {
+            if(!level.isClientSide()) {
+                ItemStack itemStackHand = player.getItemInHand(hand);
                 boolean holdShears = itemStackHand.is(Items.SHEARS);
-                if(holdShears)
-                    itemStackHand.hurtAndBreak(1, playerIn, (p) -> p.broadcastBreakEvent(hand));
+                if(holdShears && level instanceof ServerLevel serverLevel && player instanceof ServerPlayer serverPlayer) {
+                    itemStackHand.hurtAndBreak(1, serverLevel, serverPlayer, (item) -> serverPlayer.onEquippedItemBroken(
+                            item,
+                            hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND
+                    ));
+                }
 
                 ResourceLocation resourceLocation = this.builtInRegistryHolder().key().location();
-                this.harvestWithoutBreaking(state, worldIn, pos, itemStackHand, resourceLocation.getPath(), holdShears ? 1.5F : 1.0F);
-                return InteractionResult.SUCCESS;
+                this.harvestWithoutBreaking(state, level, pos, itemStackHand, resourceLocation.getPath(), holdShears ? 1.5F : 1.0F);
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.FAIL;
     }
 
     public void harvestWithoutBreaking(BlockState state, Level worldIn, BlockPos pos, ItemStack itemStackHand, String blockName, float dropMultiplier) {

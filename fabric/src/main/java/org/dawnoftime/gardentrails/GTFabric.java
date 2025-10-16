@@ -10,7 +10,7 @@ import org.dawnoftime.gardentrails.loot.GTFabricLootModifier;
 
 public class GTFabric implements ModInitializer, ClientModInitializer {
     public static final ConfigClassHandler<GTConfig> HANDLER = ConfigClassHandler.createBuilder(GTConfig.class)
-            .id(new ResourceLocation(GTCommon.MOD_ID, "config"))
+            .id(ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, "config"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
                     .setPath(YACLPlatform.getConfigDir().resolve("gardentrails-config.json5"))
                     .setJson5(true)

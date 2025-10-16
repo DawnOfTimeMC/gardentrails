@@ -9,9 +9,9 @@ import org.dawnoftime.gardentrails.GTCommon;
 public abstract class GTTags {
     public static GTTags INSTANCE;
     //Item tags
-    public final TagKey<Item> LIGHTERS = registerItem(new ResourceLocation(GTCommon.MOD_ID, "lighters"));
+    public final TagKey<Item> LIGHTERS = registerItem(ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, "lighters"));
     //Block tags
-    public final TagKey<Block> GRAVEL = registerBlock(new ResourceLocation("c", "gravel"));
+    public final TagKey<Block> GRAVEL = registerBlock(ResourceLocation.fromNamespaceAndPath("c", "gravel"));
 
 
     public abstract TagKey<Block> registerBlock(ResourceLocation id);

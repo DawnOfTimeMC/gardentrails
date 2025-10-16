@@ -7,9 +7,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
@@ -36,18 +38,18 @@ public class MapleSaplingBlock extends BushBlockGT implements BonemealableBlock 
     }
 
     @Override
-    public InteractionResult use(final BlockState p_225533_1_In, final Level p_225533_2_In, final BlockPos p_225533_3_In, final Player p_225533_4_In, final InteractionHand p_225533_5_In, final BlockHitResult p_225533_6_In) {
-        final Item mainItem = p_225533_4_In.getMainHandItem().getItem();
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        final Item mainItem = player.getMainHandItem().getItem();
         if(mainItem instanceof FlintAndSteelItem) {
-            if(!p_225533_2_In.isClientSide) {
-                p_225533_2_In.setBlock(p_225533_3_In, GTBlocksRegistry.INSTANCE.PAUSED_MAPLE_RED_SAPLING.get().defaultBlockState(), 35);
-                p_225533_2_In.levelEvent(p_225533_4_In, 2001, p_225533_3_In, Block.getId(p_225533_1_In));
+            if(!level.isClientSide) {
+                level.setBlock(pos, GTBlocksRegistry.INSTANCE.PAUSED_MAPLE_RED_SAPLING.get().defaultBlockState(), 35);
+                level.levelEvent(player, 2001, pos, Block.getId(state));
             }
 
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
 
-        return InteractionResult.FAIL;
+        return ItemInteractionResult.FAIL;
     }
 
 
@@ -83,7 +85,7 @@ public class MapleSaplingBlock extends BushBlockGT implements BonemealableBlock 
     }
 
     @Override
-    public boolean isValidBonemealTarget(final LevelReader p_176473_1_, final BlockPos p_176473_2_, final BlockState p_176473_3_, final boolean p_176473_4_) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return true;
     }
 
