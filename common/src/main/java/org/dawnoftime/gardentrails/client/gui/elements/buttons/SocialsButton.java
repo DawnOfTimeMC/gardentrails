@@ -17,8 +17,8 @@ public class SocialsButton extends Button {
 
     public SocialsButton(int x, int y, String buttonName, OnPress pressable) {
         super(x, y, 28, 28, Component.empty(), pressable, DEFAULT_NARRATION);
-        this.buttonIcons = new ResourceLocation(MOD_ID, "textures/gui/social_" + buttonName + ".png");
-        this.socialIcons = new ResourceLocation(MOD_ID, "textures/gui/social_icons.png");
+        this.buttonIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_" + buttonName + ".png");
+        this.socialIcons = ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/gui/social_icons.png");
     }
 
     @Override
@@ -43,10 +43,5 @@ public class SocialsButton extends Button {
 
             pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         }
-    }
-
-    @Override
-    protected @NotNull ClientTooltipPositioner createTooltipPositioner() {
-        return DefaultTooltipPositioner.INSTANCE;
     }
 }

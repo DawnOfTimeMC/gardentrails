@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class SilkmothModel<T extends SilkmothEntity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(GTCommon.MOD_ID, "silkmoth"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, "silkmoth"), "main");
     private final ModelPart root;
     private final ModelPart wingLeft;
     private final ModelPart wingRight;
@@ -63,11 +63,11 @@ public class SilkmothModel<T extends SilkmothEntity> extends EntityModel<T> {
     }
 
     @Override
-    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
         poseStack.pushPose();
         poseStack.translate(0.0F, 0.5F, 0.0F);
         poseStack.scale(0.5F, 0.5F, 0.5F);
-        root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
         poseStack.popPose();
     }
 }

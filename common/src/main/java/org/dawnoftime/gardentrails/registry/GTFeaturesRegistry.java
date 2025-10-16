@@ -35,7 +35,7 @@ public abstract class GTFeaturesRegistry {
             () -> new DefaultCropsFeature(RandomPatchConfiguration.CODEC));
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
-                return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(GTCommon.MOD_ID, name));
+                return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, name));
             }
 
     public abstract <Y extends FeatureConfiguration, T extends Feature<Y>> Supplier<T> register(final String name, final Supplier<T> featureSupplier);

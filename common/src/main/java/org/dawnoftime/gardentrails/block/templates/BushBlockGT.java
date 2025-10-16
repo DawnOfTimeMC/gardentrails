@@ -1,5 +1,6 @@
 package org.dawnoftime.gardentrails.block.templates;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -49,5 +50,11 @@ public class BushBlockGT extends BushBlock implements IBlockGeneration, IFlammab
         world.setBlock(pos, state, 2);
 
         return true;
+    }
+
+    // unused
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return null;
     }
 }

@@ -37,7 +37,7 @@ public class MapleTrunkBlock extends BlockGT {
     }
 
     @Override
-    public void playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
+    public BlockState playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
         if(!worldIn.isClientSide) {
             if(playerEntityIn.isCreative()) {
                 final BlockPos trunkBlockPos = new BlockPos(blockPosIn.getX(), blockPosIn.getY(), blockPosIn.getZ());
@@ -58,7 +58,7 @@ public class MapleTrunkBlock extends BlockGT {
             }
         }
 
-        super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
+        return super.playerWillDestroy(worldIn, blockPosIn, blockStateIn, playerEntityIn);
     }
 
     @Override
