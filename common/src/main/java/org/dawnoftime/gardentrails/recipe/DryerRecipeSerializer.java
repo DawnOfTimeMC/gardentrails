@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
     public static final MapCodec<DryerRecipe> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
-                    Codec.STRING.fieldOf("group").forGetter(DryerRecipe::group),
+                    Codec.STRING.optionalFieldOf("group", "").forGetter(DryerRecipe::group),
                     Ingredient.CODEC.fieldOf("ingredient").forGetter(DryerRecipe::ingredient),
                     ItemStack.CODEC.fieldOf("result").forGetter(DryerRecipe::result),
                     Codec.FLOAT.optionalFieldOf("experience", 0f).forGetter(DryerRecipe::experience),
