@@ -21,6 +21,10 @@
     "yacl3.config.gardentrails:config.generateRice": "Rice",
     "yacl3.config.gardentrails:config.generateMulberry": "Mulberry",
 
+    "yacl3.config.gardentrails:config.category.recipes": "Recipes",
+    "yacl3.config.gardentrails:config.dawnOfTimeUseSilk": "Dawn Of Time recipes use silk",
+    "yacl3.config.gardentrails:config.armorOfTheAgesUseSilk": "Armor of the Ages recipes use silk",
+
     "itemGroup.gardentrails.gttab": "Garden Trails",
 
     "block.gardentrails.wild_grape": "Wild Grapes",
