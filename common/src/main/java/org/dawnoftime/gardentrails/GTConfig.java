@@ -75,4 +75,13 @@ public class GTConfig {
     @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateMulberry = true;
 
+    // Recipes settings
+    @SerialEntry(comment = "This makes the recipes of Dawn of Time use silk instead white wool")
+    @AutoGen(category = "recipes")
+    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
+    public boolean dawnOfTimeUseSilk = true;
+    @SerialEntry(comment = "This makes the recipes of Armor of Ages use silk instead string")
+    @AutoGen(category = "recipes")
+    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
+    public boolean armorOfTheAgesUseSilk = true;
 }
