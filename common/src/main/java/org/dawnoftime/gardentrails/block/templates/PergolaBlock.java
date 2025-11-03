@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -109,32 +110,42 @@ public class PergolaBlock extends BlockGT {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_PERGOLA);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_PERGOLA);
     }
 
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (player.isCreative()) {
+            Item item = player.getItemInHand(hand).getItem();
+            return this.tryPutPlant(item, state, level, pos);
+        }
         if (state.getValue(AXIS_Y)) {
             BlockState stateUnder = level.getBlockState(pos.below());
             if (stateUnder.getBlock() == Blocks.GRASS_BLOCK || stateUnder.is(BlockTags.DIRT)) {
                 Item item = player.getItemInHand(hand).getItem();
-                if (item == Blocks.VINE.asItem()) {
-                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_VINE.get()), 2);
-                    return InteractionResult.SUCCESS;
-                }
-                if (item == GTBlocksRegistry.INSTANCE.IVY.get().asItem()) {
-                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_IVY.get()), 2);
-                    return InteractionResult.SUCCESS;
-                }
-                if (item == GTItemsRegistry.INSTANCE.GRAPE_SEEDS.get()) {
-                    level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_GRAPE.get()), 2);
-                    return InteractionResult.SUCCESS;
-                }
+                return this.tryPutPlant(item, state, level, pos);
             }
         }
-        return super.use(state, level, pos, player, hand, hit);
+
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    }
+
+    private ItemInteractionResult tryPutPlant(Item itemInHand, BlockState currentState, @NotNull Level level, @NotNull BlockPos pos) {
+        if (itemInHand == Blocks.VINE.asItem()) {
+            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_VINE.get()), 2);
+            return ItemInteractionResult.SUCCESS;
+        }
+        if (itemInHand == GTBlocksRegistry.INSTANCE.IVY.get().asItem()) {
+            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_IVY.get()), 2);
+            return ItemInteractionResult.SUCCESS;
+        }
+        if (itemInHand == GTItemsRegistry.INSTANCE.GRAPE_SEEDS.get()) {
+            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_GRAPE.get()), 2);
+            return ItemInteractionResult.SUCCESS;
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public BlockState copyShapeToPergola(@NotNull BlockState currentState, PergolaBlock targetPergola) {

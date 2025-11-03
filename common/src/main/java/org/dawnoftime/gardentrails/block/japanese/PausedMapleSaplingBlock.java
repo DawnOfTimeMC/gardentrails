@@ -3,8 +3,10 @@ package org.dawnoftime.gardentrails.block.japanese;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FlintAndSteelItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -26,16 +28,17 @@ public class PausedMapleSaplingBlock extends BushBlockGT {
 //        return new ItemStack(DoTBBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get().asItem());
 //    }
 
-    @Override
-    public InteractionResult use(final BlockState p_225533_1_In, final Level p_225533_2_In, final BlockPos p_225533_3_In, final Player p_225533_4_In, final InteractionHand p_225533_5_In, final BlockHitResult p_225533_6_In) {
-        if(p_225533_4_In.getMainHandItem().getItem() instanceof FlintAndSteelItem) {
-            p_225533_2_In.setBlock(p_225533_3_In, GTBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get().defaultBlockState(), 35);
-            p_225533_2_In.levelEvent(p_225533_4_In, 2001, p_225533_3_In, Block.getId(p_225533_1_In));
 
-            return InteractionResult.SUCCESS;
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (player.getMainHandItem().getItem() instanceof FlintAndSteelItem) {
+            level.setBlock(pos, GTBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get().defaultBlockState(), 35);
+            level.levelEvent(player, 2001, pos, Block.getId(state));
+
+            return ItemInteractionResult.SUCCESS;
         }
 
-        return InteractionResult.FAIL;
+        return ItemInteractionResult.FAIL;
     }
 
     /**

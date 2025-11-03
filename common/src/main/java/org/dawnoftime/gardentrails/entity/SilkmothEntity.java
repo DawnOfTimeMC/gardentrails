@@ -50,11 +50,11 @@ public class SilkmothEntity extends AmbientCreature {
         this.setDeltaMovement(this.getDeltaMovement().multiply(1.0D, 0.6D, 1.0D));
     }
 
-    @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficultyInstance, MobSpawnType spawnReason, @Nullable SpawnGroupData data, @Nullable CompoundTag nbt) {
+    public @org.jetbrains.annotations.Nullable SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @org.jetbrains.annotations.Nullable SpawnGroupData spawnGroupData) {
         this.getEntityData().set(ROTATION_POS, this.blockPosition());
-        return super.finalizeSpawn(world, difficultyInstance, spawnReason, data, nbt);
+
+        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }
 
     @Override
@@ -137,11 +137,6 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return sizeIn.height / 2.0F;
-    }
-
-    @Override
     public boolean causeFallDamage(float p_225503_1_, float p_225503_2_, DamageSource damageSource) {
         return false;
     }
@@ -195,11 +190,12 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.getEntityData().define(ROTATION_POS, new BlockPos(this.blockPosition()));
-        this.getEntityData().define(CLOCKWISE, this.random.nextBoolean());
-        this.getEntityData().define(DISTANCE, this.getNewRotationDistance());
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+
+        builder.define(ROTATION_POS, new BlockPos(this.blockPosition()));
+        builder.define(CLOCKWISE, this.random.nextBoolean());
+        builder.define(DISTANCE, this.getNewRotationDistance());
     }
 
     @Override

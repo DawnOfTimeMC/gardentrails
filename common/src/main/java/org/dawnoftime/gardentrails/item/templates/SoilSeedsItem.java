@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.dawnoftime.gardentrails.block.templates.FlowerPotBlockGT;
 import org.dawnoftime.gardentrails.block.templates.SoilCropsBlock;
 import org.dawnoftime.gardentrails.item.IHasFlowerPot;
+import org.dawnoftime.gardentrails.mixin.accessor.BlockBehaviourAccessor;
 import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
@@ -39,7 +40,7 @@ public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
         if (!world.isClientSide() && this.getPotBlock() != null) {
             BlockPos pos = context.getClickedPos();
             BlockState state = world.getBlockState(pos);
-            if (state.getBlock() instanceof FlowerPotBlock pot && ((FlowerPotBlock) pot.defaultBlockState().getBlock()).getContent() == Blocks.AIR) {
+            if (state.getBlock() instanceof FlowerPotBlock pot && ((FlowerPotBlock) pot.defaultBlockState().getBlock()).getPotted() == Blocks.AIR) {
                 Player player = context.getPlayer();
                 if (player == null || !player.getAbilities().instabuild) {
                     stack.shrink(1);
@@ -59,7 +60,7 @@ public class SoilSeedsItem extends BlockItem implements IHasFlowerPot {
         Level world = context.getLevel();
         BlockPos pos = context.getClickedPos();
 
-        if (!this.getBlock().canSurvive(this.getBlock().defaultBlockState(), world, pos))
+        if (!((BlockBehaviourAccessor)this.getBlock()).callCanSurvive(this.getBlock().defaultBlockState(), world, pos))
             return InteractionResult.FAIL;
         if (!world.getBlockState(pos).canBeReplaced(context))
             return InteractionResult.FAIL;

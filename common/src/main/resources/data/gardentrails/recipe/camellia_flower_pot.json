@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:flower_pot"
+		},
+		{
+			"item": "gardentrails:camellia_seeds"
+		}
+	],
+	"result": {
+		"id": "gardentrails:camellia_flower_pot",
+		"count": 1
+	}
+}

@@ -9,7 +9,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -242,39 +244,46 @@ public class IvyBlock extends BlockGT implements IBlockGeneration {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, @NotNull Level levelIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (state.getValue(PERSISTENT)) {
             if (player.isCreative()) {
                 int age = state.getValue(AGE);
                 if (player.isCrouching()) {
                     if (age > 0) {
-                        levelIn.setBlock(pos, state.setValue(AGE, age - 1), 10);
+                        level.setBlock(pos, state.setValue(AGE, age - 1), 10);
                         return InteractionResult.SUCCESS;
                     }
                 } else {
                     if (age < 2) {
-                        levelIn.setBlock(pos, state.setValue(AGE, age + 1), 10);
+                        level.setBlock(pos, state.setValue(AGE, age + 1), 10);
                         return InteractionResult.SUCCESS;
                     }
                 }
-            }
-        } else {
-            if (Utils.useLighter(levelIn, pos, player, handIn)) {
-                Random rand = new Random();
-                for (int i = 0; i < 5; i++) {
-                    levelIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
-                }
-                levelIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
-                return InteractionResult.SUCCESS;
             }
         }
         return InteractionResult.PASS;
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter levelIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, levelIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, TOOLTIP_CROP);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!state.getValue(PERSISTENT)) {
+            if (Utils.useLighter(level, pos, player, hand)) {
+                Random rand = new Random();
+                for (int i = 0; i < 5; i++) {
+                    level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
+                }
+                level.setBlock(pos, state.setValue(PERSISTENT, true), 10);
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+
+        return ItemInteractionResult.FAIL;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        Utils.addTooltip(tooltipComponents, TOOLTIP_CROP);
     }
 
     @Override

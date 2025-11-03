@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -118,14 +119,14 @@ public class DryerBlock extends WaterloggedBlock implements EntityBlock {
     }
 
     @Override
-    public InteractionResult use(final BlockState state, final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        if(!worldIn.isClientSide() && handIn == InteractionHand.MAIN_HAND && worldIn.getBlockEntity(pos) instanceof DryerBlockEntity dryerEntity) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if(!level.isClientSide() && hand == InteractionHand.MAIN_HAND && level.getBlockEntity(pos) instanceof DryerBlockEntity dryerEntity) {
             if(player.isCrouching()) {
-                return dryerEntity.dropOneItem(worldIn, pos);
+                return dryerEntity.dropOneItem(level, pos);
             }
-            ItemStack handStack = player.getItemInHand(handIn);
-            return dryerEntity.tryInsertItemStack(handStack, state.getValue(DryerBlock.SIZE) == 0, worldIn, pos, player);
+            ItemStack handStack = player.getItemInHand(hand);
+            return dryerEntity.tryInsertItemStack(handStack, state.getValue(DryerBlock.SIZE) == 0, level, pos, player);
         }
-        return InteractionResult.FAIL;
+        return ItemInteractionResult.FAIL;
     }
 }

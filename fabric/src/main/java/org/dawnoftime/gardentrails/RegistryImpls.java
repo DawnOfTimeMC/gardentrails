@@ -50,7 +50,7 @@ public class RegistryImpls {
     public static class FabricBlockEntitiesRegistry extends GTBlockEntitiesRegistry {
         @Override
         public <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String name, BiFunction<BlockPos, BlockState, T> factoryIn, Supplier<Block[]> validBlocksSupplier) {
-            BlockEntityType<T> blockEntity = (BlockEntityType<T>) Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(GTCommon.MOD_ID, name), FabricBlockEntityTypeBuilder.create((FabricBlockEntityTypeBuilder.Factory<BlockEntity>) factoryIn::apply, validBlocksSupplier.get()).build());
+            BlockEntityType<T> blockEntity = (BlockEntityType<T>) Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, name), FabricBlockEntityTypeBuilder.create((FabricBlockEntityTypeBuilder.Factory<BlockEntity>) factoryIn::apply, validBlocksSupplier.get()).build());
             return () -> blockEntity;
         }
     }
@@ -70,9 +70,9 @@ public class RegistryImpls {
         @SafeVarargs
         @Override
         public final <T extends Block, Y extends Item> Supplier<T> registerWithItem(String id, Supplier<T> block, Function<T, Y> item, TagKey<Block>... tags) {
-            T registryBlock = Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(GTCommon.MOD_ID, id), block.get());
+            T registryBlock = Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, id), block.get());
             if(item != null) {
-                Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(GTCommon.MOD_ID, id), item.apply(registryBlock));
+                Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, id), item.apply(registryBlock));
             }
             if(tags.length == 0){
                 addBlockTag(() -> registryBlock, BlockTags.MINEABLE_WITH_PICKAXE);
@@ -86,7 +86,7 @@ public class RegistryImpls {
 
         @Override
         public <T extends Block, Y extends Item & IHasFlowerPot> Supplier<T> registerWithFlowerPotItem(String blockID, Supplier<T> block, String itemID, Function<T, Y> item) {
-            T toReturn = Registry.register(BuiltInRegistries.BLOCK, new ResourceLocation(GTCommon.MOD_ID, blockID), block.get());
+            T toReturn = Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, blockID), block.get());
             if(item != null) {
                 final String potName = blockID + "_flower_pot";
 
@@ -102,7 +102,7 @@ public class RegistryImpls {
                 item1.setPotBlock(potBlock);
                 potBlock.setItemInPot(item1);
 
-                Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(GTCommon.MOD_ID, itemID), item1);
+                Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, itemID), item1);
             }
             // Flower can be broken with sword, and in the ItemRegistry, pot can be broken with Pickaxe.
             addBlockTag(() -> toReturn, BlockTags.SWORD_EFFICIENT);
@@ -113,7 +113,7 @@ public class RegistryImpls {
     public static class FabricEntitiesRegistry extends GTEntitiesRegistry {
         @Override
         public <T extends Entity> Supplier<EntityType<T>> register(String name, Supplier<EntityType.Builder<T>> builder) {
-            var entity = Registry.register(BuiltInRegistries.ENTITY_TYPE, new ResourceLocation(GTCommon.MOD_ID, name), builder.get().build(name));
+            var entity = Registry.register(BuiltInRegistries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, name), builder.get().build(name));
             return () -> entity;
         }
     }
@@ -121,7 +121,7 @@ public class RegistryImpls {
     public static class FabricFeaturesRegistry extends GTFeaturesRegistry {
         @Override
         public <Y extends FeatureConfiguration, T extends Feature<Y>> Supplier<T> register(String name, Supplier<T> featureSupplier) {
-            var feature = Registry.register(BuiltInRegistries.FEATURE, new ResourceLocation(GTCommon.MOD_ID, name), featureSupplier.get());
+            var feature = Registry.register(BuiltInRegistries.FEATURE, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, name), featureSupplier.get());
             return () -> feature;
         }
     }
@@ -135,7 +135,7 @@ public class RegistryImpls {
 
         @Override
         public <T extends Item> Supplier<Item> register(String name, Supplier<T> itemSupplier) {
-            T item = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(GTCommon.MOD_ID, name), itemSupplier.get());
+            T item = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, name), itemSupplier.get());
             return () -> item;
         }
 
@@ -169,7 +169,7 @@ public class RegistryImpls {
     public static class FabricRecipeSerializersRegistry extends GTRecipeSerializersRegistry {
         @Override
         public <T extends RecipeSerializer<? extends Recipe<?>>> Supplier<T> register(String name, Supplier<T> recipeSerializer) {
-            var recipe = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, new ResourceLocation(GTCommon.MOD_ID, name), recipeSerializer.get());
+            var recipe = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, name), recipeSerializer.get());
             return () -> recipe;
         }
     }
@@ -185,7 +185,7 @@ public class RegistryImpls {
     public static class FabricCreativeModeTabsRegistry extends GTCreativeModeTabsRegistry {
         @Override
         public <T extends CreativeModeTab> Supplier<CreativeModeTab> register(String name, Supplier<ItemStack> iconSupplier, Component title) {
-            var group = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(GTCommon.MOD_ID, name), FabricItemGroup.builder().icon(iconSupplier).title(title).displayItems((itemDisplayParameters, output) -> {
+            var group = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(GTCommon.MOD_ID, name), FabricItemGroup.builder().icon(iconSupplier).title(title).displayItems((itemDisplayParameters, output) -> {
                 BuiltInRegistries.ITEM.entrySet().forEach(entry -> {
                     var loc = entry.getKey().location();
                     if(entry.getValue() instanceof IconItem) return;

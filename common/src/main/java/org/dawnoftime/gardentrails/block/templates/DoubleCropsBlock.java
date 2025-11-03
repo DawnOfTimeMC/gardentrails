@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.dawnoftime.gardentrails.platform.Services;
+
 import javax.annotation.Nullable;
 
 public class DoubleCropsBlock extends SoilCropsBlock {
@@ -102,7 +104,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         Half half = state.getValue(HALF);
         BlockPos otherPos = (half == Half.BOTTOM) ? pos.above() : pos.below();
         BlockState otherState = worldIn.getBlockState(otherPos);
@@ -116,7 +118,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
             }
         }
 
-        super.playerWillDestroy(worldIn, pos, state, player);
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     public BlockState getRemovedState(BlockState state){
@@ -149,7 +151,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
             if(worldIn.getRawBrightness(pos, 0) >= 9) {
                 int i = this.getAge(state);
                 if(i < this.getMaxAge()) {
-                    float f = getGrowthSpeed(this, worldIn, pos);
+                    float f = Services.PLATFORM.getGrowthSpeed(state, worldIn, pos);
                     BlockPos topPos = pos.above();
                     if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)) {
                         if(random.nextInt((int) (25.0F / f) + 1) == 0) {

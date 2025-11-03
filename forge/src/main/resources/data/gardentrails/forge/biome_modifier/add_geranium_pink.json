@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": [
-    "minecraft:flower_forest"
-  ],
-  "features": "gardentrails:geranium_pink_placed",
-  "step": "vegetal_decoration"
-}

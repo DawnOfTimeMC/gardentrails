@@ -3,13 +3,17 @@ plugins {
     id 'fabric-loom'
 }
 base {
-    archivesName = "${mod_name}-fabric-${minecraft_version}"
+    archivesName = "${mod_id}-fabric-${minecraft_version}"
 }
 
 repositories {
     maven {
         name = "Terraformers"
         url = "https://maven.terraformersmc.com/"
+    }
+    maven {
+        name = "Xander Maven"
+        url = "https://maven.isxander.dev/releases"
     }
     exclusiveContent {
         forRepository {
@@ -34,9 +38,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}-fabric"
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-    modImplementation "maven.modrinth:fusion-connected-textures:1.1.1-fabric-mc1.20.1"
+    modImplementation "maven.modrinth:fusion-connected-textures:1.2.11-fabric-mc1.21"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
-    implementation project(":common")
 }
 
 loom {

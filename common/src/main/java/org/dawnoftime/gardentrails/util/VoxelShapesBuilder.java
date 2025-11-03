@@ -93,12 +93,12 @@ public class VoxelShapesBuilder {
         };
     }
 
-    protected static VoxelShape[] makePergolaOcclusionShapes() {
+    protected static VoxelShape[] makePergolaCollisionShapes() {
         VoxelShape vsAxisXZ = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
         VoxelShape vsAxisY = Block.box(0.0D, 2.0D, 0.0D, 16.0D, 16.0D, 16.0D);
         return new VoxelShape[]{
-                vsAxisY,
                 vsAxisXZ,
+                vsAxisY,
                 Shapes.or(vsAxisXZ, vsAxisY)
         };
     }

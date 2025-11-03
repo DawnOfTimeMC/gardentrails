@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "gardentrails:mulberry_leaves"
+		}
+	},
+	"result": {
+		"id": "minecraft:paper",
+		"count": 3
+	}
+}

@@ -12,7 +12,9 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.*;
@@ -45,7 +47,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
     public SoilCropsBlock(PlantType type) {
-        super(Properties.copy(Blocks.SUNFLOWER).offsetType(OffsetType.NONE).randomTicks().sound(SoundType.CROP));
+        super(Properties.ofFullCopy(Blocks.SUNFLOWER).offsetType(OffsetType.NONE).randomTicks().sound(SoundType.CROP));
         this.plantType = type;
         this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(PERSISTENT, false));
     }
@@ -65,7 +67,7 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
         if(worldIn.getRawBrightness(pos, 0) >= 9) {
             int age = this.getAge(state);
             if(age < this.getMaxAge()) {
-                float f = getGrowthSpeed(this, worldIn, pos);
+                float f = Services.PLATFORM.getGrowthSpeed(state, worldIn, pos);
                 if(random.nextInt((int) (25.0F / f) + 1) == 0) {
                     this.setPlantWithAge(state, worldIn, pos, age + 1);
                 }
@@ -162,33 +164,40 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if(state.getValue(PERSISTENT)) {
             if(player.isCreative()) {
                 int age = this.getAge(state);
                 if(player.isCrouching()) {
                     if(age > 0) {
-                        this.setPlantWithAge(state, worldIn, pos, age - 1);
+                        this.setPlantWithAge(state, level, pos, age - 1);
                         return InteractionResult.SUCCESS;
                     }
                 } else {
                     if(age < this.getMaxAge()) {
-                        this.setPlantWithAge(state, worldIn, pos, age + 1);
+                        this.setPlantWithAge(state, level, pos, age + 1);
                         return InteractionResult.SUCCESS;
                     }
                 }
             }
-        } else {
-            if(Utils.useLighter(worldIn, pos, player, handIn)) {
+        }
+        return InteractionResult.PASS;
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if(!state.getValue(PERSISTENT)) {
+            if(Utils.useLighter(level, pos, player, hand)) {
                 Random rand = new Random();
                 for(int i = 0; i < 5; i++) {
-                    worldIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
+                    level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
                 }
-                worldIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
-                return InteractionResult.SUCCESS;
+                level.setBlock(pos, state.setValue(PERSISTENT, true), 10);
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+
+        return ItemInteractionResult.FAIL;
     }
 
     public void setPlantWithAge(BlockState currentState, LevelAccessor worldIn, BlockPos pos, int newAge) {
@@ -202,9 +211,9 @@ public class SoilCropsBlock extends CropBlock implements IBlockGeneration {
 	}
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, TOOLTIP_CROP);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        Utils.addTooltip(tooltipComponents, TOOLTIP_CROP);
     }
 
     @Override

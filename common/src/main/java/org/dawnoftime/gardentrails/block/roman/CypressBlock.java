@@ -9,7 +9,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -57,34 +59,35 @@ public class CypressBlock extends BlockGT implements IBlockGeneration, IBiomeCol
     }
 
     @Override
-    public @NotNull InteractionResult use(final @NotNull BlockState state, final @NotNull Level worldIn, final @NotNull BlockPos pos, final Player player, final InteractionHand handIn, final BlockHitResult hit) {
-        final ItemStack heldItemStack = player.getItemInHand(handIn);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        final ItemStack heldItemStack = player.getItemInHand(hand);
         if (player.isCrouching()) {
             //We remove the highest CypressBlock
-            final BlockPos topPos = this.getHighestCypressPos(worldIn, pos);
+            final BlockPos topPos = this.getHighestCypressPos(level, pos);
             if (topPos != pos) {
-                if (!worldIn.isClientSide()) {
-                    worldIn.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
+                if (!level.isClientSide()) {
+                    level.setBlock(topPos, Blocks.AIR.defaultBlockState(), 35);
                     if (!player.isCreative()) {
-                        Block.dropResources(state, worldIn, pos, null, player, heldItemStack);
+                        Block.dropResources(state, level, pos, null, player, heldItemStack);
                     }
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         } else if (!heldItemStack.isEmpty() && heldItemStack.getItem() == this.asItem()) {
             //We put a CypressBlock on top of the cypress
-            final BlockPos topPos = this.getHighestCypressPos(worldIn, pos).above();
+            final BlockPos topPos = this.getHighestCypressPos(level, pos).above();
             if (topPos.getY() <= Utils.HIGHEST_Y) {
-                if (!worldIn.isClientSide() && worldIn.getBlockState(topPos).isAir()) {
-                    worldIn.setBlock(topPos, this.defaultBlockState(), 11);
+                if (!level.isClientSide() && level.getBlockState(topPos).isAir()) {
+                    level.setBlock(topPos, this.defaultBlockState(), 11);
                     if (!player.isCreative()) {
                         heldItemStack.shrink(1);
                     }
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 
     private BlockPos getHighestCypressPos(final Level worldIn, final BlockPos pos) {
@@ -162,11 +165,12 @@ public class CypressBlock extends BlockGT implements IBlockGeneration, IBiomeCol
     }
 
     @Override
-    public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_COLUMN);
     }
-    
+
     @Override
     public ColorType getColorType() {
         return ColorType.FOLIAGE;
