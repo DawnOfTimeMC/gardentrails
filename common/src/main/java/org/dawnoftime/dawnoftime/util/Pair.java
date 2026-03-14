@@ -69,4 +69,9 @@ public class Pair<S1, S2> {
     public void setS2(final S2 s2In) {
         this.s2 = s2In;
     }
+
+    @Override
+    public String toString() {
+        return "Pair(" + this.s1 + ", " + this.s2 + ")";
+    }
 }

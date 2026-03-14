@@ -21,7 +21,6 @@ import org.dawnoftime.dawnoftime.registry.DoTBRecipeTypesRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class DryerBlockEntity extends BlockEntity {
     public final SimpleContainer itemHandler = new SimpleContainer(2);
@@ -152,7 +151,7 @@ public class DryerBlockEntity extends BlockEntity {
                 if (!player.isCreative()) {
                     itemStack.shrink(recipe.getIngredients().get(0).getItems()[0].getCount());
                 }
-                final float timeVariation = new Random().nextFloat() * 2.0F - 1.0F;
+                final float timeVariation = this.getLevel().random.nextFloat() * 2.0F - 1.0F;
                 final int range = timeVariation >= 0 ? Services.PLATFORM.getConfig().dryingTimeVariation : 10000 / (100 + Services.PLATFORM.getConfig().dryingTimeVariation);
                 this.remainingTicks[index] = (int) (recipe.getDryingTime() * (100 + timeVariation * range) / 100);
 

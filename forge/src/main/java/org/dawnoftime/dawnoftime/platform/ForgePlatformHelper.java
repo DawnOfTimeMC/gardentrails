@@ -38,6 +38,8 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public void openScreenHandler(Player playerEntity, MenuProvider provider, BiConsumer<ServerPlayer, FriendlyByteBuf> dataWriter) {
-        NetworkHooks.openScreen((ServerPlayer) playerEntity, provider, ((BlockEntity) provider).getBlockPos());
+        if (provider instanceof BlockEntity blockEntity) {
+            NetworkHooks.openScreen((ServerPlayer) playerEntity, provider, blockEntity.getBlockPos());
+        }
     }
 }

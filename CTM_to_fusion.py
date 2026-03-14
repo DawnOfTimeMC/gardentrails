@@ -51,7 +51,7 @@ def convert_file(folder_path, file_name, convert_type_str, export_path):
         combined_image.close()
         txf.paste(tx5, (base * 4, 0))
         tx5.close()
-        txf.save(os.path.join(export_path, file_name, ".png"))
+        txf.save(os.path.join(export_path, file_name + ".png"))
         txf.close()
         content = {
             "fusion": {
