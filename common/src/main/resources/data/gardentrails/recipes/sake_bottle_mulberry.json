@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CSC",
+    "CCC"
+  ],
+  "key": {
+    "C": {"item": "gardentrails:fermented_mulberry_juice"},
+    "S": {"item": "gardentrails:sake_bottle"}
+  },
+  "result": {
+    "item": "gardentrails:sake_bottle_mulberry",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    " M ",
+    " P "
+  ],
+  "key": {
+    "S": { "item": "minecraft:stone" },
+    "M": { "item": "gardentrails:dried_maize" },
+    "P": { "item": "minecraft:flower_pot" }
+  },
+  "result": {
+    "item": "gardentrails:crushed_maize",
+    "count": 6
+  }
+}

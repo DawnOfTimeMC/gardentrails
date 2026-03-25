@@ -3,10 +3,10 @@
 	"dryingTime": 1200,
 	"experience": 1.0,
 	"ingredient": {
-		"item": "gardentrails:silk_worm_hatchery",
+		"item": "gardentrails:cooked_rice",
 		"count": 1
 	},
 	"result": {
-		"item": "gardentrails:silk_worms"
+		"item": "gardentrails:fermented_rice"
 	}
 }

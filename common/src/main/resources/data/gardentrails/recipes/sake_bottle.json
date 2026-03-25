@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FSF",
+    "FFF"
+  ],
+  "key": {
+    "F": {"item": "gardentrails:fermented_rice"},
+    "S": {"item": "dawnoftimebuilder:sake_bottle"}
+  },
+  "result": {
+    "item": "gardentrails:sake_bottle",
+    "count": 1
+  }
+}
