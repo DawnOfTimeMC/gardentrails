@@ -2,12 +2,12 @@
 
 ## Présentation du projet
 
-**Garden Trails** est un mod Minecraft Java Edition **1.20.1** (multi-loader : Forge + Fabric) qui ajoute des plantes culturellement inspirées, des blocs décoratifs et un système de production de soie.
+**Garden Trails** est un mod Minecraft Java Edition **1.20.1** (multi-loader : Forge + Fabric) qui ajoute des plantes culturellement inspirées, des blocs décoratifs, un système de production de soie, et un système complet de nourriture/brassage connecté à Dawn of Time et Armor of the Ages.
 
 Ce mod est issu d'une **séparation du projet Dawn of Time (DoT)** : il en extrait les plantes et le craft de la soie pour en faire un mod autonome.
 
 - **Auteurs** : Poulpinou & TheGoldenWorld
-- **Version actuelle** : 0.1.6
+- **Version actuelle** : 0.1.7
 - **Licence** : MIT
 - **MOD_ID** : `gardentrails`
 
@@ -17,14 +17,14 @@ Ce mod est issu d'une **séparation du projet Dawn of Time (DoT)** : il en extra
 
 ```
 gardentrails/
-├── common/          # Code partagé (73 classes Java, 448 ressources)
+├── common/          # Code partagé
 │   └── src/main/
 │       ├── java/    # Classes Java communes
 │       └── resources/
 │           ├── assets/gardentrails/    # Modèles, textures, lang
 │           └── data/gardentrails/     # Recettes, loot tables, worldgen, tags
-├── fabric/          # 8 classes spécifiques Fabric (entry points, registries)
-├── forge/           # 15 classes spécifiques Forge (entry points, data gen)
+├── fabric/          # Classes spécifiques Fabric (entry points, registries)
+├── forge/           # Classes spécifiques Forge (entry points, data gen)
 ├── buildSrc/        # Plugins Gradle custom
 ├── build.gradle
 ├── gradle.properties
@@ -112,25 +112,118 @@ Chaîne de production complète :
 
 ---
 
-### 4. Nourriture
+### 4. Système de nourriture & effets (v0.1.7)
 
-| Item | Nutrition | Saturation |
-|------|-----------|-----------|
-| Raisin (Grapes) | 4 | 0.2 |
-| Maïs (Maize) | 6 | 1.0 |
-| Mûre (Mulberry) | 1 | 0.5 |
+Chaque plante comestible a une valeur nutritive et un effet de statut distinct.
+
+| Item | Nutrition | Saturation | Effet |
+|------|-----------|------------|-------|
+| Raisin (Grapes) | 3 | 0.6 | Speed I 5s |
+| Maïs (Maize) | 3 | 0.6 | Strength I 5s |
+| Mûre (Mulberry) | 1 | 0.5 | Regeneration I 5s |
+| Riz (Rice) | 4 | 0.6 | Slowness I 5s |
+| Graines de raisin (Grape Seeds) | 1 | 0.1 | — (fast) |
+| Maïs séché (Dried Maize) | 4 | 0.8 | Strength I 45s |
+| Raisin séché (Dried Grape) | 4 | 0.8 | Speed I 45s |
+| Riz cuit (Cooked Rice) | 7 | 1.0 | — |
+| Riz fermenté (Fermented Rice) | 9 | 1.5 | Slowness I 25s |
+| Jus de mûre (Mulberry Juice) | 2 | 0.4 | Regeneration I 5s (boisson) |
+| Jus fermenté (Fermented Mulberry Juice) | 3 | 0.6 | Regeneration I 15s (boisson) |
 
 ---
 
-### 5. Intégrations tierces
+### 5. Chaîne de transformation — Bamboo Drying Tray (v0.1.7)
+
+Le plateau de séchage accepte désormais les cultures en plus des items de soie :
+
+| Input | Output | Temps (ticks) |
+|-------|--------|---------------|
+| Maïs | Dried Maize | 800 |
+| Raisin | Dried Grape | 800 |
+| Riz cuit | Fermented Rice | 1200 |
+| Jus de mûre | Fermented Mulberry Juice | 1200 |
+
+**Items intermédiaires de craft** (obtenus par crafting table) :
+- `crushed_maize` — maïs séché broyé
+- `crushed_grape` — raisin séché broyé
+- `mulberry_juice` — pressé depuis les mûres
+
+---
+
+### 6. Système de Sake (v0.1.7 — nécessite Dawn of Time)
+
+La sake bottle de DoT est désormais activable en boisson en la combinant avec du Fermented Rice.
+
+**Mécanique de paliers** : chaque bouteille bue consécutivement change les effets (détection via `player.hasEffect()` sur les effets vanilla). La logique va du plus spécifique au moins spécifique pour éviter les ambiguïtés.
+
+#### SakeItem — paliers (effets cumulatifs)
+
+| Palier | Condition de détection | Effets appliqués |
+|--------|------------------------|------------------|
+| 1er | aucun effet actif | Slowness I 25s |
+| 2ème | Slowness | Poison I 45s |
+| 3ème | Slowness + Poison | Nausea I 15s |
+| 4ème | Slowness + Poison + Nausea | Resistance II 150s |
+| 5ème | Poison + Nausea + Resistance | Hunger I 10s + Instant Damage II |
+| 6ème | Poison + Nausea + Hunger | Hunger I 45s + Instant Damage III + Resistance III 300s |
+
+#### VariantSakeItem — variantes (Speed / Strength / Regen selon ingrédient)
+
+| Palier | Effets communs | Effet variant |
+|--------|----------------|---------------|
+| 1er | Slowness I 25s | Buff I 50s |
+| 2ème | Poison I 45s | — |
+| 3ème | Nausea I 15s | — |
+| 4ème | Resistance I 40s | Buff I 120s |
+| 5ème | Hunger I 10s + Instant Damage II | — |
+| 6ème | Hunger I 45s + Instant Damage III + Resistance I 60s | Buff II 200s |
+
+**3 variantes** (classe `VariantSakeItem`, paramétré par `MobEffect`) :
+- `sake_grape` → Speed (Rarity.RARE, nom bleu)
+- `sake_maize` → Strength (Rarity.RARE, nom bleu)
+- `sake_mulberry` → Regeneration (Rarity.RARE, nom bleu)
+
+**Lore direct** (sans Shift) via `appendHoverText()` — texte défini par clé de langue.
+
+**Recettes** (craftées par le joueur, JSON dans `data/gardentrails/recipes/`) :
+- `sake_bottle.json` : sake_bottle (DoT) + fermented_rice × 8
+- `sake_bottle_grape.json` : sake_bottle (DoT) + crushed_grape × 8
+- `sake_bottle_maize.json` : sake_bottle (DoT) + crushed_maize × 8
+- `sake_bottle_mulberry.json` : sake_bottle (DoT) + fermented_mulberry_juice × 8
+
+---
+
+### 7. Intégrations tierces
 
 | Mod | Type | Description |
 |-----|------|-------------|
 | Serene Seasons | Tags | Cultures d'automne/été (`autumn_crops`, `summer_crops`) |
 | Vinery | Tags | Compatibilité raisin rouge (`items/red_grape`) |
-| Critters & Companions | Recette | Grappling hook crafté avec de la soie |
-| Dawn of Time | Recettes dynamiques | Remplace laine par soie (si activé en config) |
-| Armor of the Ages | Recettes dynamiques | Remplace fil par soie (si activé en config) |
+| Critters & Companions | Recettes JSON | Silk Lead, Grappling Hook |
+| Dawn of Time | Recettes dynamiques | 5 blocs déco craftés avec Silk (futon, tatami, chaise, drapeau, coussin) + Sake activé |
+| Armor of the Ages | Recettes dynamiques | 7 pièces d'armure craftées avec Silk (Raijin, Pharaon, Armure légère japonaise) |
+
+**Recettes DoT dynamiques** (activées si `dawnOfTimeUseSilk = true`) :
+
+| Résultat | Ingrédients |
+|---|---|
+| Light Gray Futon | Silk × 3 + Thatch Bamboo × 3 |
+| Small Tatami Mat | Silk × 2 + Thatch Bamboo Slab |
+| Spruce Legless Chair | Silk × 3 + Spruce Slab × 3 |
+| White Little Flag | Silk × 2 + Stick × 2 |
+| White Cushion | Silk × 2 + Feather |
+
+**Recettes AotA dynamiques** (activées si `armorOfTheAgesUseSilk = true`) :
+
+| Résultat | Ingrédients |
+|---|---|
+| Raijin Chestplate | Silk × 4 + Diamond Chestplate + Redstone Block × 2 + Gold Block |
+| Raijin Leggings | Silk × 4 + Diamond Leggings + Red Dye × 2 |
+| Pharaoh Chestplate | Silk × 4 + Gold Chestplate + Gold Block × 2 |
+| Pharaoh Leggings | Silk × 3 + Gold Leggings + Gold Block |
+| Japanese Light Helmet | Silk × 3 + Leather Helmet |
+| Japanese Light Chestplate | Silk × 4 + Leather Chestplate + Leather × 3 |
+| Japanese Light Leggings | Silk × 3 + Leather Leggings + Leather × 2 |
 
 ---
 
@@ -153,6 +246,15 @@ Block (Minecraft)
         ├── GrowingBushBlock        # Cultures avec âge 0-5 + état CUT
         ├── DoubleCropsBlock        # Cultures haute (2 blocs)
         └── WaterDoubleCropsBlock   # Cultures aquatiques (riz)
+```
+
+### Hiérarchie des items (nouveaux en v0.1.7)
+```
+Item
+└── ItemGT
+    ├── DrinkItem                   # Boisson générique (UseAnim.DRINK)
+    ├── SakeItem                    # Sake de base — logique de paliers
+    └── VariantSakeItem             # Sake varianté — prend MobEffect + loreKey en paramètre
 ```
 
 ### Interfaces importantes
@@ -185,30 +287,9 @@ Block (Minecraft)
 
 ---
 
-## Ressources & assets
-
-| Catégorie | Nombre |
-|-----------|--------|
-| Modèles de blocs | 229 |
-| Textures | 108 |
-| Block states | 36 |
-| Modèles d'items | 39 |
-| Recettes | 5 (+ recettes drying non-JSON) |
-| Loot tables | 34 |
-| Fichiers world gen | 20 |
-| Tags | 9 |
-| Fichiers de langue | 1 (en_us) |
-
-**Points notables** :
-- Le raisin a 28 modèles de stades de croissance (stages 0-6 × 5 orientations : a, b, c, d, x_z, y)
-- Les loot tables de pergola sont séparées par état (`iron_pergola_grape_5.json`, etc.)
-- Pas de traduction autre que `en_us` pour l'instant
-
----
-
 ## Configuration (YACL3)
 
-Fichier : `GTConfig.java` — 13 paramètres
+Fichier : `GTConfig.java`
 
 ### Entité Silkmoth
 - `silkmothSpawnChance` (1/X par tick) — défaut 400
@@ -228,8 +309,8 @@ Fichier : `GTConfig.java` — 13 paramètres
 - `generateSilk`, `generateGrapes`, `generateMaize`, `generateRice`, `generateMulberry` — défaut true
 
 ### Recettes dynamiques
-- `dawnOfTimeUseSilk` — remplace laine par soie (défaut true)
-- `armorOfTheAgesUseSilk` — remplace fil par soie (défaut true)
+- `dawnOfTimeUseSilk` — active les recettes Silk → blocs DoT (défaut true)
+- `armorOfTheAgesUseSilk` — active les recettes Silk → armures AotA (défaut true)
 
 ---
 
@@ -247,10 +328,20 @@ Les modèles de blocs sont organisés par région culturelle :
 ### Recettes dynamiques
 Utiliser `GTDynamicRecipes` pour toute recette conditionnelle à la config ou aux mods présents. Ne pas hardcoder dans les JSON si c'est conditionnel.
 
+### Recettes drying
+Les recettes de type `gardentrails:dryer` sont des fichiers JSON dans `data/gardentrails/recipes/`.
+Format : `type`, `ingredient` (item ou tag), `result`, `dryingTime` (ticks).
+Présentes dans `fabric/` et `forge/` séparément.
+
 ### World gen
 - Feature configurée → placed feature (toujours en paire)
 - Emplacement : `data/gardentrails/worldgen/configured_feature/` et `/placed_feature/`
 - Type custom : `dot_feature` (implémentation `GTFeature`)
+
+### Mécanique de paliers (Sake)
+- Ne jamais utiliser d'effets invisibles comme marqueurs — trop fragile
+- Détecter les paliers du plus spécifique au moins spécifique dans les `if/else if`
+- Utiliser uniquement des effets vanilla (`MobEffects.*`) — pas d'effets custom
 
 ---
 
@@ -268,5 +359,5 @@ Utiliser `GTDynamicRecipes` pour toute recette conditionnelle à la config ou au
 
 - **Traductions** : seulement `en_us`, pas de `fr_fr` ni autres langues
 - **Tests** : aucun test automatisé
-- **Documentation des recettes `drying`** : pas de fichiers JSON visibles pour les recettes de séchage (probablement hardcodées en Java)
-- **Séparation DoT récente** : le dernier commit mentionne le nettoyage des tags restants de DoT — vérifier qu'il n'y a plus de références orphelines à DoT
+- **Système de thé** : prévu — Camélia → feuilles de thé → effets spéciaux, à venir
+- **DryerRenderer** : rendu des items 2D corrigé (les `SoilSeedsItem` étendant `BlockItem` déclenchaient le mauvais chemin de rendu — traiter comme sprite plat)
