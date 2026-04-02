@@ -71,10 +71,10 @@ public class PergolaPlantBlock extends PergolaBlock{
             if(level.getRawBrightness(pos, 0) >= 8) {
                 int age = state.getValue(AGE_2);
                 if(age < 2){
-                    if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) { //Probability "can grow"
+                    if (random.nextInt(16) == 0) { //Probability "can grow"
                         level.setBlock(pos, state.setValue(AGE_2, age + 1), 2);
                     }
-                } else if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) { //Probability "can spread"
+                } else if (random.nextInt(5) == 0) { //Probability "can spread"
                     BlockPos adjacentPos = randomSpread(pos, random);
                     BlockState adjacentState = level.getBlockState(adjacentPos);
                     if(adjacentState.getBlock() == GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()) {

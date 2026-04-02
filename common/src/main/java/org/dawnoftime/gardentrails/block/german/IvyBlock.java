@@ -160,12 +160,12 @@ public class IvyBlock extends BlockGT implements IBlockGeneration {
         if (levelIn.getRawBrightness(pos, 0) >= 8) {
             int age = state.getValue(AGE);
             if (age < 2) {
-                if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) {
+                if (random.nextInt(16) == 0) {
                     levelIn.setBlock(pos, state.setValue(AGE, age + 1), 2);
                 }
                 return;
             }
-            if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) {
+            if (random.nextInt(5) == 0) {
                 // The Ivy will spread
                 ArrayList<Direction> faces = getCurrentDirections(state);
                 int startSpread = random.nextInt(4);

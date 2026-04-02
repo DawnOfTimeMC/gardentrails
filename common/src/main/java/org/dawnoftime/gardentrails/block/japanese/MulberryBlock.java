@@ -20,7 +20,7 @@ public class MulberryBlock extends DoubleGrowingBushBlock {
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         super.randomTick(state, worldIn, pos, random);
         if(state.getValue(HALF) == Half.TOP) {
-            if(random.nextInt(Services.PLATFORM.getConfig().silkmothSpawnChance) == 0) {
+            if(random.nextInt(400) == 0) {
                 GTEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get().spawn(worldIn, (ItemStack) null, null, pos, MobSpawnType.SPAWNER, false, true);
             }
         }

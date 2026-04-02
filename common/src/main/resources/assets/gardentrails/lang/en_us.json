@@ -1,17 +1,4 @@
 {
-    "yacl3.config.gardentrails:config.category.entities": "Entites",
-    "yacl3.config.gardentrails:config.silkmothSpawnChance": "Silk Moth Spawn Chance",
-    "yacl3.config.gardentrails:config.silkmothRotationMaxRange": "Silk Moth Rotation Max Range",
-    "yacl3.config.gardentrails:config.silkmothMustDie": "Silk Moth Must Die?",
-    "yacl3.config.gardentrails:config.silkmothRotationChange": "Silk Moth Rotation Change",
-    "yacl3.config.gardentrails:config.silkmothMute": "Mute Silk Moth",
-
-    "yacl3.config.gardentrails:config.category.blocks": "Blocks",
-    "yacl3.config.gardentrails:config.dryingTimeVariation": "Drying Time Variation",
-    "yacl3.config.gardentrails:config.climbingPlantGrowthChance": "Climbing Plant Growth Chance",
-    "yacl3.config.gardentrails:config.climbingPlantSpreadChance": "Climbing Plant Spread Chance",
-    "yacl3.config.gardentrails:config.stickBundleGrowthChance": "Stick Bundle Growth Chance",
-
     "yacl3.config.gardentrails:config.category.loot": "Loot",
     "yacl3.config.gardentrails:config.category.loot.group.chest_loot": "Chest Loot",
     "yacl3.config.gardentrails:config.generateChestLoot": "Generate Chest Loot",

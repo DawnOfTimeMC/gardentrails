@@ -152,7 +152,7 @@ public class DryerBlockEntity extends BlockEntity {
                     itemStack.shrink(recipe.getIngredients().get(0).getItems()[0].getCount());
                 }
                 final float timeVariation = new Random().nextFloat() * 2.0F - 1.0F;
-                final int range = timeVariation >= 0 ? Services.PLATFORM.getConfig().dryingTimeVariation : 10000 / (100 + Services.PLATFORM.getConfig().dryingTimeVariation);
+                final int range = 30;
                 this.remainingTicks[index] = (int) (recipe.getDryingTime() * (100 + timeVariation * range) / 100);
 
                 this.setChanged();

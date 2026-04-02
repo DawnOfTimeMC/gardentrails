@@ -41,7 +41,7 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     private float getNewRotationDistance() {
-        return 0.5F + Services.PLATFORM.getConfig().silkmothRotationMaxRange * this.random.nextFloat();
+        return 0.5F + 2 * this.random.nextFloat();
     }
 
     @Override
@@ -63,11 +63,11 @@ public class SilkmothEntity extends AmbientCreature {
 
         if(this.tickCount >= 24000){
             //The silkmoth dies from oldness.
-            if(!this.hasCustomName() && Services.PLATFORM.getConfig().silkmothMustDie)
+            if(!this.hasCustomName())
                 this.hurt(this.damageSources().starve(), 20.0F);
         }
 
-        if(this.random.nextInt(Services.PLATFORM.getConfig().silkmothRotationChange) == 0){
+        if(this.random.nextInt(400) == 0){
             //Randomly changes the rotation pos.
             this.changeRotationPos();
         }
@@ -181,7 +181,7 @@ public class SilkmothEntity extends AmbientCreature {
     @Nullable
     @Override
     public SoundEvent getAmbientSound() {
-        return !Services.PLATFORM.getConfig().silkmothMute && this.random.nextInt(4) == 0 ? SoundEvents.PARROT_FLY : null;
+        return this.random.nextInt(4) == 0 ? SoundEvents.PARROT_FLY : null;
     }
 
     @Override

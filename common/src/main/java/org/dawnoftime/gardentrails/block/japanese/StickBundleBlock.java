@@ -142,7 +142,7 @@ public class StickBundleBlock extends BlockGT implements IBlockChain {
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         int growth = state.getValue(AGE);
         if(growth > 0 && growth < 3) {
-            if(random.nextInt(Services.PLATFORM.getConfig().stickBundleGrowthChance) == 0) {
+            if(random.nextInt(25) == 0) {
                 worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(AGE, growth + 1), 10);
                 worldIn.setBlock(pos.below(), worldIn.getBlockState(pos.below()).setValue(AGE, growth + 1), 10);
             }
