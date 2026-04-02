@@ -1,6 +1,6 @@
 {
 	"type": "gardentrails:dryer",
-	"dryingTime": 800,
+	"dryingTime": 1200,
 	"experience": 1.0,
 	"ingredient": {
 		"item": "gardentrails:silk_worm_hatchery",

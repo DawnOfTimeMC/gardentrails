@@ -19,6 +19,10 @@ public class PotItem extends ItemGT implements IHasFlowerPot {
         super();
     }
 
+    public PotItem(Properties properties) {
+        super(properties);
+    }
+
     @Override
     public InteractionResult useOn(UseOnContext context) {
         var stack = context.getItemInHand();
