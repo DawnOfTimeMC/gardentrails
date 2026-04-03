@@ -83,6 +83,36 @@
     "tooltip.gardentrails.silk_worm_hatchery": "These eggs will hatch when placed on a tray.",
     "tooltip.gardentrails.silk_worms": "After eating so many Mulberry Leaves on the tray, these worms are ready to weave their cocoon into a stick bundle.",
     "tooltip.gardentrails.silk_cocoons": "The silk worms created delicate cocoons in the stick bundle. They can be combined to create silk.",
-    "tooltip.gardentrails.pergola": "You can place Grapes, Ivy or Vines on the iron pergola to let it grows."
+    "tooltip.gardentrails.pergola": "You can place Grapes, Ivy or Vines on the iron pergola to let it grows.",
+
+    "advancements.gardentrails.root.title": "Garden Trails",
+    "advancements.gardentrails.root.description": "What are you doing in my swamp?",
+
+    "advancements.gardentrails.exploration.title": "Man vs. Wild",
+    "advancements.gardentrails.exploration.description": "Collect everything this mod has to offer.",
+
+    "advancements.gardentrails.crafting.title": "The Science of Green",
+    "advancements.gardentrails.crafting.description": "Master the silk, the sake, and the full crafting chain of Garden Trails.",
+
+    "advancements.gardentrails.botanist.title": "Master Botanist",
+    "advancements.gardentrails.botanist.description": "Find every plant this mod has to offer.",
+
+    "advancements.gardentrails.bon_appetit.title": "Bon Appétit",
+    "advancements.gardentrails.bon_appetit.description": "Eat everything that looks like food.",
+
+    "advancements.gardentrails.pitiless.title": "Pitiless",
+    "advancements.gardentrails.pitiless.description": "You are not a good man, Arthur Morgan.",
+
+    "advancements.gardentrails.how_do_i_get_silk.title": "Where Do We Get Silk?",
+    "advancements.gardentrails.how_do_i_get_silk.description": "Time to fix my jeans.",
+
+    "advancements.gardentrails.two_seeds_one_pot.title": "Two Seeds, One Pot",
+    "advancements.gardentrails.two_seeds_one_pot.description": "Strange addiction.",
+
+    "advancements.gardentrails.serious_business.title": "Serious Business",
+    "advancements.gardentrails.serious_business.description": "Not recommended for some, but not for all.",
+
+    "advancements.gardentrails.sake_chan.title": "Sake-chan",
+    "advancements.gardentrails.sake_chan.description": "Still standing?"
 
 }

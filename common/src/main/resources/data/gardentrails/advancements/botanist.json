@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:camellia_seeds" },
+    "title": { "translate": "advancements.gardentrails.botanist.title" },
+    "description": { "translate": "advancements.gardentrails.botanist.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "gardentrails:exploration",
+  "criteria": {
+    "has_grape":      { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:grape"] }] } },
+    "has_mulberry":   { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:mulberry"] }] } },
+    "has_rice":       { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:rice"] }] } },
+    "has_maize":      { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:maize"] }] } },
+    "has_boxwood":    { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:boxwood_bush"] }] } },
+    "has_camellia":   { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:camellia_seeds"] }] } },
+    "has_commelina":  { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:commelina"] }] } },
+    "has_cypress":    { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:cypress"] }] } },
+    "has_ivy":        { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:ivy"] }] } },
+    "has_geranium":   { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:geranium_pink"] }] } },
+    "has_maple":      { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:maple_red_sapling"] }] } },
+    "has_wild_grape": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:wild_grape"] }] } },
+    "has_wild_maize": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:wild_maize"] }] } }
+  },
+  "requirements": [
+    ["has_grape"], ["has_mulberry"], ["has_rice"], ["has_maize"],
+    ["has_boxwood"], ["has_camellia"], ["has_commelina"], ["has_cypress"],
+    ["has_ivy"], ["has_geranium"], ["has_maple"], ["has_wild_grape"], ["has_wild_maize"]
+  ]
+}

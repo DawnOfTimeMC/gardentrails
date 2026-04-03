@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:camellia_flower_pot" },
+    "title": { "translate": "advancements.gardentrails.two_seeds_one_pot.title" },
+    "description": { "translate": "advancements.gardentrails.two_seeds_one_pot.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "gardentrails:crafting",
+  "criteria": {
+    "pot_camellia":  { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:camellia_flower_pot"] }] } },
+    "pot_mulberry":  { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:mulberry_flower_pot"] }] } },
+    "pot_ivy":       { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:ivy_flower_pot"] }] } },
+    "pot_geranium":  { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:geranium_pink_flower_pot"] }] } },
+    "pot_cypress":   { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:cypress_flower_pot"] }] } },
+    "pot_maple":     { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:maple_red_sapling_flower_pot"] }] } },
+    "pot_commelina": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:commelina_flower_pot"] }] } },
+    "pot_maize":     { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["gardentrails:maize_flower_pot"] }] } }
+  },
+  "requirements": [
+    ["pot_camellia"], ["pot_mulberry"], ["pot_ivy"], ["pot_geranium"],
+    ["pot_cypress"], ["pot_maple"], ["pot_commelina"], ["pot_maize"]
+  ]
+}

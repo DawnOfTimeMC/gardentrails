@@ -1,0 +1,15 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:silk_worm_hatchery" },
+    "title": { "translate": "advancements.gardentrails.crafting.title" },
+    "description": { "translate": "advancements.gardentrails.crafting.description" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "gardentrails:root",
+  "criteria": {
+    "tick": { "trigger": "minecraft:tick" }
+  }
+}

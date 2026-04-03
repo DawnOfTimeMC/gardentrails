@@ -1,0 +1,15 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:maple_red_sapling"},
+    "title": { "translate": "advancements.gardentrails.exploration.title" },
+    "description": { "translate": "advancements.gardentrails.exploration.description" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "parent": "gardentrails:root",
+  "criteria": {
+    "tick": { "trigger": "minecraft:tick" }
+  }
+}

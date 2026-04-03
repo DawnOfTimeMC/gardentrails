@@ -3,6 +3,7 @@ package org.dawnoftime.gardentrails;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
+import org.dawnoftime.gardentrails.registry.GTCriteriaRegistry;
 import org.dawnoftime.gardentrails.registry.GTDynamicRecipes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ public class GTCommon {
 	public static final ResourceLocation CREATIVE_ICONS = new ResourceLocation(MOD_ID, "textures/gui/creative_icons.png");
 
 	public static void init() {
+		GTCriteriaRegistry.init();
 		GTDynamicRecipes.init();
 	}
 }

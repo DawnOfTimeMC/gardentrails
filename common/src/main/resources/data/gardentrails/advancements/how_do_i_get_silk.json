@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:silk" },
+    "title": { "translate": "advancements.gardentrails.how_do_i_get_silk.title" },
+    "description": { "translate": "advancements.gardentrails.how_do_i_get_silk.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "gardentrails:crafting",
+  "criteria": {
+    "has_silk": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["gardentrails:silk"] }]
+      }
+    }
+  },
+  "requirements": [["has_silk"]]
+}

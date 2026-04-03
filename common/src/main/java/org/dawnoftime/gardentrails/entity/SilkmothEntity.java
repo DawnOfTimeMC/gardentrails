@@ -14,6 +14,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ambient.AmbientCreature;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,6 +22,7 @@ import net.minecraft.world.phys.Vec3;
 import org.dawnoftime.gardentrails.block.templates.DoubleGrowingBushBlock;
 import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
+import org.dawnoftime.gardentrails.registry.GTCriteriaRegistry;
 import org.dawnoftime.gardentrails.registry.GTEntitiesRegistry;
 
 import javax.annotation.Nullable;
@@ -182,6 +184,15 @@ public class SilkmothEntity extends AmbientCreature {
     @Override
     public SoundEvent getAmbientSound() {
         return this.random.nextInt(4) == 0 ? SoundEvents.PARROT_FLY : null;
+    }
+
+    @Override
+    public void die(DamageSource source) {
+        super.die(source);
+        // Fire the kill trigger when a player kills a silkmoth (server-side only)
+        if (!this.level().isClientSide() && source.getEntity() instanceof ServerPlayer player) {
+            GTCriteriaRegistry.KILL_SILKMOTH.trigger(player);
+        }
     }
 
     @Override
