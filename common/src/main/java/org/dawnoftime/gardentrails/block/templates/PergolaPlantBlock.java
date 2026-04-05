@@ -22,19 +22,24 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.gardentrails.platform.Services;
-import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_COLLISION_SHAPES;
 
-public class PergolaPlantBlock extends PergolaBlock{
+public class PergolaPlantBlock extends PergolaBlock {
     private static final IntegerProperty AGE_2 = BlockStateProperties.AGE_2;
 
-    public PergolaPlantBlock(Properties properties) {
-        super(properties);
+    // The bare pergola this plant variant belongs to (used when reverting on harvest)
+    private final Supplier<PergolaBlock> barePergola;
+
+    public PergolaPlantBlock(Properties properties, Supplier<PergolaBlock> barePergola) {
+        // Plant variants don't need plant suppliers themselves — pass null
+        super(properties, null, null, null);
+        this.barePergola = barePergola;
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS_Y, false).setValue(AXIS_X, false).setValue(AXIS_Z, false).setValue(AGE_2, 0));
     }
 
@@ -77,7 +82,7 @@ public class PergolaPlantBlock extends PergolaBlock{
                 } else if (random.nextInt(5) == 0) { //Probability "can spread"
                     BlockPos adjacentPos = randomSpread(pos, random);
                     BlockState adjacentState = level.getBlockState(adjacentPos);
-                    if(adjacentState.getBlock() == GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()) {
+                    if(adjacentState.getBlock() == barePergola.get()) {
                         level.setBlock(adjacentPos, this.copyShapeToPergola(adjacentState, this), 2);
                     }
                 }
@@ -92,7 +97,7 @@ public class PergolaPlantBlock extends PergolaBlock{
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(state.getBlock());
             List<ItemStack> drops = Utils.getLootList(serverLevel, state, heldItemStack, blockId.getPath() + "_" + state.getValue(AGE_2));
             Utils.dropLootFromList(level, pos, drops, 1.0F);
-            level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()), 2);
+            level.setBlock(pos, this.copyShapeToPergola(state, barePergola.get()), 2);
             level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         }

@@ -3,6 +3,7 @@ package org.dawnoftime.gardentrails.block.roman;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -164,9 +165,9 @@ public class CypressBlock extends BlockGT implements IBlockGeneration, IBiomeCol
     @Override
     public void appendHoverText(final ItemStack stack, @Nullable final BlockGetter worldIn, final List<Component> tooltip, final TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, Utils.TOOLTIP_COLUMN);
+        tooltip.add(Component.translatable("lore.gardentrails.column").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
-    
+
     @Override
     public ColorType getColorType() {
         return ColorType.FOLIAGE;

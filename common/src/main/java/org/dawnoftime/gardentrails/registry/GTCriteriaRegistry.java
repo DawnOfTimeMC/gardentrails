@@ -19,7 +19,11 @@ public class GTCriteriaRegistry {
         try {
             Method method = null;
             for (Method m : CriteriaTriggers.class.getDeclaredMethods()) {
-                if (m.getName().equals("register") && m.getParameterCount() == 1) {
+                // Search by type signature rather than name to survive Forge's production obfuscation.
+                // In production jars, the method may be named with its SRG id instead of "register".
+                if (m.getParameterCount() == 1
+                        && java.lang.reflect.Modifier.isStatic(m.getModifiers())
+                        && m.getParameterTypes()[0].isAssignableFrom(trigger.getClass())) {
                     method = m;
                     break;
                 }

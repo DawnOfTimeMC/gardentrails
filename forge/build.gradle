@@ -79,3 +79,11 @@ jar {
             "MixinConfigs": "${mod_id}.mixins.json,${mod_id}.forge.mixins.json"
     ])
 }
+
+publishMods {
+    // Point to the reobfuscated JAR produced by a local IntelliJ/Gradle build.
+    // Run "build" in IntelliJ (forge > tasks > build > build) BEFORE running publishMods.
+    // publishMods will NOT trigger a rebuild — it only uploads the pre-built file.
+    file = layout.buildDirectory.file("libs/gardentrails-forge-${minecraft_version}-${project.version}.jar")
+    modLoaders.add("forge")
+}

@@ -27,5 +27,13 @@ public class RenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.BOXWOOD_SMALL_HEDGE.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.BOXWOOD_BUSH.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.BAMBOO_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.OAK_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.BIRCH_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.ACACIA_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.MANGROVE_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.JUNGLE_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.CHERRY_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.DARK_OAK_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.SPRUCE_DRYING_TRAY.get(), RenderType.cutout());
     }
 }

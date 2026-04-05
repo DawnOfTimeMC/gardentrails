@@ -4,9 +4,10 @@
 	"experience": 1.0,
 	"ingredient": {
 		"item": "gardentrails:cooked_rice",
-		"count": 1
+		"count": 4
 	},
 	"result": {
-		"item": "gardentrails:fermented_rice"
+		"item": "gardentrails:fermented_rice",
+		"count": 4
 	}
 }

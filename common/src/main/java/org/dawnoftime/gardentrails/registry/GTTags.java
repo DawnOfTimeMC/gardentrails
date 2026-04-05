@@ -8,8 +8,6 @@ import org.dawnoftime.gardentrails.GTCommon;
 
 public abstract class GTTags {
     public static GTTags INSTANCE;
-    //Item tags
-    public final TagKey<Item> LIGHTERS = registerItem(new ResourceLocation(GTCommon.MOD_ID, "lighters"));
     //Block tags
     public final TagKey<Block> GRAVEL = registerBlock(new ResourceLocation("c", "gravel"));
 

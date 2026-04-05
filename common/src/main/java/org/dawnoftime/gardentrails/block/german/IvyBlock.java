@@ -2,16 +2,10 @@ package org.dawnoftime.gardentrails.block.german;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 
 
@@ -30,15 +24,12 @@ import org.dawnoftime.gardentrails.block.IBlockGeneration;
 import org.dawnoftime.gardentrails.block.templates.BlockGT;
 import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.registry.GTTags;
-import org.dawnoftime.gardentrails.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import static net.minecraft.tags.BlockTags.DIRT;
 import static net.minecraft.tags.BlockTags.SAND;
-import static org.dawnoftime.gardentrails.util.Utils.TOOLTIP_CROP;
 import static org.dawnoftime.gardentrails.util.VoxelShapes.IVY_SHAPES;
 
 public class IvyBlock extends BlockGT implements IBlockGeneration {
@@ -239,42 +230,6 @@ public class IvyBlock extends BlockGT implements IBlockGeneration {
         if (getCurrentDirections(stateIn).isEmpty())
             return Blocks.AIR.defaultBlockState();
         return stateIn;
-    }
-
-    @Override
-    public @NotNull InteractionResult use(BlockState state, @NotNull Level levelIn, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand handIn, @NotNull BlockHitResult hit) {
-        if (state.getValue(PERSISTENT)) {
-            if (player.isCreative()) {
-                int age = state.getValue(AGE);
-                if (player.isCrouching()) {
-                    if (age > 0) {
-                        levelIn.setBlock(pos, state.setValue(AGE, age - 1), 10);
-                        return InteractionResult.SUCCESS;
-                    }
-                } else {
-                    if (age < 2) {
-                        levelIn.setBlock(pos, state.setValue(AGE, age + 1), 10);
-                        return InteractionResult.SUCCESS;
-                    }
-                }
-            }
-        } else {
-            if (Utils.useLighter(levelIn, pos, player, handIn)) {
-                Random rand = new Random();
-                for (int i = 0; i < 5; i++) {
-                    levelIn.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
-                }
-                levelIn.setBlock(pos, state.setValue(PERSISTENT, true), 10);
-                return InteractionResult.SUCCESS;
-            }
-        }
-        return InteractionResult.PASS;
-    }
-
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter levelIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        super.appendHoverText(stack, levelIn, tooltip, flagIn);
-        Utils.addTooltip(tooltip, TOOLTIP_CROP);
     }
 
     @Override

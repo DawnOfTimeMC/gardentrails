@@ -1,6 +1,14 @@
 {
     "values": [
         "gardentrails:bamboo_drying_tray",
+        "gardentrails:oak_drying_tray",
+        "gardentrails:birch_drying_tray",
+        "gardentrails:acacia_drying_tray",
+        "gardentrails:mangrove_drying_tray",
+        "gardentrails:jungle_drying_tray",
+        "gardentrails:cherry_drying_tray",
+        "gardentrails:dark_oak_drying_tray",
+        "gardentrails:spruce_drying_tray",
         "gardentrails:maple_red_leaves",
         "gardentrails:maple_red_trunk",
         "gardentrails:paused_maple_red_sapling",

@@ -25,7 +25,7 @@ public class SakeItem extends ItemGT {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        tooltip.add(Component.literal("How many bottles can you handle?").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        tooltip.add(Component.translatable("lore.gardentrails.sake_bottle").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
 
     @Override

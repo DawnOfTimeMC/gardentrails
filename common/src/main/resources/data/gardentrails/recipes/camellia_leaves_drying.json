@@ -4,9 +4,10 @@
 	"experience": 1.0,
 	"ingredient": {
 		"item": "gardentrails:camellia_leaves",
-		"count": 1
+		"count": 4
 	},
 	"result": {
-		"item": "gardentrails:tea_leaves"
+		"item": "gardentrails:tea_leaves",
+		"count": 4
 	}
 }

@@ -4,9 +4,10 @@
 	"experience": 1.0,
 	"ingredient": {
 		"item": "gardentrails:grape",
-		"count": 1
+		"count": 4
 	},
 	"result": {
-		"item": "gardentrails:dried_grape"
+		"item": "gardentrails:dried_grape",
+		"count": 4
 	}
 }
