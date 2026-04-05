@@ -1,7 +1,9 @@
 package org.dawnoftime.gardentrails.block.japanese;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -11,6 +13,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
@@ -18,6 +21,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -37,6 +41,14 @@ import static org.dawnoftime.gardentrails.util.VoxelShapes.STICK_BUNDLE_SHAPES;
 public class StickBundleBlock extends BlockGT implements IBlockChain {
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
     private static final IntegerProperty AGE = BlockStateProperties.AGE_3;
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(Component.translatable("lore.gardentrails.silk_process").withStyle(ChatFormatting.AQUA));
+        Component yellowWorms = Component.translatable("item.gardentrails.silk_worms").withStyle(ChatFormatting.YELLOW);
+        tooltip.add(Component.translatable("lore.gardentrails.stick_bundle", yellowWorms).withStyle(ChatFormatting.WHITE));
+    }
 
     public StickBundleBlock(Properties properties) {
         super(properties.pushReaction(PushReaction.DESTROY), STICK_BUNDLE_SHAPES);
@@ -142,7 +154,7 @@ public class StickBundleBlock extends BlockGT implements IBlockChain {
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         int growth = state.getValue(AGE);
         if(growth > 0 && growth < 3) {
-            if(random.nextInt(Services.PLATFORM.getConfig().stickBundleGrowthChance) == 0) {
+            if(random.nextInt(25) == 0) {
                 worldIn.setBlock(pos, worldIn.getBlockState(pos).setValue(AGE, growth + 1), 10);
                 worldIn.setBlock(pos.below(), worldIn.getBlockState(pos.below()).setValue(AGE, growth + 1), 10);
             }

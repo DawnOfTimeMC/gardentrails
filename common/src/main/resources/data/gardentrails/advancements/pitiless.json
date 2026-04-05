@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:silk_worm_eggs" },
+    "title": { "translate": "advancements.gardentrails.pitiless.title" },
+    "description": { "translate": "advancements.gardentrails.pitiless.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "gardentrails:crafting",
+  "criteria": {
+    "kill_1":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 1 } },
+    "kill_2":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 2 } },
+    "kill_3":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 3 } },
+    "kill_4":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 4 } },
+    "kill_5":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 5 } },
+    "kill_6":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 6 } },
+    "kill_7":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 7 } },
+    "kill_8":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 8 } },
+    "kill_9":  { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 9 } },
+    "kill_10": { "trigger": "gardentrails:kill_silkmoth", "conditions": { "count": 10 } }
+  },
+  "requirements": [
+    ["kill_1"], ["kill_2"], ["kill_3"], ["kill_4"], ["kill_5"],
+    ["kill_6"], ["kill_7"], ["kill_8"], ["kill_9"], ["kill_10"]
+  ]
+}

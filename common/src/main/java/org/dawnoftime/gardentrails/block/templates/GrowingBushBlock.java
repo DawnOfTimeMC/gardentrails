@@ -26,6 +26,7 @@ import org.dawnoftime.gardentrails.util.GTBlockStateProperties;
 import org.dawnoftime.gardentrails.util.Utils;
 
 import java.util.List;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class GrowingBushBlock extends SoilCropsBlock {
     public final VoxelShape[] SHAPES;
@@ -36,13 +37,13 @@ public class GrowingBushBlock extends SoilCropsBlock {
     public GrowingBushBlock(PlantType plantType, int cutAge) {
         super(plantType);
         this.cutAge = cutAge;
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(CUT, false).setValue(PERSISTENT, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(CUT, false));
         this.SHAPES = this.makeShapes();
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE, PERSISTENT, CUT);
+        builder.add(AGE, CUT);
     }
 
     @Override
@@ -98,6 +99,19 @@ public class GrowingBushBlock extends SoilCropsBlock {
             }
         }
         return InteractionResult.PASS;
+    }
+
+    // Called when bonemeal is used on this block
+    @Override
+    public void growCrops(Level worldIn, BlockPos pos, BlockState state) {
+        if (this.isMaxAge(state)) {
+            // At max age, bonemeal triggers a loot drop (2x) instead of growing
+            String blockName = BuiltInRegistries.BLOCK.getKey(this).getPath();
+            List<ItemStack> drops = Utils.getLootList((ServerLevel) worldIn, state, ItemStack.EMPTY, blockName);
+            Utils.dropLootFromList(worldIn, pos, drops, 2.0f);
+        } else {
+            super.growCrops(worldIn, pos, state);
+        }
     }
 
     public void harvestWithoutBreaking(BlockState state, Level worldIn, BlockPos pos, ItemStack itemStackHand, String blockName, float dropMultiplier) {

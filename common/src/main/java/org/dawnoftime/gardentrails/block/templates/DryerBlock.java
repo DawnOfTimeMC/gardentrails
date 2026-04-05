@@ -1,11 +1,14 @@
 package org.dawnoftime.gardentrails.block.templates;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
@@ -26,12 +29,21 @@ import org.dawnoftime.gardentrails.util.GTBlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 import static net.minecraft.world.Containers.dropItemStack;
 
 public class DryerBlock extends WaterloggedBlock implements EntityBlock {
     //TODO Add redstone compatibility : ie emit redstone when dried
     public static final IntegerProperty SIZE = GTBlockStateProperties.SIZE_0_2;
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        tooltip.add(Component.translatable("lore.gardentrails.drying_tray.accepts").withStyle(ChatFormatting.GOLD)
+                .append(Component.translatable("lore.gardentrails.drying_tray.accepts.items").withStyle(ChatFormatting.YELLOW)));
+        tooltip.add(Component.translatable("lore.gardentrails.drying_tray.usage").withStyle(ChatFormatting.WHITE, ChatFormatting.ITALIC));
+    }
 
     public DryerBlock(final Properties properties, VoxelShape[] shapes) {
         super(properties, shapes);

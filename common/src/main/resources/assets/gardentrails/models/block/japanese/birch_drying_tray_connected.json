@@ -1,0 +1,7 @@
+{
+  "parent": "gardentrails:block/japanese/drying_tray_connected_base",
+  "textures": {
+    "wood": "gardentrails:block/birch_drying_tray",
+    "particle": "gardentrails:block/birch_drying_tray"
+  }
+}

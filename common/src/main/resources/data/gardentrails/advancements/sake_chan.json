@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:sake_bottle_grape" },
+    "title": { "translate": "advancements.gardentrails.sake_chan.title" },
+    "description": { "translate": "advancements.gardentrails.sake_chan.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "gardentrails:serious_business",
+  "criteria": {
+    "drink_sake":         { "trigger": "minecraft:consume_item", "conditions": { "item": { "items": ["gardentrails:sake_bottle"] } } },
+    "drink_sake_grape":   { "trigger": "minecraft:consume_item", "conditions": { "item": { "items": ["gardentrails:sake_bottle_grape"] } } },
+    "drink_sake_maize":   { "trigger": "minecraft:consume_item", "conditions": { "item": { "items": ["gardentrails:sake_bottle_maize"] } } },
+    "drink_sake_mulberry":{ "trigger": "minecraft:consume_item", "conditions": { "item": { "items": ["gardentrails:sake_bottle_mulberry"] } } }
+  },
+  "requirements": [
+    ["drink_sake"], ["drink_sake_grape"], ["drink_sake_maize"], ["drink_sake_mulberry"]
+  ]
+}

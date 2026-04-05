@@ -1,0 +1,7 @@
+{
+  "parent": "gardentrails:block/japanese/drying_tray_double_base",
+  "textures": {
+    "wood": "gardentrails:block/mangrove_drying_tray",
+    "particle": "gardentrails:block/mangrove_drying_tray"
+  }
+}

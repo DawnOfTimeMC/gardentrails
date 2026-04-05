@@ -40,19 +40,16 @@ public class MapleTrunkBlock extends BlockGT {
     public void playerWillDestroy(final Level worldIn, final BlockPos blockPosIn, final BlockState blockStateIn, final Player playerEntityIn) {
         if(!worldIn.isClientSide) {
             if(playerEntityIn.isCreative()) {
-                final BlockPos trunkBlockPos = new BlockPos(blockPosIn.getX(), blockPosIn.getY(), blockPosIn.getZ());
-                final BlockState state = worldIn.getBlockState(trunkBlockPos);
-                worldIn.setBlock(trunkBlockPos, Blocks.AIR.defaultBlockState(), 35);
-                worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
+                // In creative, remove the trunk silently — super handles the one sound/particle
+                worldIn.setBlock(blockPosIn, Blocks.AIR.defaultBlockState(), 35);
             }
 
+            // Remove all leaf blocks silently — no levelEvent to avoid stacking 9 sounds simultaneously
             for(int x = -1; x <= 1; x++) {
                 for(int y = 1; y <= 2; y++) {
                     for(int z = -1; z <= 1; z++) {
                         final BlockPos baseBlock = new BlockPos(blockPosIn.getX() + x, blockPosIn.getY() + y, blockPosIn.getZ() + z);
-                        final BlockState state = worldIn.getBlockState(baseBlock);
                         worldIn.setBlock(baseBlock, Blocks.AIR.defaultBlockState(), 35);
-                        worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
                     }
                 }
             }

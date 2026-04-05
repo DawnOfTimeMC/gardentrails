@@ -221,11 +221,7 @@ public class RegistryImpls {
         bus.addListener((EntityAttributeCreationEvent event) -> event.put(GTEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get(), SilkmothEntity.createAttributes().build()));
         bus.addListener((BuildCreativeModeTabContentsEvent event) -> {
             if(event.getTab() == GTCreativeModeTabsRegistry.INSTANCE.GT_TAB.get()) {
-                ForgeRegistries.ITEMS.getEntries().stream().filter(entry ->
-                                entry.getKey().location().getNamespace().equalsIgnoreCase(GTCommon.MOD_ID) &&
-                                        !(entry.getValue() instanceof IconItem))
-                        .map(Map.Entry::getValue)
-                        .forEachOrdered(event::accept);
+                GTCreativeModeTabsRegistry.addOrderedItems(event::accept);
             }
         });
     }

@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": { "item": "gardentrails:sake_bottle" },
+    "title": { "translate": "advancements.gardentrails.serious_business.title" },
+    "description": { "translate": "advancements.gardentrails.serious_business.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "gardentrails:crafting",
+  "criteria": {
+    "has_sake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["gardentrails:sake_bottle"] }]
+      }
+    }
+  },
+  "requirements": [["has_sake"]]
+}

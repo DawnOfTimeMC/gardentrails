@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls:*)",
+      "Bash(find /c/Users/alexs/IdeaProjects/gardentrails/.claude/worktrees/elated-mendeleev -path */data/gardentrails/tags/items* -type f)",
+      "Bash(find /c/Users/alexs/IdeaProjects/gardentrails/.claude/worktrees/elated-mendeleev -path */tags/* -name *.json)",
+      "Bash(xargs grep:*)",
+      "Bash(for f:*)",
+      "Bash(do if:*)",
+      "Bash(then echo:*)",
+      "Bash(grep -i \"\\\\.java$\")"
+    ]
+  }
+}

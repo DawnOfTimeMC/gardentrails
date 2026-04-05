@@ -35,25 +35,21 @@ public class MapleLeavesBlock extends BlockGT {
             final float currentX = -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_X);
             final float currentY = -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Y);
             final float currentZ = -blockStateIn.getValue(MapleLeavesBlock.MULTIBLOCK_Z);
+            // Remove all leaf blocks silently — super.playerWillDestroy handles the one sound/particle for the directly broken block
             for(int x = 0; x <= 2; x++) {
                 for(int y = 0; y <= 1; y++) {
                     for(int z = 0; z <= 2; z++) {
                         final BlockPos baseBlockPos = new BlockPos((int) (blockPosIn.getX() + x + currentX), (int) (blockPosIn.getY() + y + currentY), (int) (blockPosIn.getZ() + z + currentZ));
-                        final BlockState state = worldIn.getBlockState(baseBlockPos);
                         worldIn.setBlock(baseBlockPos, Blocks.AIR.defaultBlockState(), 35);
-                        worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
                     }
                 }
             }
 
+            final BlockPos trunkBlockPos = new BlockPos((int) (blockPosIn.getX() + currentX + 1), (int) (blockPosIn.getY() + currentY - 1), (int) (blockPosIn.getZ() + currentZ + 1));
             if(!playerEntityIn.isCreative()) {
-                final BlockPos trunkBlockPos = new BlockPos((int) (blockPosIn.getX() + currentX + 1), (int) (blockPosIn.getY() + currentY - 1), (int) (blockPosIn.getZ() + currentZ + 1));
                 worldIn.destroyBlock(trunkBlockPos, true);
             } else {
-                final BlockPos trunkBlockPos = new BlockPos((int) (blockPosIn.getX() + currentX + 1), (int) (blockPosIn.getY() + currentY - 1), (int) (blockPosIn.getZ() + currentZ + 1));
-                final BlockState state = worldIn.getBlockState(trunkBlockPos);
                 worldIn.setBlock(trunkBlockPos, Blocks.AIR.defaultBlockState(), 35);
-                worldIn.levelEvent(playerEntityIn, 2001, blockPosIn, Block.getId(state));
             }
         }
 

@@ -19,7 +19,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import org.dawnoftime.gardentrails.util.Utils;
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class DoubleGrowingBushBlock extends GrowingBushBlock {
     public final int growingAge;
@@ -74,7 +77,6 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
         Half half = stateIn.getValue(HALF);
         if(facing.getAxis() == Direction.Axis.Y && half == Half.BOTTOM == (facing == Direction.UP)) {
             if(facingState.getBlock() == this && facingState.getValue(HALF) != half) {
-                stateIn = stateIn.setValue(PERSISTENT, facingState.getValue(PERSISTENT));
                 return half == Half.BOTTOM ? stateIn : stateIn.setValue(this.getAgeProperty(), this.getAge(facingState));
             } else if(half == Half.BOTTOM && this.getAge(stateIn) < this.growingAge)
                 return stateIn;
@@ -117,25 +119,29 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
     // Only called with Bonemeal
     @Override
     public void growCrops(Level worldIn, BlockPos pos, BlockState state) {
-        if(this.isBottomCrop(state)) {
+        // If bonemeal is applied on the top block, redirect to the bottom block
+        if (!this.isBottomCrop(state)) {
+            pos = pos.below();
+            state = worldIn.getBlockState(pos);
+            if (state.getBlock() != this) return;
+        }
+        if (this.isMaxAge(state)) {
+            // At max age, bonemeal triggers a loot drop (2x) instead of growing
+            String blockName = BuiltInRegistries.BLOCK.getKey(this).getPath();
+            List<ItemStack> drops = Utils.getLootList((ServerLevel) worldIn, state, ItemStack.EMPTY, blockName);
+            Utils.dropLootFromList(worldIn, pos, drops, 2.0f);
+        } else {
             int newAge = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-            if(newAge > this.getMaxAge())
+            if (newAge > this.getMaxAge())
                 newAge = this.getMaxAge();
-            if(newAge >= this.getAgeReachingTopBlock()) {
-                BlockPos topPos = pos.above();
-                if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)) {
-                    state = this.getStateForAge(newAge);
-                    worldIn.setBlock(pos, state, 2);
-                    worldIn.setBlock(topPos, this.getTopState(state), 2);
-                }
-            }
+            this.setPlantWithAge(state, worldIn, pos, newAge);
         }
     }
 
     @Override
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if(this.isBottomCrop(state)) {
-            if(!worldIn.isLoaded(pos) || state.getValue(PERSISTENT))
+            if(!worldIn.isLoaded(pos))
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light
             if(worldIn.getRawBrightness(pos, 0) >= 9) {
                 int i = this.getAge(state);
@@ -143,12 +149,8 @@ public class DoubleGrowingBushBlock extends GrowingBushBlock {
                     float f = getGrowthSpeed(this, worldIn, pos);
                     BlockPos topPos = pos.above();
                     if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)) {
-                        if(random.nextInt((int) (25.0F / f) + 1) == 0) {
-                            state = this.getStateForAge(i + 1);
-                            worldIn.setBlock(pos, state, 2);
-                            if(i + 1 >= this.growingAge)
-                                worldIn.setBlock(topPos, this.getTopState(state), 2);
-                        }
+                        if(random.nextInt((int) (25.0F / f) + 1) == 0)
+                            this.setPlantWithAge(state, worldIn, pos, i + 1);
                     }
                 }
             }

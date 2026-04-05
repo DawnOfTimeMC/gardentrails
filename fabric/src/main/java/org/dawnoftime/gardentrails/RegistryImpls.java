@@ -186,13 +186,7 @@ public class RegistryImpls {
         @Override
         public <T extends CreativeModeTab> Supplier<CreativeModeTab> register(String name, Supplier<ItemStack> iconSupplier, Component title) {
             var group = Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(GTCommon.MOD_ID, name), FabricItemGroup.builder().icon(iconSupplier).title(title).displayItems((itemDisplayParameters, output) -> {
-                BuiltInRegistries.ITEM.entrySet().forEach(entry -> {
-                    var loc = entry.getKey().location();
-                    if(entry.getValue() instanceof IconItem) return;
-                    if (loc.getNamespace().equals(GTCommon.MOD_ID)) {
-                        output.accept(entry.getValue());
-                    }
-                });
+                GTCreativeModeTabsRegistry.addOrderedItems(output::accept);
             }).build());
             return () -> group;
         }

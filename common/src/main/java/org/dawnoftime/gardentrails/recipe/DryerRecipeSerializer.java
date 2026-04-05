@@ -30,7 +30,8 @@ public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
         String group = GsonHelper.getAsString(json, "group", "");
         Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
         ingredient.getItems()[0].setCount(GsonHelper.getAsInt(GsonHelper.getAsJsonObject(json, "ingredient"), "count", 1));
-        ItemStack itemStackResult = ShapedRecipe.itemFromJson(GsonHelper.getAsJsonObject(json, "result")).getDefaultInstance();
+        JsonObject resultObj = GsonHelper.getAsJsonObject(json, "result");
+        ItemStack itemStackResult = new ItemStack(ShapedRecipe.itemFromJson(resultObj), GsonHelper.getAsInt(resultObj, "count", 1));
         float experience = GsonHelper.getAsFloat(json, "experience", 0.0F);
         int dryingTime = GsonHelper.getAsInt(json, "dryingTime", 1200);
 
