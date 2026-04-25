@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "gardentrails:block/precolumbian/commelina_pot" }
+            { "model": "gardentrails:block/commelina_pot" }
         ]
     }
 }

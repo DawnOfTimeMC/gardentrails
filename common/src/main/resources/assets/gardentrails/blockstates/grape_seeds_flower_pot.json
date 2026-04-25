@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "gardentrails:block/general/grape_pot" }
+            { "model": "gardentrails:block/grape_pot" }
         ]
     }
 }

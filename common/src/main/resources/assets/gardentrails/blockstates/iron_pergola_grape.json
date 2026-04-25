@@ -5,7 +5,7 @@
                 "axis_y": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_y"
+                "model": "gardentrails:block/iron_pergola_y"
             }
         },
         {
@@ -14,7 +14,7 @@
                 "axis_z": "false"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x"
+                "model": "gardentrails:block/iron_pergola_x"
             }
         },
         {
@@ -23,7 +23,7 @@
                 "axis_z": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x",
+                "model": "gardentrails:block/iron_pergola_x",
                 "y": 90
             }
         },
@@ -33,70 +33,70 @@
                 "axis_z": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x_z"
+                "model": "gardentrails:block/iron_pergola_x_z"
             }
         },
         {
             "when": {"age": "0", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_y_stage_0"},
-                { "model": "gardentrails:block/general/grape/grape_y_stage_0", "y": 90 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_0", "y": 180 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_0", "y": 270 }
+                { "model": "gardentrails:block/grape/grape_y_stage_0"},
+                { "model": "gardentrails:block/grape/grape_y_stage_0", "y": 90 },
+                { "model": "gardentrails:block/grape/grape_y_stage_0", "y": 180 },
+                { "model": "gardentrails:block/grape/grape_y_stage_0", "y": 270 }
             ]
         },
         {
             "when": {"age": "1", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_y_stage_1"},
-                { "model": "gardentrails:block/general/grape/grape_y_stage_1", "y": 90 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_1", "y": 180 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_1", "y": 270 }
+                { "model": "gardentrails:block/grape/grape_y_stage_1"},
+                { "model": "gardentrails:block/grape/grape_y_stage_1", "y": 90 },
+                { "model": "gardentrails:block/grape/grape_y_stage_1", "y": 180 },
+                { "model": "gardentrails:block/grape/grape_y_stage_1", "y": 270 }
             ]
         },
         {
             "when": {"age": "2", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_y_stage_2"},
-                { "model": "gardentrails:block/general/grape/grape_y_stage_2", "y": 90 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_2", "y": 180 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_2", "y": 270 }
+                { "model": "gardentrails:block/grape/grape_y_stage_2"},
+                { "model": "gardentrails:block/grape/grape_y_stage_2", "y": 90 },
+                { "model": "gardentrails:block/grape/grape_y_stage_2", "y": 180 },
+                { "model": "gardentrails:block/grape/grape_y_stage_2", "y": 270 }
             ]
         },
         {
             "when": {"age": "3", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_y_stage_3"},
-                { "model": "gardentrails:block/general/grape/grape_y_stage_3", "y": 90 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_3", "y": 180 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_3", "y": 270 }
+                { "model": "gardentrails:block/grape/grape_y_stage_3"},
+                { "model": "gardentrails:block/grape/grape_y_stage_3", "y": 90 },
+                { "model": "gardentrails:block/grape/grape_y_stage_3", "y": 180 },
+                { "model": "gardentrails:block/grape/grape_y_stage_3", "y": 270 }
             ]
         },
         {
             "when": {"age": "4", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_y_stage_4"},
-                { "model": "gardentrails:block/general/grape/grape_y_stage_4", "y": 90 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_4", "y": 180 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_4", "y": 270 }
+                { "model": "gardentrails:block/grape/grape_y_stage_4"},
+                { "model": "gardentrails:block/grape/grape_y_stage_4", "y": 90 },
+                { "model": "gardentrails:block/grape/grape_y_stage_4", "y": 180 },
+                { "model": "gardentrails:block/grape/grape_y_stage_4", "y": 270 }
             ]
         },
         {
             "when": {"age": "5", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_y_stage_5"},
-                { "model": "gardentrails:block/general/grape/grape_y_stage_5", "y": 90 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_5", "y": 180 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_5", "y": 270 }
+                { "model": "gardentrails:block/grape/grape_y_stage_5"},
+                { "model": "gardentrails:block/grape/grape_y_stage_5", "y": 90 },
+                { "model": "gardentrails:block/grape/grape_y_stage_5", "y": 180 },
+                { "model": "gardentrails:block/grape/grape_y_stage_5", "y": 270 }
             ]
         },
         {
             "when": {"age": "6", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_y_stage_6"},
-                { "model": "gardentrails:block/general/grape/grape_y_stage_6", "y": 90 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_6", "y": 180 },
-                { "model": "gardentrails:block/general/grape/grape_y_stage_6", "y": 270 }
+                { "model": "gardentrails:block/grape/grape_y_stage_6"},
+                { "model": "gardentrails:block/grape/grape_y_stage_6", "y": 90 },
+                { "model": "gardentrails:block/grape/grape_y_stage_6", "y": 180 },
+                { "model": "gardentrails:block/grape/grape_y_stage_6", "y": 270 }
             ]
         },
         {
@@ -105,7 +105,7 @@
                 {"age": "0", "axis_z": "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_x_z_stage_0"}
+                { "model": "gardentrails:block/grape/grape_x_z_stage_0"}
             ]
         },
         {
@@ -114,7 +114,7 @@
                 {"age": "1", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_x_z_stage_1"}
+                { "model": "gardentrails:block/grape/grape_x_z_stage_1"}
             ]
         },
         {
@@ -123,7 +123,7 @@
                 {"age": "2", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_x_z_stage_2"}
+                { "model": "gardentrails:block/grape/grape_x_z_stage_2"}
             ]
         },
         {
@@ -132,7 +132,7 @@
                 {"age": "3", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_x_z_stage_3"}
+                { "model": "gardentrails:block/grape/grape_x_z_stage_3"}
             ]
         },
         {
@@ -141,7 +141,7 @@
                 {"age": "4", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_x_z_stage_4"}
+                { "model": "gardentrails:block/grape/grape_x_z_stage_4"}
             ]
         },
         {
@@ -150,7 +150,7 @@
                 {"age": "5", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_x_z_stage_5"}
+                { "model": "gardentrails:block/grape/grape_x_z_stage_5"}
             ]
         },
         {
@@ -159,7 +159,7 @@
                 {"age": "6", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/grape/grape_x_z_stage_6"}
+                { "model": "gardentrails:block/grape/grape_x_z_stage_6"}
             ]
         }
     ]

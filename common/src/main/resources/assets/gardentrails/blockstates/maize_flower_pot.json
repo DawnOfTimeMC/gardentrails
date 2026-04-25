@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "gardentrails:block/precolumbian/maize_pot" }
+            { "model": "gardentrails:block/maize_pot" }
         ]
     }
 }

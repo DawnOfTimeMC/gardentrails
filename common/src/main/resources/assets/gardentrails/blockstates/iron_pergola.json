@@ -5,7 +5,7 @@
                 "axis_y": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_y"
+                "model": "gardentrails:block/iron_pergola_y"
             }
         },
         {
@@ -14,7 +14,7 @@
                 "axis_z": "false"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x"
+                "model": "gardentrails:block/iron_pergola_x"
             }
         },
         {
@@ -23,7 +23,7 @@
                 "axis_z": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x",
+                "model": "gardentrails:block/iron_pergola_x",
                 "y": 90
             }
         },
@@ -33,7 +33,7 @@
                 "axis_z": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x_z"
+                "model": "gardentrails:block/iron_pergola_x_z"
             }
         }
     ]

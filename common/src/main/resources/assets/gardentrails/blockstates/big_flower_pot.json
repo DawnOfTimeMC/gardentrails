@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "gardentrails:block/roman/big_flower_pot" }
+        "": { "model": "gardentrails:block/big_flower_pot" }
     }
 }

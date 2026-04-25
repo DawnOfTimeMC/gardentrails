@@ -1,8 +1,0 @@
-{
-	"render_type": "minecraft:cutout",
-	"parent": "gardentrails:block/general/small_plate_tinted",
-	"textures": {
-		"side": "gardentrails:block/boxwood_hedge",
-		"frieze": "gardentrails:block/boxwood_hedge"
-	}
-}

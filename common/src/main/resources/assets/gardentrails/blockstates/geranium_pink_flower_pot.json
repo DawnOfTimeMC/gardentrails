@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "gardentrails:block/german/geranium_pink_flower_pot" }
+            { "model": "gardentrails:block/geranium_pink_flower_pot" }
         ]
     }
 }

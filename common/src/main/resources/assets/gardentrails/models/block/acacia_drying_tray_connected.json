@@ -1,0 +1,7 @@
+{
+  "parent": "gardentrails:block/drying_tray_connected_base",
+  "textures": {
+    "wood": "gardentrails:block/acacia_drying_tray",
+    "particle": "gardentrails:block/acacia_drying_tray"
+  }
+}
