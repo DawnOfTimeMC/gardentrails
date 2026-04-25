@@ -35,5 +35,8 @@ public class RenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.CHERRY_DRYING_TRAY.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.DARK_OAK_DRYING_TRAY.get(), RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.SPRUCE_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.SILVER_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.GOLDEN_DRYING_TRAY.get(), RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(GTBlocksRegistry.INSTANCE.AMETHYST_DRYING_TRAY.get(), RenderType.cutout());
     }
 }

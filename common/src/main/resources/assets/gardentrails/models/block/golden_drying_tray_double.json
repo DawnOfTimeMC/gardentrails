@@ -1,0 +1,7 @@
+{
+  "parent": "gardentrails:block/drying_tray_double_base",
+  "textures": {
+    "wood": "gardentrails:block/golden_drying_tray",
+    "particle": "gardentrails:block/golden_drying_tray"
+  }
+}
