@@ -30,12 +30,26 @@ public class GTBiomeModifiers {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
+        context.register(ADD_BOXWOOD_BUSH,
+            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.get(Biomes.FOREST).get(),
+                        biomes.get(Biomes.BIRCH_FOREST).get(),
+                        biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get(),
+                        biomes.get(Biomes.WINDSWEPT_FOREST).get()),
+                HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+            )
+        );
+
         context.register(ADD_CAMELLIA,
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
-                        biomes.get(Biomes.FLOWER_FOREST).get(),
                         biomes.get(Biomes.JUNGLE).get(),
-                        biomes.get(Biomes.SPARSE_JUNGLE).get()),
+                        biomes.get(Biomes.SPARSE_JUNGLE).get(),
+                        biomes.get(Biomes.BAMBOO_JUNGLE).get(),
+                        biomes.get(Biomes.SAVANNA).get(),
+                        biomes.get(Biomes.TAIGA).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.CAMELLIA_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
@@ -45,7 +59,8 @@ public class GTBiomeModifiers {
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
                         biomes.get(Biomes.SWAMP).get(),
-                        biomes.get(Biomes.MANGROVE_SWAMP).get()),
+                        biomes.get(Biomes.MANGROVE_SWAMP).get(),
+                        biomes.get(Biomes.FLOWER_FOREST).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.COMMELINA_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
@@ -54,48 +69,56 @@ public class GTBiomeModifiers {
         context.register(ADD_CYPRESS,
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
-                        biomes.get(Biomes.TAIGA).get(),
-                        biomes.get(Biomes.SNOWY_TAIGA).get(),
-                        biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
-                        biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
+                        biomes.get(Biomes.SAVANNA).get(),
+                        biomes.get(Biomes.SAVANNA_PLATEAU).get(),
+                        biomes.get(Biomes.WINDSWEPT_SAVANNA).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.CYPRESS_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
         );
 
-        context.register(ADD_RED_MAPLE,
+        context.register(ADD_GERANIUM_PINK,
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(
-                            biomes.get(Biomes.FLOWER_FOREST).get(),
-                            biomes.get(Biomes.TAIGA).get(),
-                            biomes.get(Biomes.SNOWY_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
-                HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.RED_MAPLE_PLACED_KEY)),
+                HolderSet.direct(
+                        biomes.get(Biomes.FLOWER_FOREST).get(),
+                        biomes.get(Biomes.MEADOW).get(),
+                        biomes.get(Biomes.BIRCH_FOREST).get(),
+                        biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get()),
+                HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
         );
 
-        context.register(ADD_BOXWOOD_BUSH,
+        context.register(ADD_IVY,
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
-                        biomes.get(Biomes.FLOWER_FOREST).get(),
                         biomes.get(Biomes.FOREST).get(),
-                        biomes.get(Biomes.WINDSWEPT_FOREST).get()),
-                HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY)),
+                        biomes.get(Biomes.BIRCH_FOREST).get(),
+                        biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get(),
+                        biomes.get(Biomes.DARK_FOREST).get()),
+                HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.IVY_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
         );
 
         context.register(ADD_MULBERRY,
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                    HolderSet.direct(
-                            biomes.get(Biomes.FLOWER_FOREST).get(),
-                            biomes.get(Biomes.TAIGA).get(),
-                            biomes.get(Biomes.SNOWY_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
-                            biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
+                HolderSet.direct(
+                        biomes.get(Biomes.TAIGA).get(),
+                        biomes.get(Biomes.OLD_GROWTH_PINE_TAIGA).get(),
+                        biomes.get(Biomes.OLD_GROWTH_SPRUCE_TAIGA).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.MULBERRY_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+            )
+        );
+
+        context.register(ADD_RED_MAPLE,
+            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.get(Biomes.BIRCH_FOREST).get(),
+                        biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get(),
+                        biomes.get(Biomes.DARK_FOREST).get()),
+                HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.RED_MAPLE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
         );
@@ -113,9 +136,9 @@ public class GTBiomeModifiers {
         context.register(ADD_WILD_GRAPE,
             new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(
-                        biomes.get(Biomes.FLOWER_FOREST).get(),
+                        biomes.get(Biomes.FOREST).get(),
                         biomes.get(Biomes.BIRCH_FOREST).get(),
-                        biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get()),
+                        biomes.get(Biomes.DARK_FOREST).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.WILD_GRAPE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
@@ -127,30 +150,8 @@ public class GTBiomeModifiers {
                         biomes.get(Biomes.SAVANNA).get(),
                         biomes.get(Biomes.SAVANNA_PLATEAU).get(),
                         biomes.get(Biomes.WINDSWEPT_SAVANNA).get(),
-                        biomes.get(Biomes.FLOWER_FOREST).get()),
+                        biomes.get(Biomes.PLAINS).get()),
                 HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY)),
-                GenerationStep.Decoration.VEGETAL_DECORATION
-            )
-        );
-
-        context.register(ADD_GERANIUM_PINK,
-            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(
-                        biomes.get(Biomes.FLOWER_FOREST).get(),
-                        biomes.get(Biomes.BIRCH_FOREST).get(),
-                        biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get()),
-            HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY)),
-                GenerationStep.Decoration.VEGETAL_DECORATION
-            )
-        );
-
-        context.register(ADD_IVY,
-            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(
-                        biomes.get(Biomes.FLOWER_FOREST).get(),
-                        biomes.get(Biomes.BIRCH_FOREST).get(),
-                        biomes.get(Biomes.OLD_GROWTH_BIRCH_FOREST).get()),
-                HolderSet.direct(placedFeatures.getOrThrow(GTFeaturesRegistry.IVY_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION
             )
         );

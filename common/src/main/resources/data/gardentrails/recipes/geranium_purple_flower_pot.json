@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:flower_pot"
+		},
+		{
+			"item": "gardentrails:geranium_purple"
+		}
+	],
+	"result": {
+		"item": "gardentrails:geranium_purple_flower_pot",
+		"count": 1
+	}
+}

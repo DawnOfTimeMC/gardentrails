@@ -2,8 +2,8 @@
 	"render_type": "minecraft:cutout",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "gardentrails:block/camellia_1",
-		"particle": "gardentrails:block/camellia_1",
+		"pot": "gardentrails:block/camellia_pot",
+		"particle": "gardentrails:block/camellia_pot",
 		"flowerpot": "block/flower_pot",
 		"dirt": "block/dirt"
 	},
@@ -64,64 +64,64 @@
 			"from": [5, 5, 8],
 			"to": [11, 11, 8],
 			"faces": {
-				"north": {"uv": [0, 6, 3, 9], "texture": "#1"},
-				"south": {"uv": [0, 6, 3, 9], "texture": "#1"}
+				"north": {"uv": [0, 6, 3, 9], "texture": "#pot"},
+				"south": {"uv": [0, 6, 3, 9], "texture": "#pot"}
 			}
 		},
 		{
 			"from": [2, 7.5, 12],
 			"to": [14, 16.5, 12],
 			"faces": {
-				"north": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"},
-				"south": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"}
+				"north": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"},
+				"south": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"}
 			}
 		},
 		{
 			"from": [2, 7.5, 4],
 			"to": [14, 16.5, 4],
 			"faces": {
-				"north": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"},
-				"south": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"}
+				"north": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"},
+				"south": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"}
 			}
 		},
 		{
 			"from": [4, 7.5, 2],
 			"to": [4, 16.5, 14],
 			"faces": {
-				"east": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"},
-				"west": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"}
+				"east": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"},
+				"west": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"}
 			}
 		},
 		{
 			"from": [12, 7.5, 2],
 			"to": [12, 16.5, 14],
 			"faces": {
-				"east": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"},
-				"west": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#1"}
+				"east": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"},
+				"west": {"uv": [8.5, 6, 14.5, 10.5], "texture": "#pot"}
 			}
 		},
 		{
 			"from": [2, 14.5, 2],
 			"to": [14, 14.5, 14],
 			"faces": {
-				"up": {"uv": [8.5, 0, 14.5, 6], "texture": "#1"},
-				"down": {"uv": [8.5, 0, 14.5, 6], "texture": "#1"}
+				"up": {"uv": [8.5, 0, 14.5, 6], "texture": "#pot"},
+				"down": {"uv": [8.5, 0, 14.5, 6], "texture": "#pot"}
 			}
 		},
 		{
 			"from": [2, 9.5, 2],
 			"to": [14, 9.5, 14],
 			"faces": {
-				"up": {"uv": [8.5, 0, 14.5, 6], "texture": "#1"},
-				"down": {"uv": [8.5, 0, 14.5, 6], "texture": "#1"}
+				"up": {"uv": [8.5, 0, 14.5, 6], "texture": "#pot"},
+				"down": {"uv": [8.5, 0, 14.5, 6], "texture": "#pot"}
 			}
 		},
 		{
 			"from": [8, 5, 5],
 			"to": [8, 11, 11],
 			"faces": {
-				"east": {"uv": [0, 6, 3, 9], "texture": "#1"},
-				"west": {"uv": [0, 6, 3, 9], "texture": "#1"}
+				"east": {"uv": [0, 6, 3, 9], "texture": "#pot"},
+				"west": {"uv": [0, 6, 3, 9], "texture": "#pot"}
 			}
 		}
 	],

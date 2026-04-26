@@ -36,7 +36,7 @@
                             "block": "gardentrails:stick_bundle",
                             "properties": {
                                 "half": "top",
-                                "age": 3
+                                "age": "3"
                             }
                         }
                     ],

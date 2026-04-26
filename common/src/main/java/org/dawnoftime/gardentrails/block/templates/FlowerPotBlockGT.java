@@ -11,16 +11,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import org.dawnoftime.gardentrails.block.IBiomeColoredBlock;
 import org.dawnoftime.gardentrails.block.IBlockSpecialDisplay;
-import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.world.level.block.Blocks.FLOWER_POT;
 import static org.dawnoftime.gardentrails.util.VoxelShapes.FLOWER_POT_SHAPE;
 
-public class FlowerPotBlockGT extends BlockGT implements IBlockSpecialDisplay, IBiomeColoredBlock {
+public class FlowerPotBlockGT extends BlockGT implements IBlockSpecialDisplay {
     private Item itemInPot;
 
     public FlowerPotBlockGT(@Nullable Item itemInPot) {
@@ -52,11 +50,4 @@ public class FlowerPotBlockGT extends BlockGT implements IBlockSpecialDisplay, I
         return 0.667F;
     }
     
-    @Override
-    public ColorType getColorType() {
-        if (this.itemInPot != null && this.itemInPot == GTBlocksRegistry.INSTANCE.CYPRESS.get().asItem()) {
-            return ColorType.FOLIAGE;
-        }
-        return null;
-    }
 }

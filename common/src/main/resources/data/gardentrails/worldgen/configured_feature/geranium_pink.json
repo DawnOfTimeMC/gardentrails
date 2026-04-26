@@ -6,10 +6,15 @@
         "type": "minecraft:simple_block",
         "config": {
           "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "gardentrails:geranium_pink"
-            }
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              { "weight": 10, "data": { "Name": "gardentrails:geranium_pink" } },
+              { "weight": 10, "data": { "Name": "gardentrails:geranium_purple" } },
+              { "weight": 3,  "data": { "Name": "gardentrails:geranium_orange" } },
+              { "weight": 3,  "data": { "Name": "gardentrails:geranium_red" } },
+              { "weight": 3,  "data": { "Name": "gardentrails:geranium_white" } },
+              { "weight": 2,  "data": { "Name": "gardentrails:geranium_purpleish" } }
+            ]
           }
         }
       },
@@ -23,8 +28,8 @@
         }
       ]
     },
-    "tries": 12,
-    "xz_spread": 2,
+    "tries": 6,
+    "xz_spread": 1,
     "y_spread": 2
   }
 }

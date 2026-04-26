@@ -1,9 +1,11 @@
 {
   "type": "forge:add_features",
   "biomes": [
-    "minecraft:flower_forest",
     "minecraft:jungle",
-    "minecraft:sparse_jungle"
+    "minecraft:sparse_jungle",
+    "minecraft:bamboo_jungle",
+    "minecraft:savanna",
+    "minecraft:taiga"
   ],
   "features": "gardentrails:camellia_placed",
   "step": "vegetal_decoration"

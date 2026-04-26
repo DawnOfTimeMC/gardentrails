@@ -81,7 +81,7 @@ public class GTConfiguredFeatures {
         );
 
         register(context, MULBERRY_KEY, GTFeaturesRegistry.INSTANCE.DEFAULT_CROPS.get(),
-            new RandomPatchConfiguration(32, 5, 2,
+            new RandomPatchConfiguration(45, 5, 3,
                 PlacementUtils.onlyWhenEmpty(GTFeaturesRegistry.INSTANCE.DOT_FEATURE.get(),
                     new SimpleBlockConfiguration(
                         BlockStateProvider.simple(GTBlocksRegistry.INSTANCE.MULBERRY.get())

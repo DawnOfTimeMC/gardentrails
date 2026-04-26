@@ -63,6 +63,11 @@ public abstract class GTCreativeModeTabsRegistry {
         output.accept(GTBlocksRegistry.INSTANCE.COMMELINA.get());
         output.accept(GTBlocksRegistry.INSTANCE.CYPRESS.get());
         output.accept(GTBlocksRegistry.INSTANCE.GERANIUM_PINK.get());
+        output.accept(GTBlocksRegistry.INSTANCE.GERANIUM_ORANGE.get());
+        output.accept(GTBlocksRegistry.INSTANCE.GERANIUM_PURPLE.get());
+        output.accept(GTBlocksRegistry.INSTANCE.GERANIUM_PURPLEISH.get());
+        output.accept(GTBlocksRegistry.INSTANCE.GERANIUM_RED.get());
+        output.accept(GTBlocksRegistry.INSTANCE.GERANIUM_WHITE.get());
         output.accept(GTBlocksRegistry.INSTANCE.IVY.get());
         output.accept(GTBlocksRegistry.INSTANCE.MAPLE_RED_SAPLING.get());
 
@@ -83,6 +88,11 @@ public abstract class GTCreativeModeTabsRegistry {
         // ── Pots ──────────────────────────────────────────────────────────────
         output.accept(GTBlocksRegistry.INSTANCE.PLANTER_GERANIUM_PINK.get());
         output.accept(GTBlocksRegistry.POT_BLOCKS.get("geranium_pink_flower_pot"));
+        output.accept(GTBlocksRegistry.POT_BLOCKS.get("geranium_orange_flower_pot"));
+        output.accept(GTBlocksRegistry.POT_BLOCKS.get("geranium_purple_flower_pot"));
+        output.accept(GTBlocksRegistry.POT_BLOCKS.get("geranium_purpleish_flower_pot"));
+        output.accept(GTBlocksRegistry.POT_BLOCKS.get("geranium_red_flower_pot"));
+        output.accept(GTBlocksRegistry.POT_BLOCKS.get("geranium_white_flower_pot"));
         output.accept(GTBlocksRegistry.POT_BLOCKS.get("camellia_flower_pot"));
         output.accept(GTBlocksRegistry.POT_BLOCKS.get("mulberry_flower_pot"));
         output.accept(GTBlocksRegistry.POT_BLOCKS.get("commelina_flower_pot"));

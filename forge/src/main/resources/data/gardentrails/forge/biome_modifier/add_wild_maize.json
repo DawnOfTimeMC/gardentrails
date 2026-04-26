@@ -3,7 +3,8 @@
   "biomes": [
     "minecraft:savanna",
     "minecraft:savanna_plateau",
-    "minecraft:windswept_savanna"
+    "minecraft:windswept_savanna",
+    "minecraft:plains"
   ],
   "features": "gardentrails:wild_maize_placed",
   "step": "vegetal_decoration"

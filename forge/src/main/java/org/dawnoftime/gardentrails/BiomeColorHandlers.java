@@ -37,16 +37,27 @@ public class BiomeColorHandlers {
         registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.BOXWOOD_BUSH);
         registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.BOXWOOD_SMALL_HEDGE);
         registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.BOXWOOD_TALL_HEDGE);
-        registerBiomeColoredBlock(event, () -> GTBlocksRegistry.POT_BLOCKS.get("cypress_flower_pot"));
+        registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.GERANIUM_PINK);
+        registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.GERANIUM_ORANGE);
+        registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.GERANIUM_PURPLE);
+        registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.GERANIUM_PURPLEISH);
+        registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.GERANIUM_RED);
+        registerBiomeColoredBlock(event, GTBlocksRegistry.INSTANCE.GERANIUM_WHITE);
+        registerBiomeColoredBlock(event, () -> GTBlocksRegistry.INSTANCE.CAMELLIA.get());
     }
-    
+
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.CYPRESS);
         registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.BOXWOOD_BUSH);
         registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.BOXWOOD_SMALL_HEDGE);
         registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.BOXWOOD_TALL_HEDGE);
-        registerBiomeColoredItem(event, () -> GTBlocksRegistry.POT_BLOCKS.get("cypress_flower_pot"));
+        registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.GERANIUM_PINK);
+        registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.GERANIUM_ORANGE);
+        registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.GERANIUM_PURPLE);
+        registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.GERANIUM_PURPLEISH);
+        registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.GERANIUM_RED);
+        registerBiomeColoredItem(event, GTBlocksRegistry.INSTANCE.GERANIUM_WHITE);
     }
     
     private static void registerBiomeColoredBlock(RegisterColorHandlersEvent.Block event, Supplier<Block> blockSupplier) {

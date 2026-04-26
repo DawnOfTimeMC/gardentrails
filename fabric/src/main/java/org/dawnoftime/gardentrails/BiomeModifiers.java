@@ -11,17 +11,17 @@ import org.dawnoftime.gardentrails.registry.GTFeaturesRegistry;
 
 public class BiomeModifiers {
     public static void init() {
-        addFeatureToBiomes(GTFeaturesRegistry.CAMELLIA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.JUNGLE, Biomes.SPARSE_JUNGLE);
-        addFeatureToBiomes(GTFeaturesRegistry.COMMELINA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
-        addFeatureToBiomes(GTFeaturesRegistry.CYPRESS_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA);
-        addFeatureToBiomes(GTFeaturesRegistry.RED_MAPLE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.DARK_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.FOREST, Biomes.WINDSWEPT_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.MULBERRY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA);
+        addFeatureToBiomes(GTFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.WINDSWEPT_FOREST);
+        addFeatureToBiomes(GTFeaturesRegistry.CAMELLIA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SAVANNA, Biomes.TAIGA);
+        addFeatureToBiomes(GTFeaturesRegistry.COMMELINA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.FLOWER_FOREST);
+        addFeatureToBiomes(GTFeaturesRegistry.CYPRESS_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA);
+        addFeatureToBiomes(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.MEADOW, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
+        addFeatureToBiomes(GTFeaturesRegistry.IVY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.DARK_FOREST);
+        addFeatureToBiomes(GTFeaturesRegistry.MULBERRY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA);
+        addFeatureToBiomes(GTFeaturesRegistry.RED_MAPLE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.DARK_FOREST);
         addFeatureToBiomes(GTFeaturesRegistry.RICE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
-        addFeatureToBiomes(GTFeaturesRegistry.WILD_GRAPE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA);
-        addFeatureToBiomes(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.IVY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
+        addFeatureToBiomes(GTFeaturesRegistry.WILD_GRAPE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.DARK_FOREST);
+        addFeatureToBiomes(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA, Biomes.PLAINS);
     }
 
     @SafeVarargs

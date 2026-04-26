@@ -2,7 +2,8 @@
   "type": "forge:add_features",
   "biomes": [
     "minecraft:swamp",
-    "minecraft:mangrove_swamp"
+    "minecraft:mangrove_swamp",
+    "minecraft:flower_forest"
   ],
   "features": "gardentrails:commelina_placed",
   "step": "vegetal_decoration"

@@ -3,7 +3,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "gardentrails:block/camellia_3",
-		"1": "gardentrails:block/camellia_1",
+		"1": "gardentrails:block/camellia_base_1",
 		"particle": "gardentrails:block/camellia_3"
 	},
 	"elements": [
@@ -19,48 +19,48 @@
 			"from": [1, 4, 14],
 			"to": [15, 12, 14],
 			"faces": {
-				"north": {"uv": [9, 7, 16, 11], "texture": "#0"},
-				"south": {"uv": [9, 7, 16, 11], "texture": "#0"}
+				"north": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0},
+				"south": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0}
 			}
 		},
 		{
 			"from": [1, 4, 2],
 			"to": [15, 12, 2],
 			"faces": {
-				"north": {"uv": [9, 7, 16, 11], "texture": "#0"},
-				"south": {"uv": [9, 7, 16, 11], "texture": "#0"}
+				"north": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0},
+				"south": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0}
 			}
 		},
 		{
 			"from": [2, 4, 1],
 			"to": [2, 12, 15],
 			"faces": {
-				"east": {"uv": [9, 7, 16, 11], "texture": "#0"},
-				"west": {"uv": [9, 7, 16, 11], "texture": "#0"}
+				"east": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0},
+				"west": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0}
 			}
 		},
 		{
 			"from": [14, 4, 1],
 			"to": [14, 12, 15],
 			"faces": {
-				"east": {"uv": [9, 7, 16, 11], "texture": "#0"},
-				"west": {"uv": [9, 7, 16, 11], "texture": "#0"}
+				"east": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0},
+				"west": {"uv": [9, 7, 16, 11], "texture": "#0", "tintindex": 0}
 			}
 		},
 		{
 			"from": [1, 5, 1],
 			"to": [15, 5, 15],
 			"faces": {
-				"up": {"uv": [9, 0, 16, 7], "texture": "#0"},
-				"down": {"uv": [9, 0, 16, 7], "texture": "#0"}
+				"up": {"uv": [9, 0, 16, 7], "texture": "#0", "tintindex": 0},
+				"down": {"uv": [9, 0, 16, 7], "texture": "#0", "tintindex": 0}
 			}
 		},
 		{
 			"from": [1, 11, 1],
 			"to": [15, 11, 15],
 			"faces": {
-				"up": {"uv": [9, 0, 16, 7], "texture": "#0"},
-				"down": {"uv": [9, 0, 16, 7], "texture": "#0"}
+				"up": {"uv": [9, 0, 16, 7], "texture": "#0", "tintindex": 0},
+				"down": {"uv": [9, 0, 16, 7], "texture": "#0", "tintindex": 0}
 			}
 		},
 		{

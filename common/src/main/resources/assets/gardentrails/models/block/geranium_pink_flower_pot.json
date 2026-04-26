@@ -6,8 +6,8 @@
 	"textures": {
 		"flowerpot": "block/flower_pot",
 		"dirt": "block/dirt",
-		"particle": "gardentrails:block/geranium_pink",
-		"crop": "gardentrails:block/geranium_pink"
+		"particle": "gardentrails:block/geranium_pink_pot",
+		"crop": "gardentrails:block/geranium_pink_pot"
 	},
 	"elements": [
 		{
