@@ -24,22 +24,3 @@ build
 # other
 eclipse
 run
-/patch_notes.md
-/.claude/worktrees/optimistic-brattain-fc3015/
-/CLAUDE.md
-/.claude/analysis_biome_color_system.md
-/.claude/analysis_geranium_pink.md
-/.claude/analysis_worldgen.md
-/.claude/skills/gardentrails-add-drying-tray-variant.md
-/.claude/impl_geranium_variants.md
-/.claude/docs/patreon-system.md
-/.claude/rapport_warnings_crash.md
-/.claude/rapport_cultural_folders.md
-/.claude/docs/analysis_biome_color_system.md
-/.claude/docs/analysis_flower_pot_tint.md
-/.claude/docs/analysis_geranium_pink.md
-/.claude/docs/analysis_partial_tint_system.md
-/.claude/docs/analysis_worldgen.md
-/.claude/docs/flower-pot-variant.md
-/.claude/docs/impl_geranium_variants.md
-/.claude/docs/rapport_cultural_folders.md
