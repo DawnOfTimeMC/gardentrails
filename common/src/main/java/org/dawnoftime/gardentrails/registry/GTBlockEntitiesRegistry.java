@@ -24,9 +24,6 @@ public abstract class GTBlockEntitiesRegistry {
                     GTBlocksRegistry.INSTANCE.CHERRY_DRYING_TRAY.get(),
                     GTBlocksRegistry.INSTANCE.DARK_OAK_DRYING_TRAY.get(),
                     GTBlocksRegistry.INSTANCE.SPRUCE_DRYING_TRAY.get(),
-                    GTBlocksRegistry.INSTANCE.SILVER_DRYING_TRAY.get(),
-                    GTBlocksRegistry.INSTANCE.GOLDEN_DRYING_TRAY.get(),
-                    GTBlocksRegistry.INSTANCE.AMETHYST_DRYING_TRAY.get()
             });
 
     public abstract <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String name, BiFunction<BlockPos, BlockState, T> factoryIn, Supplier<Block[]> validBlocksSupplier);

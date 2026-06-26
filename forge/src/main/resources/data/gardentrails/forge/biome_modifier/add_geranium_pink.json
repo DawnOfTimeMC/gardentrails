@@ -1,11 +1,5 @@
 {
-  "type": "forge:add_features",
-  "biomes": [
-    "minecraft:flower_forest",
-    "minecraft:meadow",
-    "minecraft:birch_forest",
-    "minecraft:old_growth_birch_forest"
-  ],
-  "features": "gardentrails:geranium_pink_placed",
-  "step": "vegetal_decoration"
+  "type": "gardentrails:config_driven",
+  "plant": "geranium_pink",
+  "feature": "gardentrails:geranium_pink_placed"
 }

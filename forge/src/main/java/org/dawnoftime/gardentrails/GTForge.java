@@ -1,33 +1,36 @@
 package org.dawnoftime.gardentrails;
 
-import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
-import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
-import dev.isxander.yacl3.platform.YACLPlatform;
-import net.minecraft.resources.ResourceLocation;
+import com.mojang.serialization.Codec;
+import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.dawnoftime.gardentrails.datagen.DataGenerators;
 import org.dawnoftime.gardentrails.loot.LootModifiers;
+import org.dawnoftime.gardentrails.worldgen.GTConfigBiomeModifier;
 
 @Mod(GTCommon.MOD_ID)
 public class GTForge {
-    public static final ConfigClassHandler<GTConfig> HANDLER = ConfigClassHandler.createBuilder(GTConfig.class)
-            .id(new ResourceLocation(GTCommon.MOD_ID, "config"))
-            .serializer(config -> GsonConfigSerializerBuilder.create(config)
-                    .setPath(YACLPlatform.getConfigDir().resolve("gardentrails-config.json5"))
-                    .setJson5(true)
-                    .build())
-            .build();
+
+    public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS =
+        DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, GTCommon.MOD_ID);
+
+    public static final RegistryObject<Codec<GTConfigBiomeModifier>> CONFIG_BIOME_MODIFIER =
+        BIOME_MODIFIER_SERIALIZERS.register("config_driven", () -> GTConfigBiomeModifier.CODEC);
 
     public GTForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        HANDLER.load();
+        GTConfigLoader.load(FMLPaths.CONFIGDIR.get());
         GTCommon.init();
 
         RegistryImpls.init(modEventBus);
         LootModifiers.register(modEventBus);
+        BIOME_MODIFIER_SERIALIZERS.register(modEventBus);
 
         if (FMLEnvironment.dist.isClient()) {
             modEventBus.register(GTForgeClient.class);
@@ -35,5 +38,4 @@ public class GTForge {
 
         modEventBus.register(DataGenerators.class);
     }
-
 }

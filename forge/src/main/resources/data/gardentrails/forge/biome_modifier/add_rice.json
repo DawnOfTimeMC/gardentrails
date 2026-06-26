@@ -1,9 +1,5 @@
 {
-  "type": "forge:add_features",
-  "biomes": [
-    "minecraft:swamp",
-    "minecraft:mangrove_swamp"
-  ],
-  "features": "gardentrails:rice_placed",
-  "step": "vegetal_decoration"
+  "type": "gardentrails:config_driven",
+  "plant": "rice",
+  "feature": "gardentrails:rice_placed"
 }

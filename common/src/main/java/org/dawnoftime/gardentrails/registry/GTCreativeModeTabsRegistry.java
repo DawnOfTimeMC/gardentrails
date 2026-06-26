@@ -31,7 +31,7 @@ public abstract class GTCreativeModeTabsRegistry {
         output.accept(GTBlocksRegistry.INSTANCE.COPPER_PERGOLA.get());
         output.accept(GTBlocksRegistry.INSTANCE.OXIDIZED_COPPER_PERGOLA.get());
 
-        // ── Plantes + items associés ──────────────────────────────────────────
+        // ── Plants + items ──────────────────────────────────────────
         output.accept(GTBlocksRegistry.INSTANCE.CAMELLIA.get());
         output.accept(GTItemsRegistry.INSTANCE.CAMELLIA_LEAVES.get());
         output.accept(GTItemsRegistry.INSTANCE.TEA_LEAVES.get());
@@ -77,7 +77,7 @@ public abstract class GTCreativeModeTabsRegistry {
         output.accept(GTItemsRegistry.INSTANCE.SAKE_MAIZE.get());
         output.accept(GTItemsRegistry.INSTANCE.SAKE_MULBERRY.get());
 
-        // ── Soie ──────────────────────────────────────────────────────────────
+        // ── Silk ──────────────────────────────────────────────────────────────
         output.accept(GTItemsRegistry.INSTANCE.SILK_WORM_EGGS.get());
         output.accept(GTItemsRegistry.INSTANCE.SILK_WORMS_HATCHERY.get());
         output.accept(GTItemsRegistry.INSTANCE.SILK_WORMS.get());

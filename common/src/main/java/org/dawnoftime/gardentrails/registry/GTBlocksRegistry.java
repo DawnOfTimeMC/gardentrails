@@ -53,9 +53,6 @@ public abstract class GTBlocksRegistry {
     public final Supplier<Block> CHERRY_DRYING_TRAY = register("cherry_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion(), DRYER_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> DARK_OAK_DRYING_TRAY = register("dark_oak_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion(), DRYER_SHAPES), BlockTags.MINEABLE_WITH_AXE);
     public final Supplier<Block> SPRUCE_DRYING_TRAY = register("spruce_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion(), DRYER_SHAPES), BlockTags.MINEABLE_WITH_AXE);
-    public final Supplier<Block> SILVER_DRYING_TRAY = register("silver_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), DRYER_SHAPES), BlockTags.MINEABLE_WITH_PICKAXE);
-    public final Supplier<Block> GOLDEN_DRYING_TRAY = register("golden_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.GOLD_BLOCK).noOcclusion(), DRYER_SHAPES), BlockTags.MINEABLE_WITH_PICKAXE);
-    public final Supplier<Block> AMETHYST_DRYING_TRAY = register("amethyst_drying_tray", () -> new DryerBlock(Block.Properties.copy(Blocks.AMETHYST_BLOCK).noOcclusion(), DRYER_SHAPES), BlockTags.MINEABLE_WITH_PICKAXE);
     public Supplier<ColoredGrowingBushBlock> CAMELLIA;
     public Supplier<MulberryBlock> MULBERRY;
     public final Supplier<WaterDoubleCropsBlock> RICE = registerWithItem("rice", () -> new WaterDoubleCropsBlock(2), (block) -> new SoilSeedsItem(block, Foods.RICE), BlockTags.MINEABLE_WITH_AXE);

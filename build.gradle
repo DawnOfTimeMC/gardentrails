@@ -24,14 +24,12 @@ configure([project(":fabric"), project(":forge")]) {
             accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
             minecraftVersions.add(project.property("minecraft_version"))
             changelogType = "markdown"
-            requires("yacl")
         }
 
         modrinth {
             projectId = "oEUTaykr"
             accessToken = providers.environmentVariable("MODRINTH_API_KEY")
             minecraftVersions.add(project.property("minecraft_version"))
-            requires("yacl")
         }
     }
 }

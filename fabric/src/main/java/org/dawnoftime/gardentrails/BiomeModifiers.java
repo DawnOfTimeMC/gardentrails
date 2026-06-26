@@ -2,35 +2,45 @@ package org.dawnoftime.gardentrails;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import org.dawnoftime.gardentrails.registry.GTFeaturesRegistry;
 
+import java.util.List;
+
 public class BiomeModifiers {
+
     public static void init() {
-        addFeatureToBiomes(GTFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.WINDSWEPT_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.CAMELLIA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SAVANNA, Biomes.TAIGA);
-        addFeatureToBiomes(GTFeaturesRegistry.COMMELINA_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.FLOWER_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.CYPRESS_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA);
-        addFeatureToBiomes(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FLOWER_FOREST, Biomes.MEADOW, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.IVY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.DARK_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.MULBERRY_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA);
-        addFeatureToBiomes(GTFeaturesRegistry.RED_MAPLE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.DARK_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.RICE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
-        addFeatureToBiomes(GTFeaturesRegistry.WILD_GRAPE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.DARK_FOREST);
-        addFeatureToBiomes(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY, GenerationStep.Decoration.VEGETAL_DECORATION, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_SAVANNA, Biomes.PLAINS);
+        GTConfig cfg = GTConfigLoader.INSTANCE;
+        registerFromConfig(GTFeaturesRegistry.BOXWOOD_BUSH_PLACED_KEY, cfg.boxwoodBushBiomes);
+        registerFromConfig(GTFeaturesRegistry.CAMELLIA_PLACED_KEY,     cfg.camelliaBiomes);
+        registerFromConfig(GTFeaturesRegistry.COMMELINA_PLACED_KEY,    cfg.commelinaBiomes);
+        registerFromConfig(GTFeaturesRegistry.CYPRESS_PLACED_KEY,      cfg.cypressBiomes);
+        registerFromConfig(GTFeaturesRegistry.GERANIUM_PINK_PLACED_KEY,cfg.geraniumPinkBiomes);
+        registerFromConfig(GTFeaturesRegistry.IVY_PLACED_KEY,          cfg.ivyBiomes);
+        registerFromConfig(GTFeaturesRegistry.MULBERRY_PLACED_KEY,     cfg.mulberryBiomes);
+        registerFromConfig(GTFeaturesRegistry.RED_MAPLE_PLACED_KEY,    cfg.redMapleBiomes);
+        registerFromConfig(GTFeaturesRegistry.RICE_PLACED_KEY,         cfg.riceBiomes);
+        registerFromConfig(GTFeaturesRegistry.WILD_GRAPE_PLACED_KEY,   cfg.wildGrapeBiomes);
+        registerFromConfig(GTFeaturesRegistry.WILD_MAIZE_PLACED_KEY,   cfg.wildMaizeBiomes);
     }
 
-    @SafeVarargs
-    private static void addFeatureToBiomes(ResourceKey<PlacedFeature> featureKey, GenerationStep.Decoration step, ResourceKey<Biome>... biomes) {
-        for (ResourceKey<Biome> biome : biomes) {
+    private static void registerFromConfig(ResourceKey<PlacedFeature> featureKey, List<String> biomeIds) {
+        for (String id : biomeIds) {
+            ResourceLocation loc = ResourceLocation.tryParse(id);
+            if (loc == null) {
+                System.err.println("[GardenTrails] Invalid biome ID in config, skipping: " + id);
+                continue;
+            }
+            ResourceKey<Biome> biomeKey = ResourceKey.create(Registries.BIOME, loc);
             BiomeModifications.addFeature(
-                    BiomeSelectors.includeByKey(biome),
-                    step,
-                    featureKey
+                BiomeSelectors.includeByKey(biomeKey),
+                GenerationStep.Decoration.VEGETAL_DECORATION,
+                featureKey
             );
         }
     }

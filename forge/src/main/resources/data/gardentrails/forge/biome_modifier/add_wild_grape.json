@@ -1,10 +1,5 @@
 {
-  "type": "forge:add_features",
-  "biomes": [
-    "minecraft:forest",
-    "minecraft:birch_forest",
-    "minecraft:dark_forest"
-  ],
-  "features": "gardentrails:wild_grape_placed",
-  "step": "vegetal_decoration"
+  "type": "gardentrails:config_driven",
+  "plant": "wild_grape",
+  "feature": "gardentrails:wild_grape_placed"
 }

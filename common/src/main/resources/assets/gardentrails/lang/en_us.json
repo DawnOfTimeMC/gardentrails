@@ -1,17 +1,4 @@
 {
-    "yacl3.config.gardentrails:config.category.loot": "Loot",
-    "yacl3.config.gardentrails:config.category.loot.group.chest_loot": "Chest Loot",
-    "yacl3.config.gardentrails:config.generateChestLoot": "Generate Chest Loot",
-    "yacl3.config.gardentrails:config.generateSilk": "Silk",
-    "yacl3.config.gardentrails:config.generateGrapes": "Grapes",
-    "yacl3.config.gardentrails:config.generateMaize": "Maize",
-    "yacl3.config.gardentrails:config.generateRice": "Rice",
-    "yacl3.config.gardentrails:config.generateMulberry": "Mulberry",
-
-    "yacl3.config.gardentrails:config.category.recipes": "Recipes",
-    "yacl3.config.gardentrails:config.dawnOfTimeUseSilk": "Dawn Of Time recipes use silk",
-    "yacl3.config.gardentrails:config.armorOfTheAgesUseSilk": "Armor of the Ages recipes use silk",
-
     "itemGroup.gardentrails.gttab": "Garden Trails",
 
     "block.gardentrails.wild_grape": "Wild Grapes",
@@ -31,9 +18,6 @@
     "block.gardentrails.cherry_drying_tray": "Cherry Drying Tray",
     "block.gardentrails.dark_oak_drying_tray": "Dark Oak Drying Tray",
     "block.gardentrails.spruce_drying_tray": "Spruce Drying Tray",
-    "block.gardentrails.silver_drying_tray": "Silver Drying Tray",
-    "block.gardentrails.golden_drying_tray": "Golden Drying Tray",
-    "block.gardentrails.amethyst_drying_tray": "Amethyst Drying Tray",
     "block.gardentrails.camellia": "Camellia Seeds",
     "item.gardentrails.camellia_leaves": "Camellia Leaves",
     "block.gardentrails.camellia_flower_pot": "Potted Camellia",
@@ -117,7 +101,6 @@
     "block.gardentrails.oxidized_copper_pergola_vine": "Oxidized Copper Pergola with Vine",
     "block.gardentrails.oxidized_copper_pergola_ivy": "Oxidized Copper Pergola with Ivy",
     "block.gardentrails.oxidized_copper_pergola_grape": "Oxidized Copper Pergola with Grape",
-
 
     "item.gardentrails.silkmoth_spawn_egg": "Silkmoth Spawn Egg",
     "item.gardentrails.garden_trails": "Garden Trails",

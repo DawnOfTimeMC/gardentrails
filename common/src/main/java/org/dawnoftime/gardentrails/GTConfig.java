@@ -1,47 +1,75 @@
 package org.dawnoftime.gardentrails;
 
-import dev.isxander.yacl3.config.v2.api.SerialEntry;
-import dev.isxander.yacl3.config.v2.api.autogen.AutoGen;
-import dev.isxander.yacl3.config.v2.api.autogen.Boolean;
+import java.util.List;
 
 public class GTConfig {
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
-    public boolean generateChestLoot = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
-    public boolean generateSilk = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
-    public boolean generateGrapes = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
-    public boolean generateMaize = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
-    public boolean generateRice = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
-    public boolean generateMulberry = true;
-
-    // Recipes settings
-    @SerialEntry(comment = "This makes the recipes of Dawn of Time use silk instead white wool")
-    @AutoGen(category = "recipes")
-    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
-    public boolean dawnOfTimeUseSilk = true;
-    @SerialEntry(comment = "This makes the recipes of Armor of Ages use silk instead string")
-    @AutoGen(category = "recipes")
-    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
+    // Non-worldgen toggles
+    public boolean generateChestLoot     = true;
+    public boolean generateSilk          = true;
+    public boolean generateGrapes        = true;
+    public boolean generateMaize         = true;
+    public boolean generateRice          = true;
+    public boolean generateMulberry      = true;
+    public boolean dawnOfTimeUseSilk     = true;
     public boolean armorOfTheAgesUseSilk = true;
+
+    // Plant biome lists - empty list = plant does not spawn
+    public List<String> boxwoodBushBiomes = List.of(
+        "minecraft:forest", "minecraft:birch_forest",
+        "minecraft:old_growth_birch_forest", "minecraft:windswept_forest"
+    );
+    public List<String> camelliaBiomes = List.of(
+        "minecraft:jungle", "minecraft:sparse_jungle",
+        "minecraft:bamboo_jungle", "minecraft:savanna", "minecraft:taiga"
+    );
+    public List<String> commelinaBiomes = List.of(
+        "minecraft:swamp", "minecraft:mangrove_swamp", "minecraft:flower_forest"
+    );
+    public List<String> cypressBiomes = List.of(
+        "minecraft:savanna", "minecraft:savanna_plateau", "minecraft:windswept_savanna"
+    );
+    public List<String> geraniumPinkBiomes = List.of(
+        "minecraft:flower_forest", "minecraft:meadow",
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest"
+    );
+    public List<String> ivyBiomes = List.of(
+        "minecraft:forest", "minecraft:birch_forest",
+        "minecraft:old_growth_birch_forest", "minecraft:dark_forest"
+    );
+    public List<String> mulberryBiomes = List.of(
+        "minecraft:taiga", "minecraft:old_growth_pine_taiga", "minecraft:old_growth_spruce_taiga"
+    );
+    public List<String> redMapleBiomes = List.of(
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest", "minecraft:dark_forest"
+    );
+    public List<String> riceBiomes = List.of(
+        "minecraft:swamp", "minecraft:mangrove_swamp"
+    );
+    public List<String> wildGrapeBiomes = List.of(
+        "minecraft:forest", "minecraft:birch_forest", "minecraft:dark_forest"
+    );
+    public List<String> wildMaizeBiomes = List.of(
+        "minecraft:savanna", "minecraft:savanna_plateau",
+        "minecraft:windswept_savanna", "minecraft:plains"
+    );
+
+    public List<String> getBiomesForPlant(String plant) {
+        return switch (plant) {
+            case "boxwood_bush"  -> boxwoodBushBiomes;
+            case "camellia"      -> camelliaBiomes;
+            case "commelina"     -> commelinaBiomes;
+            case "cypress"       -> cypressBiomes;
+            case "geranium_pink" -> geraniumPinkBiomes;
+            case "ivy"           -> ivyBiomes;
+            case "mulberry"      -> mulberryBiomes;
+            case "red_maple"     -> redMapleBiomes;
+            case "rice"          -> riceBiomes;
+            case "wild_grape"    -> wildGrapeBiomes;
+            case "wild_maize"    -> wildMaizeBiomes;
+            default -> {
+                System.err.println("[GardenTrails] Unknown plant key in biome modifier: " + plant);
+                yield List.of();
+            }
+        };
+    }
 }
