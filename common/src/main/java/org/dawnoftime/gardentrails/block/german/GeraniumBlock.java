@@ -7,11 +7,12 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.PushReaction;
+import org.dawnoftime.gardentrails.block.IBiomeColoredBlock;
 import org.dawnoftime.gardentrails.block.templates.BlockGT;
 import javax.annotation.Nullable;
 import static org.dawnoftime.gardentrails.util.VoxelShapes.GERANIUM_SHAPE;
 
-public class GeraniumBlock extends BlockGT {
+public class GeraniumBlock extends BlockGT implements IBiomeColoredBlock {
 
     public GeraniumBlock(Properties properties) {
         super(properties.pushReaction(PushReaction.DESTROY), GERANIUM_SHAPE);
@@ -27,5 +28,10 @@ public class GeraniumBlock extends BlockGT {
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState blockDown = worldIn.getBlockState(pos.below());
         return blockDown.getBlock() == Blocks.GRASS_BLOCK || blockDown.is(BlockTags.DIRT) || blockDown.getBlock() == Blocks.FARMLAND;
+    }
+
+    @Override
+    public ColorType getColorType() {
+        return ColorType.FOLIAGE;
     }
 }

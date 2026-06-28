@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "gardentrails:block/general/ivy_flower_pot" }
+            { "model": "gardentrails:block/ivy_flower_pot" }
         ]
     }
 }

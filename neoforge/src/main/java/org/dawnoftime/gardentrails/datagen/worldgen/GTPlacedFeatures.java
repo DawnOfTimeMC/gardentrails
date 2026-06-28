@@ -96,6 +96,46 @@ public class GTPlacedFeatures {
                 )
         );
 
+        register(context, GTFeaturesRegistry.GERANIUM_ORANGE_PLACED_KEY,
+                configuredFeatures.getOrThrow(GTConfiguredFeatures.GERANIUM_ORANGE_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+                )
+        );
+
+        register(context, GTFeaturesRegistry.GERANIUM_PURPLE_PLACED_KEY,
+                configuredFeatures.getOrThrow(GTConfiguredFeatures.GERANIUM_PURPLE_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+                )
+        );
+
+        register(context, GTFeaturesRegistry.GERANIUM_PURPLEISH_PLACED_KEY,
+                configuredFeatures.getOrThrow(GTConfiguredFeatures.GERANIUM_PURPLEISH_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+                )
+        );
+
+        register(context, GTFeaturesRegistry.GERANIUM_RED_PLACED_KEY,
+                configuredFeatures.getOrThrow(GTConfiguredFeatures.GERANIUM_RED_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+                )
+        );
+
+        register(context, GTFeaturesRegistry.GERANIUM_WHITE_PLACED_KEY,
+                configuredFeatures.getOrThrow(GTConfiguredFeatures.GERANIUM_WHITE_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()
+                )
+        );
+
         register(context, GTFeaturesRegistry.IVY_PLACED_KEY,
                 configuredFeatures.getOrThrow(GTConfiguredFeatures.IVY_KEY),
                 List.of(

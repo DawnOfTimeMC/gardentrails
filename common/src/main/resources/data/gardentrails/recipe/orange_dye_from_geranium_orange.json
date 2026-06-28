@@ -1,0 +1,12 @@
+﻿{
+  "type": "minecraft:crafting_shapeless",
+  "group": "orange_dye",
+  "ingredients": [
+    {
+      "item": "gardentrails:geranium_orange"
+    }
+  ],
+  "result": {
+    "id": "minecraft:orange_dye"
+  }
+}

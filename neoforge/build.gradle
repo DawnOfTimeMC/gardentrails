@@ -1,6 +1,7 @@
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
+    id 'me.modmuss50.mod-publish-plugin'
 }
 
 neoForge {
@@ -41,18 +42,23 @@ neoForge {
 
 repositories {
     maven {
-        name 'Xander Maven'
-        url 'https://maven.isxander.dev/releases'
+        name = "Kotlin for Forge"
+        setUrl("https://thedarkcolour.github.io/KotlinForForge/")
     }
 
     maven {
-        name = "Kotlin for Forge"
-        setUrl("https://thedarkcolour.github.io/KotlinForForge/")
+        name = "CurseMaven"
+        url = "https://www.cursemaven.com"
     }
 }
 
 dependencies {
-    implementation "dev.isxander:yet-another-config-lib:${project.yacl_version}-neoforge"
+    runtimeOnly "curse.maven:jei-238222:8292118"
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+publishMods {
+    file = jar.archiveFile
+    modLoaders.add("neoforge")
+}

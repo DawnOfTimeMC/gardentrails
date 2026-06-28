@@ -8,7 +8,6 @@
     "accessor.BlockBehaviourAccessor"
   ],
   "client": [
-    "client.CreativeInventoryMixin"
   ],
   "server": [
   ],

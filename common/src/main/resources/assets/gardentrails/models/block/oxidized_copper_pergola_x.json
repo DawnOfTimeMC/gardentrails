@@ -1,0 +1,6 @@
+{
+	"parent": "gardentrails:block/pergola_x_base",
+	"textures": {
+		"material": "gardentrails:block/oxidized_copper_pergola"
+	}
+}

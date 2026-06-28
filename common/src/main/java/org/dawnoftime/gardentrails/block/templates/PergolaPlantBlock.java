@@ -22,20 +22,27 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.gardentrails.platform.Services;
+import org.dawnoftime.gardentrails.GTConstants;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_COLLISION_SHAPES;
 
 public class PergolaPlantBlock extends PergolaBlock{
     private static final IntegerProperty AGE_2 = BlockStateProperties.AGE_2;
+    private final Supplier<PergolaBlock> basePergola;
 
-    public PergolaPlantBlock(Properties properties) {
-        super(properties);
+    public PergolaPlantBlock(Properties properties,
+                             Supplier<PergolaBlock> basePergola,
+                             Supplier<PergolaBlock> vineVariant,
+                             Supplier<PergolaBlock> ivyVariant,
+                             Supplier<PergolaBlock> grapeVariant) {
+        super(properties, vineVariant, ivyVariant, grapeVariant);
+        this.basePergola = basePergola;
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS_Y, false).setValue(AXIS_X, false).setValue(AXIS_Z, false).setValue(AGE_2, 0));
     }
 
@@ -72,13 +79,13 @@ public class PergolaPlantBlock extends PergolaBlock{
             if(level.getRawBrightness(pos, 0) >= 8) {
                 int age = state.getValue(AGE_2);
                 if(age < 2){
-                    if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) { //Probability "can grow"
+                    if (random.nextInt(GTConstants.CLIMBING_GROWTH_CHANCE) == 0) { //Probability "can grow"
                         level.setBlock(pos, state.setValue(AGE_2, age + 1), 2);
                     }
-                } else if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) { //Probability "can spread"
+                } else if (random.nextInt(GTConstants.CLIMBING_SPREAD_CHANCE) == 0) { //Probability "can spread"
                     BlockPos adjacentPos = randomSpread(pos, random);
                     BlockState adjacentState = level.getBlockState(adjacentPos);
-                    if(adjacentState.getBlock() == GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()) {
+                    if(adjacentState.getBlock() == this.basePergola.get()) {
                         level.setBlock(adjacentPos, this.copyShapeToPergola(adjacentState, this), 2);
                     }
                 }
@@ -93,7 +100,7 @@ public class PergolaPlantBlock extends PergolaBlock{
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(state.getBlock());
             List<ItemStack> drops = Utils.getLootList(serverLevel, state, heldItemStack, blockId.getPath() + "_" + state.getValue(AGE_2));
             Utils.dropLootFromList(level, pos, drops, 1.0F);
-            level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()), 2);
+            level.setBlock(pos, this.copyShapeToPergola(state, this.basePergola.get()), 2);
             level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
             return ItemInteractionResult.SUCCESS;
         }

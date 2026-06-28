@@ -5,7 +5,7 @@
                 "axis_y": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_y"
+                "model": "gardentrails:block/iron_pergola_y"
             }
         },
         {
@@ -14,7 +14,7 @@
                 "axis_z": "false"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x"
+                "model": "gardentrails:block/iron_pergola_x"
             }
         },
         {
@@ -23,7 +23,7 @@
                 "axis_z": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x",
+                "model": "gardentrails:block/iron_pergola_x",
                 "y": 90
             }
         },
@@ -33,25 +33,25 @@
                 "axis_z": "true"
             },
             "apply": {
-                "model": "gardentrails:block/general/iron_pergola_x_z"
+                "model": "gardentrails:block/iron_pergola_x_z"
             }
         },
         {
             "when": {"age": "0", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/ivy/ivy_y_small_stage_0"}
+                { "model": "gardentrails:block/ivy/ivy_y_small_stage_0"}
             ]
         },
         {
             "when": {"age": "1", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/ivy/ivy_y_small_stage_1"}
+                { "model": "gardentrails:block/ivy/ivy_y_small_stage_1"}
             ]
         },
         {
             "when": {"age": "2", "axis_y" : "true"},
             "apply": [
-                { "model": "gardentrails:block/general/ivy/ivy_y_small_stage_2"}
+                { "model": "gardentrails:block/ivy/ivy_y_small_stage_2"}
             ]
         },
         {
@@ -60,7 +60,7 @@
                 {"age": "0", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/ivy/ivy_x_z_stage_0"}
+                { "model": "gardentrails:block/ivy/ivy_x_z_stage_0"}
             ]
         },
         {
@@ -69,7 +69,7 @@
                 {"age": "1", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/ivy/ivy_x_z_stage_1"}
+                { "model": "gardentrails:block/ivy/ivy_x_z_stage_1"}
             ]
         },
         {
@@ -78,7 +78,7 @@
                 {"age": "2", "axis_z" : "true" }
             ]},
             "apply": [
-                { "model": "gardentrails:block/general/ivy/ivy_x_z_stage_2"}
+                { "model": "gardentrails:block/ivy/ivy_x_z_stage_2"}
             ]
         }
     ]

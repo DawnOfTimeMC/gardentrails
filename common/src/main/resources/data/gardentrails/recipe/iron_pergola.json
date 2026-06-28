@@ -1,17 +1,16 @@
-{
+﻿{
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"I",
-        "I"
+		"I"
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:iron_bars"
+			"item": "minecraft:iron_ingot"
 		}
 	},
 	"result": {
 		"id": "gardentrails:iron_pergola",
-        "count": 2
-
-    }
+		"count": 2
+	}
 }

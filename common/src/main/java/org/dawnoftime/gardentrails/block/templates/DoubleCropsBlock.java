@@ -30,7 +30,7 @@ public class DoubleCropsBlock extends SoilCropsBlock {
         super(plantType);
         this.growingAge = growingAge;
         this.SHAPES = this.makeShapes();
-        this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(this.getAgeProperty(), 0).setValue(PERSISTENT, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(HALF, Half.BOTTOM).setValue(this.getAgeProperty(), 0));
     }
 
     @Override
@@ -66,14 +66,14 @@ public class DoubleCropsBlock extends SoilCropsBlock {
         if(this.isBottomCrop(stateIn)) {
             if(facing == Direction.UP) {
                 if(facingState.getBlock() == this && !this.isBottomCrop(facingState)) {
-                    return stateIn.setValue(PERSISTENT, facingState.getValue(PERSISTENT));
+                    return stateIn;
                 } else
                     return (stateIn.getValue(AGE) < this.getAgeReachingTopBlock()) ? stateIn : this.getRemovedState(stateIn);
             }
         } else {
             if(facing == Direction.DOWN) {
                 if(facingState.getBlock() == this && this.isBottomCrop(facingState)) {
-                    return stateIn.setValue(AGE, facingState.getValue(AGE)).setValue(PERSISTENT, facingState.getValue(PERSISTENT));
+                    return stateIn.setValue(AGE, facingState.getValue(AGE));
                 } else
                     return this.getRemovedState(stateIn);
             }
@@ -128,25 +128,21 @@ public class DoubleCropsBlock extends SoilCropsBlock {
     // Only called with Bonemeal
     @Override
     public void growCrops(Level worldIn, BlockPos pos, BlockState state) {
-        if(this.isBottomCrop(state)) {
-            int newAge = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-            if(newAge > this.getMaxAge())
-                newAge = this.getMaxAge();
-            if(newAge >= this.getAgeReachingTopBlock()) {
-                BlockPos topPos = pos.above();
-                if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)) {
-                    state = this.getStateForAge(newAge);
-                    worldIn.setBlock(pos, state, 2);
-                    worldIn.setBlock(topPos, this.getTopState(state), 2);
-                }
-            }
+        if (!this.isBottomCrop(state)) {
+            pos = pos.below();
+            state = worldIn.getBlockState(pos);
+            if (state.getBlock() != this) return;
         }
+        int newAge = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+        if (newAge > this.getMaxAge())
+            newAge = this.getMaxAge();
+        this.setPlantWithAge(state, worldIn, pos, newAge);
     }
 
     @Override
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if(this.isBottomCrop(state)) {
-            if(!worldIn.isLoaded(pos) || state.getValue(PERSISTENT))
+            if(!worldIn.isLoaded(pos))
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light
             if(worldIn.getRawBrightness(pos, 0) >= 9) {
                 int i = this.getAge(state);
@@ -154,12 +150,8 @@ public class DoubleCropsBlock extends SoilCropsBlock {
                     float f = Services.PLATFORM.getGrowthSpeed(state, worldIn, pos);
                     BlockPos topPos = pos.above();
                     if(worldIn.getBlockState(topPos).getBlock() == this || worldIn.isEmptyBlock(topPos)) {
-                        if(random.nextInt((int) (25.0F / f) + 1) == 0) {
-                            state = this.getStateForAge(i + 1);
-                            worldIn.setBlock(pos, state, 2);
-                            if(i + 1 >= this.getAgeReachingTopBlock())
-                                worldIn.setBlock(topPos, this.getTopState(state), 2);
-                        }
+                        if(random.nextInt((int) (25.0F / f) + 1) == 0)
+                            this.setPlantWithAge(state, worldIn, pos, i + 1);
                     }
                 }
             }

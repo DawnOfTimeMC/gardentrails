@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "gardentrails:block/roman/cypress_pot" }
+            { "model": "gardentrails:block/cypress_pot" }
         ]
     }
 }

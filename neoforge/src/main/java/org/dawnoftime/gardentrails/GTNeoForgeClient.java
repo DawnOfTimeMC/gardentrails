@@ -7,7 +7,6 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.dawnoftime.gardentrails.client.model.entity.SilkmothModel;
 import org.dawnoftime.gardentrails.client.renderer.blockentity.DryerRenderer;
 import org.dawnoftime.gardentrails.client.renderer.entity.SilkmothRenderer;
@@ -22,11 +21,6 @@ public class GTNeoForgeClient {
 
         eventBus.addListener(GTNeoForgeClient::registerLayerDefinitions);
         eventBus.addListener(GTNeoForgeClient::registerRenderers);
-
-        ModLoadingContext.get().registerExtensionPoint(
-                IConfigScreenFactory.class,
-                () -> (modContainer, parent) -> GTNeoForge.HANDLER.generateGui().generateScreen(parent)
-        );
     }
 
     @SubscribeEvent

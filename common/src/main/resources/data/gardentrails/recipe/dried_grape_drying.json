@@ -1,0 +1,13 @@
+﻿{
+	"type": "gardentrails:dryer",
+	"dryingTime": 800,
+	"experience": 1.0,
+	"ingredientCount": 4,
+	"ingredient": {
+		"item": "gardentrails:grape"
+	},
+	"result": {
+		"id": "gardentrails:dried_grape",
+		"count": 4
+	}
+}

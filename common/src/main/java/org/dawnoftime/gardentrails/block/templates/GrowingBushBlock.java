@@ -39,13 +39,13 @@ public class GrowingBushBlock extends SoilCropsBlock {
     public GrowingBushBlock(PlantType plantType, int cutAge) {
         super(plantType);
         this.cutAge = cutAge;
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(CUT, false).setValue(PERSISTENT, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(CUT, false));
         this.SHAPES = this.makeShapes();
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE, PERSISTENT, CUT);
+        builder.add(AGE, CUT);
     }
 
     @Override
@@ -106,6 +106,17 @@ public class GrowingBushBlock extends SoilCropsBlock {
             }
         }
         return ItemInteractionResult.FAIL;
+    }
+
+    @Override
+    public void growCrops(Level worldIn, BlockPos pos, BlockState state) {
+        if (this.isMaxAge(state)) {
+            String blockName = this.builtInRegistryHolder().key().location().getPath();
+            List<ItemStack> drops = Utils.getLootList((ServerLevel) worldIn, state, ItemStack.EMPTY, blockName);
+            Utils.dropLootFromList(worldIn, pos, drops, 2.0f);
+        } else {
+            super.growCrops(worldIn, pos, state);
+        }
     }
 
     public void harvestWithoutBreaking(BlockState state, Level worldIn, BlockPos pos, ItemStack itemStackHand, String blockName, float dropMultiplier) {

@@ -21,23 +21,30 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.dawnoftime.gardentrails.platform.Services;
+import org.dawnoftime.gardentrails.GTConstants;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.util.GTBlockStateProperties;
 import org.dawnoftime.gardentrails.util.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_COLLISION_SHAPES;
 
 public class PergolaCropBlock extends PergolaBlock{
     private static final IntegerProperty AGE_6 = GTBlockStateProperties.AGE_6;
     private final int[] moonPhasePerAge;
+    private final Supplier<PergolaBlock> basePergola;
 
-    public PergolaCropBlock(Properties properties, final int age2, final int age3, final int age4, final int age5, final int age6) {
-        super(properties);
+    public PergolaCropBlock(Properties properties, final int age2, final int age3, final int age4, final int age5, final int age6,
+                            Supplier<PergolaBlock> basePergola,
+                            Supplier<PergolaBlock> vineVariant,
+                            Supplier<PergolaBlock> ivyVariant,
+                            Supplier<PergolaBlock> grapeVariant) {
+        super(properties, vineVariant, ivyVariant, grapeVariant);
         this.moonPhasePerAge = new int[]{age2, age3, age4, age5, age6};
+        this.basePergola = basePergola;
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS_Y, false).setValue(AXIS_X, false).setValue(AXIS_Z, false).setValue(AGE_6, 0));
     }
 
@@ -83,19 +90,19 @@ public class PergolaCropBlock extends PergolaBlock{
             if(level.getRawBrightness(pos, 0) >= 8) {
                 int age = state.getValue(AGE_6);
                 if(age < 2){
-                    if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) { //Probability "can grow"
+                    if (random.nextInt(GTConstants.CLIMBING_GROWTH_CHANCE) == 0) { //Probability "can grow"
                         level.setBlock(pos, state.setValue(AGE_6, age + 1), 2);
                     }
                 } else {
                     if (this.canGrowMoonCycle(level, age)) {
-                        if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) { //Probability "can grow")
+                        if (random.nextInt(GTConstants.CLIMBING_GROWTH_CHANCE) == 0) { //Probability "can grow")
                             level.setBlock(pos, state.setValue(AGE_6, 2 + ((age - 1) % 5)), 2);
                         }
                     }
-                    if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) { //Probability "can spread"
+                    if (random.nextInt(GTConstants.CLIMBING_SPREAD_CHANCE) == 0) { //Probability "can spread"
                         BlockPos adjacentPos = randomSpread(pos, random);
                         BlockState adjacentState = level.getBlockState(adjacentPos);
-                        if(adjacentState.getBlock() == GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()) {
+                        if(adjacentState.getBlock() == this.basePergola.get()) {
                             level.setBlock(adjacentPos, this.copyShapeToPergola(adjacentState, this), 2);
                         }
                     }
@@ -115,7 +122,7 @@ public class PergolaCropBlock extends PergolaBlock{
         }
         if (player.isCrouching()) {
             dropPlant(state, level, pos, player.getItemInHand(hand));
-            level.setBlock(pos, this.copyShapeToPergola(state, GTBlocksRegistry.INSTANCE.IRON_PERGOLA.get()), 2);
+            level.setBlock(pos, this.copyShapeToPergola(state, this.basePergola.get()), 2);
             level.playSound(null, pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
             return ItemInteractionResult.SUCCESS;
         }

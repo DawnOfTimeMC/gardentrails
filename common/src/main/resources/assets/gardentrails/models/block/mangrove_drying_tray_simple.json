@@ -1,0 +1,7 @@
+{
+  "parent": "gardentrails:block/drying_tray_simple_base",
+  "textures": {
+    "wood": "gardentrails:block/mangrove_drying_tray",
+    "particle": "gardentrails:block/mangrove_drying_tray"
+  }
+}

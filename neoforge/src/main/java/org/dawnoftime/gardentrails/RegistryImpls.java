@@ -1,7 +1,6 @@
 package org.dawnoftime.gardentrails;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -27,14 +26,11 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.dawnoftime.gardentrails.block.templates.FlowerPotBlockGT;
 import org.dawnoftime.gardentrails.entity.SilkmothEntity;
 import org.dawnoftime.gardentrails.item.IHasFlowerPot;
-import org.dawnoftime.gardentrails.item.IconItem;
 import org.dawnoftime.gardentrails.registry.*;
 
-import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -224,11 +220,7 @@ public class RegistryImpls {
         bus.addListener((EntityAttributeCreationEvent event) -> event.put(GTEntitiesRegistry.INSTANCE.SILKMOTH_ENTITY.get(), SilkmothEntity.createAttributes().build()));
         bus.addListener((BuildCreativeModeTabContentsEvent event) -> {
             if(event.getTab() == GTCreativeModeTabsRegistry.INSTANCE.GT_TAB.get()) {
-                BuiltInRegistries.ITEM.entrySet().stream().filter(entry ->
-                                entry.getKey().location().getNamespace().equalsIgnoreCase(GTCommon.MOD_ID) &&
-                                        !(entry.getValue() instanceof IconItem))
-                        .map(Map.Entry::getValue)
-                        .forEachOrdered(event::accept);
+                GTCreativeModeTabsRegistry.addOrderedItems(event::accept);
             }
         });
     }

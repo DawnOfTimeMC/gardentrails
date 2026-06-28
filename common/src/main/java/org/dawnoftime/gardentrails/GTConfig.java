@@ -1,78 +1,97 @@
 package org.dawnoftime.gardentrails;
 
-import dev.isxander.yacl3.config.v2.api.SerialEntry;
-import dev.isxander.yacl3.config.v2.api.autogen.AutoGen;
-import dev.isxander.yacl3.config.v2.api.autogen.Boolean;
-import dev.isxander.yacl3.config.v2.api.autogen.IntField;
+import java.util.List;
 
 public class GTConfig {
-    @AutoGen(category = "entities")
-    @SerialEntry(comment = "The probability to spawn a Silkmoth on a Mulberry each random tick is equal to 1/x, where x is the config value.")
-    @IntField(min = 10, max = 10000)
-    public int silkmothSpawnChance = 400;
-    @SerialEntry
-    @AutoGen(category = "entities")
-    @IntField(min = 0, max = 10)
-    public int silkmothRotationMaxRange = 2;
-    @SerialEntry
-    @AutoGen(category = "entities")
-    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
-    public boolean silkmothMustDie = true;
-    @SerialEntry(comment = "The probability to change the rotation point each tick is equal to 1/x, where x is the config value.")
-    @AutoGen(category = "entities")
-    @IntField(min = 10, max = 10000)
-    public int silkmothRotationChange = 400;
-    @SerialEntry
-    @AutoGen(category = "entities")
-    @Boolean(colored = true, formatter = Boolean.Formatter.YES_NO)
-    public boolean silkmothMute = false;
-
-    // Block settings
-    @SerialEntry(comment = "The drying time of an item is randomly set in an interval around the default time from the recipe. The following value defines the high bound of the interval in percents. IE, if you choose '20', the interval will be [ 83.3% , 120%]. If you chose '200', the interval will be [33.3% , 300%]")
-    @AutoGen(category = "blocks")
-    @IntField(min = 0, max = 100000)
-    public int dryingTimeVariation = 30;
-    @SerialEntry(comment = "The probability to grow is equal to 1/x, where x is the config value.")
-    @AutoGen(category = "blocks")
-    @IntField(min = 1, max = 200)
-    public int climbingPlantGrowthChance = 16;
-    @SerialEntry(comment = "If the plant could have grown (see climbingPlantGrowthChance), it has a probability to spread to an adjacent block equal to 1/x, where x is the config value.")
-    @AutoGen(category = "blocks")
-    @IntField(min = 1, max = 1000)
-    public int climbingPlantSpreadChance = 5;
-    @SerialEntry(comment = "Worms have a probability to grow on random tick equal to 1/x, where x is the config value.")
-    @AutoGen(category = "blocks")
-    @IntField(min = 1, max = 1000)
-    public int stickBundleGrowthChance = 25;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateChestLoot = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateSilk = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateGrapes = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateMaize = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateRice = true;
-
-    @SerialEntry
-    @AutoGen(category = "loot", group = "chest_loot")
-    @Boolean(colored = true, formatter = Boolean.Formatter.TRUE_FALSE)
     public boolean generateMulberry = true;
 
+    // Plant biome lists - empty list = plant does not spawn
+    public List<String> boxwoodBushBiomes = List.of(
+        "minecraft:forest", "minecraft:birch_forest",
+        "minecraft:old_growth_birch_forest", "minecraft:windswept_forest"
+    );
+    public List<String> camelliaBiomes = List.of(
+        "minecraft:jungle", "minecraft:sparse_jungle",
+        "minecraft:bamboo_jungle", "minecraft:savanna", "minecraft:taiga"
+    );
+    public List<String> commelinaBiomes = List.of(
+        "minecraft:swamp", "minecraft:mangrove_swamp", "minecraft:flower_forest"
+    );
+    public List<String> cypressBiomes = List.of(
+        "minecraft:savanna", "minecraft:savanna_plateau", "minecraft:windswept_savanna"
+    );
+    public List<String> geraniumPinkBiomes = List.of(
+        "minecraft:flower_forest", "minecraft:meadow",
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest"
+    );
+    public List<String> geraniumOrangeBiomes = List.of(
+        "minecraft:flower_forest", "minecraft:meadow",
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest"
+    );
+    public List<String> geraniumPurpleBiomes = List.of(
+        "minecraft:flower_forest", "minecraft:meadow",
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest"
+    );
+    public List<String> geraniumPurpleishBiomes = List.of(
+        "minecraft:flower_forest", "minecraft:meadow",
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest"
+    );
+    public List<String> geraniumRedBiomes = List.of(
+        "minecraft:flower_forest", "minecraft:meadow",
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest"
+    );
+    public List<String> geraniumWhiteBiomes = List.of(
+        "minecraft:flower_forest", "minecraft:meadow",
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest"
+    );
+    public List<String> ivyBiomes = List.of(
+        "minecraft:forest", "minecraft:birch_forest",
+        "minecraft:old_growth_birch_forest", "minecraft:dark_forest"
+    );
+    public List<String> mulberryBiomes = List.of(
+        "minecraft:taiga", "minecraft:old_growth_pine_taiga", "minecraft:old_growth_spruce_taiga"
+    );
+    public List<String> redMapleBiomes = List.of(
+        "minecraft:birch_forest", "minecraft:old_growth_birch_forest", "minecraft:dark_forest"
+    );
+    public List<String> riceBiomes = List.of(
+        "minecraft:swamp", "minecraft:mangrove_swamp"
+    );
+    public List<String> wildGrapeBiomes = List.of(
+        "minecraft:forest", "minecraft:birch_forest", "minecraft:dark_forest"
+    );
+    public List<String> wildMaizeBiomes = List.of(
+        "minecraft:savanna", "minecraft:savanna_plateau",
+        "minecraft:windswept_savanna", "minecraft:plains"
+    );
+
+    public List<String> getBiomesForPlant(String plant) {
+        return switch (plant) {
+            case "boxwood_bush"       -> boxwoodBushBiomes;
+            case "camellia"           -> camelliaBiomes;
+            case "commelina"          -> commelinaBiomes;
+            case "cypress"            -> cypressBiomes;
+            case "geranium_pink"      -> geraniumPinkBiomes;
+            case "geranium_orange"    -> geraniumOrangeBiomes;
+            case "geranium_purple"    -> geraniumPurpleBiomes;
+            case "geranium_purpleish" -> geraniumPurpleishBiomes;
+            case "geranium_red"       -> geraniumRedBiomes;
+            case "geranium_white"     -> geraniumWhiteBiomes;
+            case "ivy"                -> ivyBiomes;
+            case "mulberry"           -> mulberryBiomes;
+            case "red_maple"          -> redMapleBiomes;
+            case "rice"               -> riceBiomes;
+            case "wild_grape"         -> wildGrapeBiomes;
+            case "wild_maize"         -> wildMaizeBiomes;
+            default -> {
+                System.err.println("[GardenTrails] Unknown plant key in biome modifier: " + plant);
+                yield List.of();
+            }
+        };
+    }
 }

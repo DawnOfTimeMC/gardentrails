@@ -1,0 +1,16 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CSC",
+    "CCC"
+  ],
+  "key": {
+    "C": {"item": "gardentrails:crushed_maize"},
+    "S": {"item": "gardentrails:sake_bottle"}
+  },
+  "result": {
+    "id": "gardentrails:sake_bottle_maize",
+    "count": 1
+  }
+}

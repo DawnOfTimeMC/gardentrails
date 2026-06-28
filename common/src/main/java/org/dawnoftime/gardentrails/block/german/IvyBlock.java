@@ -2,21 +2,13 @@ package org.dawnoftime.gardentrails.block.german;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
-
-
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -28,19 +20,15 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import org.dawnoftime.gardentrails.GTConstants;
 import org.dawnoftime.gardentrails.block.IBlockGeneration;
 import org.dawnoftime.gardentrails.block.templates.BlockGT;
-import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.registry.GTTags;
-import org.dawnoftime.gardentrails.util.Utils;
 import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import static net.minecraft.tags.BlockTags.DIRT;
 import static net.minecraft.tags.BlockTags.SAND;
-import static org.dawnoftime.gardentrails.util.Utils.TOOLTIP_CROP;
 import static org.dawnoftime.gardentrails.util.VoxelShapes.IVY_SHAPES;
 
 public class IvyBlock extends BlockGT implements IBlockGeneration {
@@ -162,12 +150,12 @@ public class IvyBlock extends BlockGT implements IBlockGeneration {
         if (levelIn.getRawBrightness(pos, 0) >= 8) {
             int age = state.getValue(AGE);
             if (age < 2) {
-                if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantGrowthChance) == 0) {
+                if (random.nextInt(GTConstants.CLIMBING_GROWTH_CHANCE) == 0) {
                     levelIn.setBlock(pos, state.setValue(AGE, age + 1), 2);
                 }
                 return;
             }
-            if (random.nextInt(Services.PLATFORM.getConfig().climbingPlantSpreadChance) == 0) {
+            if (random.nextInt(GTConstants.CLIMBING_SPREAD_CHANCE) == 0) {
                 // The Ivy will spread
                 ArrayList<Direction> faces = getCurrentDirections(state);
                 int startSpread = random.nextInt(4);
@@ -262,28 +250,6 @@ public class IvyBlock extends BlockGT implements IBlockGeneration {
             }
         }
         return InteractionResult.PASS;
-    }
-
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (!state.getValue(PERSISTENT)) {
-            if (Utils.useLighter(level, pos, player, hand)) {
-                Random rand = new Random();
-                for (int i = 0; i < 5; i++) {
-                    level.addAlwaysVisibleParticle(ParticleTypes.SMOKE, (double) pos.getX() + rand.nextDouble(), (double) pos.getY() + 0.5D + rand.nextDouble() / 2, (double) pos.getZ() + rand.nextDouble(), 0.0D, 0.07D, 0.0D);
-                }
-                level.setBlock(pos, state.setValue(PERSISTENT, true), 10);
-                return ItemInteractionResult.SUCCESS;
-            }
-        }
-
-        return ItemInteractionResult.FAIL;
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, TOOLTIP_CROP);
     }
 
     @Override

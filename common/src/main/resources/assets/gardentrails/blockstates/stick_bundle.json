@@ -2,35 +2,35 @@
 	"multipart": [
 		{
 			"when": {"half": "bottom" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_bottom"}
+			"apply": { "model": "gardentrails:block/stick_bundle_bottom"}
 		},
 		{
 			"when": {"age": "1", "half": "bottom" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_worms_0"}
+			"apply": { "model": "gardentrails:block/stick_bundle_worms_0"}
 		},
 		{
 			"when": {"age": "2", "half": "bottom" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_worms_1"}
+			"apply": { "model": "gardentrails:block/stick_bundle_worms_1"}
 		},
 		{
 			"when": {"age": "3", "half": "bottom" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_worms_2"}
+			"apply": { "model": "gardentrails:block/stick_bundle_worms_2"}
 		},
 		{
 			"when": { "half": "top" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_top"}
+			"apply": { "model": "gardentrails:block/stick_bundle_top"}
 		},
 		{
 			"when": {"age": "1", "half": "top" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_worms_0", "x": 180}
+			"apply": { "model": "gardentrails:block/stick_bundle_worms_0", "x": 180}
 		},
 		{
 			"when": {"age": "2", "half": "top" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_worms_1", "x": 180}
+			"apply": { "model": "gardentrails:block/stick_bundle_worms_1", "x": 180}
 		},
 		{
 			"when": {"age": "3", "half": "top" },
-			"apply": { "model": "gardentrails:block/japanese/stick_bundle_worms_2", "x": 180}
+			"apply": { "model": "gardentrails:block/stick_bundle_worms_2", "x": 180}
 		}
 	]
 }

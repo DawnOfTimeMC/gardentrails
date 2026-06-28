@@ -2,7 +2,6 @@ package org.dawnoftime.gardentrails.recipe;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -14,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 
 public record DryerRecipe(String group, Ingredient ingredient, ItemStack result, float experience,
-                          int dryingTime) implements Recipe<SimpleContainerRecipeInput> {
+                          int dryingTime, int ingredientCount) implements Recipe<SimpleContainerRecipeInput> {
 
     @Override
     public @NotNull String getGroup() {
@@ -23,7 +22,7 @@ public record DryerRecipe(String group, Ingredient ingredient, ItemStack result,
 
     @Override
     public boolean matches(SimpleContainerRecipeInput inv, @NotNull Level worldIn) {
-        return this.ingredient.test(inv.getItem(0)) && inv.getItem(0).getCount() >= this.ingredient.getItems()[0].getCount();
+        return this.ingredient.test(inv.getItem(0)) && inv.getItem(0).getCount() >= this.ingredientCount;
     }
 
     @Override

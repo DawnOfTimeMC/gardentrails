@@ -1,0 +1,13 @@
+﻿{
+    "type": "gardentrails:dryer",
+    "dryingTime": 1200,
+    "experience": 1.0,
+    "ingredientCount": 4,
+    "ingredient": {
+        "item": "gardentrails:mulberry_juice"
+    },
+    "result": {
+        "id": "gardentrails:fermented_mulberry_juice",
+        "count": 4
+    }
+}

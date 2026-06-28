@@ -1,5 +1,6 @@
 package org.dawnoftime.gardentrails.block.templates;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -27,11 +28,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.registry.GTItemsRegistry;
 import org.dawnoftime.gardentrails.util.GTBlockStateProperties;
-import org.dawnoftime.gardentrails.util.Utils;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Supplier;
 
 import static org.dawnoftime.gardentrails.util.VoxelShapes.PERGOLA_SHAPES;
 
@@ -41,8 +43,18 @@ public class PergolaBlock extends BlockGT {
     public static final BooleanProperty AXIS_Y = GTBlockStateProperties.AXIS_Y;
     public static final BooleanProperty AXIS_Z = GTBlockStateProperties.AXIS_Z;
 
-    public PergolaBlock(Properties properties) {
+    private final Supplier<PergolaBlock> vineVariant;
+    private final Supplier<PergolaBlock> ivyVariant;
+    private final Supplier<PergolaBlock> grapeVariant;
+
+    public PergolaBlock(Properties properties,
+                        Supplier<PergolaBlock> vineVariant,
+                        Supplier<PergolaBlock> ivyVariant,
+                        Supplier<PergolaBlock> grapeVariant) {
         super(properties, PERGOLA_SHAPES);
+        this.vineVariant = vineVariant;
+        this.ivyVariant = ivyVariant;
+        this.grapeVariant = grapeVariant;
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS_Y, false).setValue(AXIS_X, false).setValue(AXIS_Z, false));
     }
 
@@ -112,7 +124,12 @@ public class PergolaBlock extends BlockGT {
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        Utils.addTooltip(tooltipComponents, Utils.TOOLTIP_PERGOLA);
+        tooltipComponents.add(Component.translatable("lore.gardentrails.pergola.accepts")
+            .withStyle(ChatFormatting.GOLD)
+            .append(Component.translatable("lore.gardentrails.pergola.accepts.plants")
+                .withStyle(ChatFormatting.YELLOW)));
+        tooltipComponents.add(Component.translatable("lore.gardentrails.pergola.usage")
+            .withStyle(ChatFormatting.WHITE, ChatFormatting.ITALIC));
     }
 
     @Override
@@ -134,15 +151,15 @@ public class PergolaBlock extends BlockGT {
 
     private ItemInteractionResult tryPutPlant(Item itemInHand, BlockState currentState, @NotNull Level level, @NotNull BlockPos pos) {
         if (itemInHand == Blocks.VINE.asItem()) {
-            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_VINE.get()), 2);
+            level.setBlock(pos, this.copyShapeToPergola(currentState, this.vineVariant.get()), 2);
             return ItemInteractionResult.SUCCESS;
         }
         if (itemInHand == GTBlocksRegistry.INSTANCE.IVY.get().asItem()) {
-            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_IVY.get()), 2);
+            level.setBlock(pos, this.copyShapeToPergola(currentState, this.ivyVariant.get()), 2);
             return ItemInteractionResult.SUCCESS;
         }
         if (itemInHand == GTItemsRegistry.INSTANCE.GRAPE_SEEDS.get()) {
-            level.setBlock(pos, this.copyShapeToPergola(currentState, GTBlocksRegistry.INSTANCE.IRON_PERGOLA_GRAPE.get()), 2);
+            level.setBlock(pos, this.copyShapeToPergola(currentState, this.grapeVariant.get()), 2);
             return ItemInteractionResult.SUCCESS;
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

@@ -1,24 +1,15 @@
 package org.dawnoftime.gardentrails.recipe;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
 
 public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
     public static final MapCodec<DryerRecipe> CODEC = RecordCodecBuilder.mapCodec(
@@ -27,7 +18,8 @@ public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
                     Ingredient.CODEC.fieldOf("ingredient").forGetter(DryerRecipe::ingredient),
                     ItemStack.CODEC.fieldOf("result").forGetter(DryerRecipe::result),
                     Codec.FLOAT.optionalFieldOf("experience", 0f).forGetter(DryerRecipe::experience),
-                    Codec.INT.optionalFieldOf("dryingTime", 1200).forGetter(DryerRecipe::dryingTime)
+                    Codec.INT.optionalFieldOf("dryingTime", 1200).forGetter(DryerRecipe::dryingTime),
+                    Codec.INT.optionalFieldOf("ingredientCount", 1).forGetter(DryerRecipe::ingredientCount)
             ).apply(instance, DryerRecipe::new)
     );
 
@@ -50,7 +42,8 @@ public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
         ItemStack itemStackResult = ItemStack.STREAM_CODEC.decode(buf);
         float experience = buf.readFloat();
         int dryingTime = buf.readVarInt();
-        return new DryerRecipe(group, ingredient, itemStackResult, experience, dryingTime);
+        int ingredientCount = buf.readVarInt();
+        return new DryerRecipe(group, ingredient, itemStackResult, experience, dryingTime, ingredientCount);
     }
 
     public static void write(RegistryFriendlyByteBuf buf, DryerRecipe recipe) {
@@ -59,5 +52,6 @@ public class DryerRecipeSerializer implements RecipeSerializer<DryerRecipe> {
         ItemStack.STREAM_CODEC.encode(buf, recipe.result());
         buf.writeFloat(recipe.experience());
         buf.writeVarInt(recipe.dryingTime());
+        buf.writeVarInt(recipe.ingredientCount());
     }
 }

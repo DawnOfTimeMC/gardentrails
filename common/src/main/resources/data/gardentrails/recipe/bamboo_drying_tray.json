@@ -1,12 +1,15 @@
-{
+﻿{
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"I I",
-		"III"
+		"iIi"
 	],
 	"key": {
 		"I": {
-			"item": "minecraft:bamboo"
+			"item": "minecraft:bamboo_planks"
+		},
+		"i": {
+			"item": "minecraft:iron_ingot"
 		}
 	},
 	"result": {

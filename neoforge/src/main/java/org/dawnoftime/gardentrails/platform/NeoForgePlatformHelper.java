@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.fml.ModList;
 import org.dawnoftime.gardentrails.GTConfig;
-import org.dawnoftime.gardentrails.GTNeoForge;
+import org.dawnoftime.gardentrails.GTConfigLoader;
 import org.dawnoftime.gardentrails.mixin.accessor.CropBlockAccessor;
 import org.dawnoftime.gardentrails.platform.services.IPlatformHelper;
 
@@ -18,7 +18,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public GTConfig getConfig() {
-        return GTNeoForge.HANDLER.instance();
+        return GTConfigLoader.INSTANCE;
     }
 
     @Override

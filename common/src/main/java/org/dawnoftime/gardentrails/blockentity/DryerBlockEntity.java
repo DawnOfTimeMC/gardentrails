@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.dawnoftime.gardentrails.platform.Services;
+import org.dawnoftime.gardentrails.GTConstants;
 import org.dawnoftime.gardentrails.recipe.DryerRecipe;
 import org.dawnoftime.gardentrails.recipe.SimpleContainerRecipeInput;
 import org.dawnoftime.gardentrails.registry.GTBlockEntitiesRegistry;
@@ -149,12 +149,12 @@ public class DryerBlockEntity extends BlockEntity {
             final SimpleContainer invInHand = new SimpleContainer(itemStack);
             final DryerRecipe recipe = this.getDryerRecipe(invInHand);
             if (recipe != null && recipe.matches(new SimpleContainerRecipeInput(invInHand), this.getLevel())) {
-                this.itemHandler.setItem(index, recipe.getIngredients().get(0).getItems()[0].copy());
+                this.itemHandler.setItem(index, recipe.getIngredients().get(0).getItems()[0].copyWithCount(recipe.ingredientCount()));
                 if (!player.isCreative()) {
-                    itemStack.shrink(recipe.getIngredients().get(0).getItems()[0].getCount());
+                    itemStack.shrink(recipe.ingredientCount());
                 }
                 final float timeVariation = new Random().nextFloat() * 2.0F - 1.0F;
-                final int range = timeVariation >= 0 ? Services.PLATFORM.getConfig().dryingTimeVariation : 10000 / (100 + Services.PLATFORM.getConfig().dryingTimeVariation);
+                final int range = timeVariation >= 0 ? GTConstants.DRYING_TIME_VARIATION : 10000 / (100 + GTConstants.DRYING_TIME_VARIATION);
                 this.remainingTicks[index] = (int) (recipe.dryingTime() * (100 + timeVariation * range) / 100);
 
                 this.setChanged();

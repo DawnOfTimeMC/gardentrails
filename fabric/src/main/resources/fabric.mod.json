@@ -21,9 +21,6 @@
         ],
         "client": [
             "org.dawnoftime.gardentrails.GTFabric"
-        ],
-        "modmenu": [
-            "org.dawnoftime.gardentrails.compat.ModMenuEntrypoint"
         ]
     },
     "mixins": [
@@ -33,7 +30,6 @@
     "depends": {
         "fabricloader": ">=0.14",
         "fabric": "*",
-        "yet_another_config_lib_v3": "*",
         "minecraft": "${minecraft_version}",
         "java": ">=17"
     },

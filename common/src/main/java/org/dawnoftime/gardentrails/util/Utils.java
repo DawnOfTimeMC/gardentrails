@@ -1,20 +1,11 @@
 package org.dawnoftime.gardentrails.util;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -27,21 +18,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.dawnoftime.gardentrails.GTCommon;
-import org.dawnoftime.gardentrails.registry.GTTags;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public class Utils {
     //General
     public static final int HIGHEST_Y = 255;
-    //Tooltip translation text
-    public static final Component TOOLTIP_HOLD_SHIFT = Component.translatable("tooltip." +
-            GTCommon.MOD_ID + ".hold_key").withStyle(ChatFormatting.GRAY).append(Component.translatable("tooltip." +
-            GTCommon.MOD_ID + ".shift").withStyle(ChatFormatting.AQUA));
-    public static final String TOOLTIP_COLUMN = "column";
-    public static final String TOOLTIP_CROP = "crop";
-    public static final String TOOLTIP_PERGOLA = "pergola";
 
     public static VoxelShape[] generateHorizontalShapes(final VoxelShape[] shapes, VoxelShape... nonRotatedShapes) {
         final VoxelShape[] newShape = {Shapes.empty()};
@@ -92,38 +74,4 @@ public class Utils {
         return true;
     }
 
-    public static boolean useLighter(final Level worldIn, final BlockPos pos, final Player player, final InteractionHand handIn) {
-        final ItemStack itemInHand = player.getItemInHand(handIn);
-        if (!itemInHand.isEmpty() && itemInHand.is(GTTags.INSTANCE.LIGHTERS)) {
-            worldIn.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            if (worldIn instanceof ServerLevel serverLevel && player instanceof ServerPlayer serverPlayer) {
-                itemInHand.hurtAndBreak(1, serverLevel, serverPlayer, (item) -> serverPlayer.onEquippedItemBroken(
-                        item,
-                        handIn == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND
-                ));
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public static void addTooltip(final List<Component> tooltip, @Nonnull final Item item, final String... tooltipNames) {
-        final ResourceLocation itemName = item.builtInRegistryHolder().key().location();
-        if (itemName != null) {
-            String[] tts = new String[tooltipNames.length + 1];
-            System.arraycopy(tooltipNames, 0, tts, 0, tooltipNames.length);
-            tts[tooltipNames.length] = itemName.getPath();
-            Utils.addTooltip(tooltip, tts);
-        }
-    }
-
-    public static void addTooltip(final List<Component> tooltip, final String... tooltipNames) {
-        if (Screen.hasShiftDown()) {
-            for (final String tooltipName : tooltipNames) {
-                tooltip.add(Component.translatable("tooltip." + GTCommon.MOD_ID + "." + tooltipName).withStyle(ChatFormatting.GRAY));
-            }
-        } else {
-            tooltip.add(Utils.TOOLTIP_HOLD_SHIFT);
-        }
-    }
 }

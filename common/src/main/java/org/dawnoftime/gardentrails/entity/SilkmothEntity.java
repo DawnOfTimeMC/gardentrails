@@ -18,8 +18,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.dawnoftime.gardentrails.GTConstants;
 import org.dawnoftime.gardentrails.block.templates.DoubleGrowingBushBlock;
-import org.dawnoftime.gardentrails.platform.Services;
 import org.dawnoftime.gardentrails.registry.GTBlocksRegistry;
 import org.dawnoftime.gardentrails.registry.GTEntitiesRegistry;
 
@@ -41,7 +41,7 @@ public class SilkmothEntity extends AmbientCreature {
     }
 
     private float getNewRotationDistance() {
-        return 0.5F + Services.PLATFORM.getConfig().silkmothRotationMaxRange * this.random.nextFloat();
+        return 0.5F + GTConstants.SILKMOTH_ROTATION_RANGE * this.random.nextFloat();
     }
 
     @Override
@@ -63,11 +63,11 @@ public class SilkmothEntity extends AmbientCreature {
 
         if(this.tickCount >= 24000){
             //The silkmoth dies from oldness.
-            if(!this.hasCustomName() && Services.PLATFORM.getConfig().silkmothMustDie)
+            if(!this.hasCustomName() && GTConstants.SILKMOTH_MUST_DIE)
                 this.hurt(this.damageSources().starve(), 20.0F);
         }
 
-        if(this.random.nextInt(Services.PLATFORM.getConfig().silkmothRotationChange) == 0){
+        if(this.random.nextInt(GTConstants.SILKMOTH_ROTATION_CHANGE) == 0){
             //Randomly changes the rotation pos.
             this.changeRotationPos();
         }
@@ -176,7 +176,7 @@ public class SilkmothEntity extends AmbientCreature {
     @Nullable
     @Override
     public SoundEvent getAmbientSound() {
-        return !Services.PLATFORM.getConfig().silkmothMute && this.random.nextInt(4) == 0 ? SoundEvents.PARROT_FLY : null;
+        return !GTConstants.SILKMOTH_MUTE && this.random.nextInt(4) == 0 ? SoundEvents.PARROT_FLY : null;
     }
 
     @Override

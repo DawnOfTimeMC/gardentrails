@@ -1,7 +1,7 @@
 {
     "variants": {
         "": [
-            { "model": "gardentrails:block/japanese/mulberry_pot" }
+            { "model": "gardentrails:block/mulberry_pot" }
         ]
     }
 }
